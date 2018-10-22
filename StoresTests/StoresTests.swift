@@ -1,7 +1,7 @@
 // Copyright (c) 2017-2018 Coinbase Inc. See LICENSE
 
 import RxSwift
-import Stores
+import CBStore
 import XCTest
 
 let unitTestsTimeout: TimeInterval = 1

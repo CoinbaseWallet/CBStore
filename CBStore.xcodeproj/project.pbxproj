@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		21D2C08F3CAD291E2E11B703 /* Pods_Stores.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E523AD3D6BAE65F71DA0202 /* Pods_Stores.framework */; };
-		5DE02A832E6BC13AFC1416FC /* Pods_StoresTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7666A7413D4C8D0A00048E28 /* Pods_StoresTests.framework */; };
-		E75CDE06217D437A00DDC4C8 /* Stores.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75CDDFC217D437A00DDC4C8 /* Stores.framework */; };
+		41BE6F37003A58D8BD0D2CF6 /* Pods_CBStoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E99D7A6EFF2092312E72EF /* Pods_CBStoreTests.framework */; };
+		E35FDB70B7672CCC81BEFD4A /* Pods_CBStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF618C0AE9E56F89FD6BC6DB /* Pods_CBStore.framework */; };
+		E75CDE06217D437A00DDC4C8 /* CBStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75CDDFC217D437A00DDC4C8 /* CBStore.framework */; };
 		E75CDE0B217D437A00DDC4C8 /* StoresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE0A217D437A00DDC4C8 /* StoresTests.swift */; };
 		E75CDE0D217D437A00DDC4C8 /* Stores.h in Headers */ = {isa = PBXBuildFile; fileRef = E75CDDFF217D437A00DDC4C8 /* Stores.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E75CDE26217D443F00DDC4C8 /* StoreKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE18217D443E00DDC4C8 /* StoreKey.swift */; };
@@ -53,14 +53,19 @@
 /* Begin PBXFileReference section */
 		06914400EE36C2D5ED4E2FF3 /* Pods-StoresTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoresTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StoresTests/Pods-StoresTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0AED1E8FACBB54157B26EBD7 /* Pods-Stores.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stores.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stores/Pods-Stores.debug.xcconfig"; sourceTree = "<group>"; };
+		1262E01D45D7E7DE885A7CE8 /* Pods-CBStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CBStore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CBStore/Pods-CBStore.debug.xcconfig"; sourceTree = "<group>"; };
+		36E99D7A6EFF2092312E72EF /* Pods_CBStoreTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CBStoreTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E523AD3D6BAE65F71DA0202 /* Pods_Stores.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stores.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BD01A1F071B1A67238F4126 /* Pods-CBStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CBStore.release.xcconfig"; path = "Pods/Target Support Files/Pods-CBStore/Pods-CBStore.release.xcconfig"; sourceTree = "<group>"; };
 		7666A7413D4C8D0A00048E28 /* Pods_StoresTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoresTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95D6C505CE78BF296CCA6C8D /* Pods-StoresTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoresTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StoresTests/Pods-StoresTests.release.xcconfig"; sourceTree = "<group>"; };
+		A5AD7B90C93FB605A25805FF /* Pods-CBStoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CBStoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CBStoreTests/Pods-CBStoreTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AF618C0AE9E56F89FD6BC6DB /* Pods_CBStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CBStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C68D0188660C44BF457099E5 /* Pods-Stores.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stores.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stores/Pods-Stores.release.xcconfig"; sourceTree = "<group>"; };
-		E75CDDFC217D437A00DDC4C8 /* Stores.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Stores.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E75CDDFC217D437A00DDC4C8 /* CBStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CBStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E75CDDFF217D437A00DDC4C8 /* Stores.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Stores.h; sourceTree = "<group>"; };
 		E75CDE00217D437A00DDC4C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E75CDE05217D437A00DDC4C8 /* StoresTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoresTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E75CDE05217D437A00DDC4C8 /* CBStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CBStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E75CDE0A217D437A00DDC4C8 /* StoresTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresTests.swift; sourceTree = "<group>"; };
 		E75CDE0C217D437A00DDC4C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E75CDE18217D443E00DDC4C8 /* StoreKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreKey.swift; sourceTree = "<group>"; };
@@ -71,7 +76,7 @@
 		E75CDE1F217D443E00DDC4C8 /* KeychainStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		E75CDE20217D443E00DDC4C8 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
 		E75CDE22217D443E00DDC4C8 /* Bundle+Stores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Stores.swift"; sourceTree = "<group>"; };
-		E792A792217D47DD00D46FF7 /* StoresTestHostApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoresTestHostApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E792A792217D47DD00D46FF7 /* CBStoreTestHostApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CBStoreTestHostApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E792A794217D47DD00D46FF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E792A796217D47DD00D46FF7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E792A799217D47DD00D46FF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -85,6 +90,7 @@
 		E792A7AF217D4EA500D46FF7 /* KeychainAccessibleKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainAccessibleKind.swift; sourceTree = "<group>"; };
 		E792A7B1217D4F2100D46FF7 /* UserDefaultsStoreKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStoreKey.swift; sourceTree = "<group>"; };
 		E792A7B4217D4FF400D46FF7 /* MemoryStoreKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryStoreKey.swift; sourceTree = "<group>"; };
+		F283C25CB67B68CB78CFCADD /* Pods-CBStoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CBStoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CBStoreTests/Pods-CBStoreTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21D2C08F3CAD291E2E11B703 /* Pods_Stores.framework in Frameworks */,
+				E35FDB70B7672CCC81BEFD4A /* Pods_CBStore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,8 +106,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E75CDE06217D437A00DDC4C8 /* Stores.framework in Frameworks */,
-				5DE02A832E6BC13AFC1416FC /* Pods_StoresTests.framework in Frameworks */,
+				E75CDE06217D437A00DDC4C8 /* CBStore.framework in Frameworks */,
+				41BE6F37003A58D8BD0D2CF6 /* Pods_CBStoreTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +128,10 @@
 				C68D0188660C44BF457099E5 /* Pods-Stores.release.xcconfig */,
 				06914400EE36C2D5ED4E2FF3 /* Pods-StoresTests.debug.xcconfig */,
 				95D6C505CE78BF296CCA6C8D /* Pods-StoresTests.release.xcconfig */,
+				1262E01D45D7E7DE885A7CE8 /* Pods-CBStore.debug.xcconfig */,
+				6BD01A1F071B1A67238F4126 /* Pods-CBStore.release.xcconfig */,
+				A5AD7B90C93FB605A25805FF /* Pods-CBStoreTests.debug.xcconfig */,
+				F283C25CB67B68CB78CFCADD /* Pods-CBStoreTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -141,9 +151,9 @@
 		E75CDDFD217D437A00DDC4C8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E75CDDFC217D437A00DDC4C8 /* Stores.framework */,
-				E75CDE05217D437A00DDC4C8 /* StoresTests.xctest */,
-				E792A792217D47DD00D46FF7 /* StoresTestHostApp.app */,
+				E75CDDFC217D437A00DDC4C8 /* CBStore.framework */,
+				E75CDE05217D437A00DDC4C8 /* CBStoreTests.xctest */,
+				E792A792217D47DD00D46FF7 /* CBStoreTestHostApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -247,6 +257,8 @@
 			children = (
 				3E523AD3D6BAE65F71DA0202 /* Pods_Stores.framework */,
 				7666A7413D4C8D0A00048E28 /* Pods_StoresTests.framework */,
+				AF618C0AE9E56F89FD6BC6DB /* Pods_CBStore.framework */,
+				36E99D7A6EFF2092312E72EF /* Pods_CBStoreTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -265,9 +277,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		E75CDDFB217D437A00DDC4C8 /* Stores */ = {
+		E75CDDFB217D437A00DDC4C8 /* CBStore */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E75CDE10217D437A00DDC4C8 /* Build configuration list for PBXNativeTarget "Stores" */;
+			buildConfigurationList = E75CDE10217D437A00DDC4C8 /* Build configuration list for PBXNativeTarget "CBStore" */;
 			buildPhases = (
 				0394B45442BE69440DC58A40 /* [CP] Check Pods Manifest.lock */,
 				E75CDDF7217D437A00DDC4C8 /* Headers */,
@@ -279,14 +291,14 @@
 			);
 			dependencies = (
 			);
-			name = Stores;
+			name = CBStore;
 			productName = Stores;
-			productReference = E75CDDFC217D437A00DDC4C8 /* Stores.framework */;
+			productReference = E75CDDFC217D437A00DDC4C8 /* CBStore.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		E75CDE04217D437A00DDC4C8 /* StoresTests */ = {
+		E75CDE04217D437A00DDC4C8 /* CBStoreTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E75CDE13217D437A00DDC4C8 /* Build configuration list for PBXNativeTarget "StoresTests" */;
+			buildConfigurationList = E75CDE13217D437A00DDC4C8 /* Build configuration list for PBXNativeTarget "CBStoreTests" */;
 			buildPhases = (
 				2075163459707A0ADFC1E785 /* [CP] Check Pods Manifest.lock */,
 				E75CDE01217D437A00DDC4C8 /* Sources */,
@@ -300,14 +312,14 @@
 				E75CDE08217D437A00DDC4C8 /* PBXTargetDependency */,
 				E792A7A6217D482300D46FF7 /* PBXTargetDependency */,
 			);
-			name = StoresTests;
+			name = CBStoreTests;
 			productName = StoresTests;
-			productReference = E75CDE05217D437A00DDC4C8 /* StoresTests.xctest */;
+			productReference = E75CDE05217D437A00DDC4C8 /* CBStoreTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		E792A791217D47DD00D46FF7 /* StoresTestHostApp */ = {
+		E792A791217D47DD00D46FF7 /* CBStoreTestHostApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E792A7A1217D47DE00D46FF7 /* Build configuration list for PBXNativeTarget "StoresTestHostApp" */;
+			buildConfigurationList = E792A7A1217D47DE00D46FF7 /* Build configuration list for PBXNativeTarget "CBStoreTestHostApp" */;
 			buildPhases = (
 				E792A78E217D47DD00D46FF7 /* Sources */,
 				E792A78F217D47DD00D46FF7 /* Frameworks */,
@@ -317,9 +329,9 @@
 			);
 			dependencies = (
 			);
-			name = StoresTestHostApp;
+			name = CBStoreTestHostApp;
 			productName = StoresTestHostApp;
-			productReference = E792A792217D47DD00D46FF7 /* StoresTestHostApp.app */;
+			productReference = E792A792217D47DD00D46FF7 /* CBStoreTestHostApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -349,7 +361,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E75CDDF6217D437A00DDC4C8 /* Build configuration list for PBXProject "Stores" */;
+			buildConfigurationList = E75CDDF6217D437A00DDC4C8 /* Build configuration list for PBXProject "CBStore" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -362,9 +374,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E75CDDFB217D437A00DDC4C8 /* Stores */,
-				E75CDE04217D437A00DDC4C8 /* StoresTests */,
-				E792A791217D47DD00D46FF7 /* StoresTestHostApp */,
+				E75CDDFB217D437A00DDC4C8 /* CBStore */,
+				E75CDE04217D437A00DDC4C8 /* CBStoreTests */,
+				E792A791217D47DD00D46FF7 /* CBStoreTestHostApp */,
 			);
 		};
 /* End PBXProject section */
@@ -412,7 +424,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Stores-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CBStore-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -434,7 +446,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-StoresTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CBStoreTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -449,7 +461,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-StoresTests/Pods-StoresTests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-CBStoreTests/Pods-CBStoreTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
@@ -466,7 +478,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StoresTests/Pods-StoresTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CBStoreTests/Pods-CBStoreTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -515,12 +527,12 @@
 /* Begin PBXTargetDependency section */
 		E75CDE08217D437A00DDC4C8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E75CDDFB217D437A00DDC4C8 /* Stores */;
+			target = E75CDDFB217D437A00DDC4C8 /* CBStore */;
 			targetProxy = E75CDE07217D437A00DDC4C8 /* PBXContainerItemProxy */;
 		};
 		E792A7A6217D482300D46FF7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E792A791217D47DD00D46FF7 /* StoresTestHostApp */;
+			target = E792A791217D47DD00D46FF7 /* CBStoreTestHostApp */;
 			targetProxy = E792A7A5217D482300D46FF7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -671,7 +683,7 @@
 		};
 		E75CDE11217D437A00DDC4C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0AED1E8FACBB54157B26EBD7 /* Pods-Stores.debug.xcconfig */;
+			baseConfigurationReference = 1262E01D45D7E7DE885A7CE8 /* Pods-CBStore.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
@@ -700,7 +712,7 @@
 		};
 		E75CDE12217D437A00DDC4C8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C68D0188660C44BF457099E5 /* Pods-Stores.release.xcconfig */;
+			baseConfigurationReference = 6BD01A1F071B1A67238F4126 /* Pods-CBStore.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
@@ -728,7 +740,7 @@
 		};
 		E75CDE14217D437A00DDC4C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 06914400EE36C2D5ED4E2FF3 /* Pods-StoresTests.debug.xcconfig */;
+			baseConfigurationReference = A5AD7B90C93FB605A25805FF /* Pods-CBStoreTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -747,13 +759,13 @@
 				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[sdk=iphonesimulator*]" = "SIMULATOR DEBUG";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StoresTestHostApp.app/StoresTestHostApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CBStoreTestHostApp.app/CBStoreTestHostApp";
 			};
 			name = Debug;
 		};
 		E75CDE15217D437A00DDC4C8 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 95D6C505CE78BF296CCA6C8D /* Pods-StoresTests.release.xcconfig */;
+			baseConfigurationReference = F283C25CB67B68CB78CFCADD /* Pods-CBStoreTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -771,7 +783,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StoresTestHostApp.app/StoresTestHostApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CBStoreTestHostApp.app/CBStoreTestHostApp";
 			};
 			name = Release;
 		};
@@ -819,7 +831,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E75CDDF6217D437A00DDC4C8 /* Build configuration list for PBXProject "Stores" */ = {
+		E75CDDF6217D437A00DDC4C8 /* Build configuration list for PBXProject "CBStore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E75CDE0E217D437A00DDC4C8 /* Debug */,
@@ -828,7 +840,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E75CDE10217D437A00DDC4C8 /* Build configuration list for PBXNativeTarget "Stores" */ = {
+		E75CDE10217D437A00DDC4C8 /* Build configuration list for PBXNativeTarget "CBStore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E75CDE11217D437A00DDC4C8 /* Debug */,
@@ -837,7 +849,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E75CDE13217D437A00DDC4C8 /* Build configuration list for PBXNativeTarget "StoresTests" */ = {
+		E75CDE13217D437A00DDC4C8 /* Build configuration list for PBXNativeTarget "CBStoreTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E75CDE14217D437A00DDC4C8 /* Debug */,
@@ -846,7 +858,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E792A7A1217D47DE00D46FF7 /* Build configuration list for PBXNativeTarget "StoresTestHostApp" */ = {
+		E792A7A1217D47DE00D46FF7 /* Build configuration list for PBXNativeTarget "CBStoreTestHostApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E792A7A2217D47DE00D46FF7 /* Debug */,

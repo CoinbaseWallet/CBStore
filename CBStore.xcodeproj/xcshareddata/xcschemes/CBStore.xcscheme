@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E792A791217D47DD00D46FF7"
-               BuildableName = "StoresTestHostApp.app"
-               BlueprintName = "StoresTestHostApp"
-               ReferencedContainer = "container:Stores.xcodeproj">
+               BlueprintIdentifier = "E75CDDFB217D437A00DDC4C8"
+               BuildableName = "CBStore.framework"
+               BlueprintName = "CBStore"
+               ReferencedContainer = "container:CBStore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,19 +33,19 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E75CDE04217D437A00DDC4C8"
-               BuildableName = "StoresTests.xctest"
-               BlueprintName = "StoresTests"
-               ReferencedContainer = "container:Stores.xcodeproj">
+               BuildableName = "CBStoreTests.xctest"
+               BlueprintName = "CBStoreTests"
+               ReferencedContainer = "container:CBStore.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E792A791217D47DD00D46FF7"
-            BuildableName = "StoresTestHostApp.app"
-            BlueprintName = "StoresTestHostApp"
-            ReferencedContainer = "container:Stores.xcodeproj">
+            BlueprintIdentifier = "E75CDDFB217D437A00DDC4C8"
+            BuildableName = "CBStore.framework"
+            BlueprintName = "CBStore"
+            ReferencedContainer = "container:CBStore.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -61,16 +61,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E792A791217D47DD00D46FF7"
-            BuildableName = "StoresTestHostApp.app"
-            BlueprintName = "StoresTestHostApp"
-            ReferencedContainer = "container:Stores.xcodeproj">
+            BlueprintIdentifier = "E75CDDFB217D437A00DDC4C8"
+            BuildableName = "CBStore.framework"
+            BlueprintName = "CBStore"
+            ReferencedContainer = "container:CBStore.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -80,16 +79,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E792A791217D47DD00D46FF7"
-            BuildableName = "StoresTestHostApp.app"
-            BlueprintName = "StoresTestHostApp"
-            ReferencedContainer = "container:Stores.xcodeproj">
+            BlueprintIdentifier = "E75CDDFB217D437A00DDC4C8"
+            BuildableName = "CBStore.framework"
+            BlueprintName = "CBStore"
+            ReferencedContainer = "container:CBStore.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

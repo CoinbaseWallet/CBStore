@@ -1,6 +1,7 @@
 // Copyright (c) 2017-2018 Coinbase Inc. See LICENSE
 
 import Foundation
+import CoreGraphics
 
 /// This protocol should be used to declare data types that can be stored in keychain or user defaults.
 public protocol Storable {

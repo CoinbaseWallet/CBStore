@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
-  s.name             = 'Stores'
+  s.name             = 'CBStore'
   s.version          = '0.1.0'
   s.summary          = 'A simple wrapper around Keychain and UserDefaults'
-  s.description      = s.summary
+  s.description      = 'A simple wrapper around Keychain and UserDefaults. Developed by Coinbase Wallet team.'
 
   s.homepage         = 'https://github.com/CoinbaseWallet/Stores'
   s.license          = { :type => "AGPL-3.0-only", :file => 'LICENSE' }
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '11.0'
   s.swift_version = '4.2'
-  s.source_files = 'Stores/**/*'
+  s.source_files = 'CBStore/**/*'
 
   s.dependency 'RxSwift', '~> 4.3.0'
 end
