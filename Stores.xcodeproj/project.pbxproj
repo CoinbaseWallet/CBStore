@@ -7,9 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21D2C08F3CAD291E2E11B703 /* Pods_Stores.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E523AD3D6BAE65F71DA0202 /* Pods_Stores.framework */; };
+		5DE02A832E6BC13AFC1416FC /* Pods_StoresTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7666A7413D4C8D0A00048E28 /* Pods_StoresTests.framework */; };
 		E75CDE06217D437A00DDC4C8 /* Stores.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75CDDFC217D437A00DDC4C8 /* Stores.framework */; };
 		E75CDE0B217D437A00DDC4C8 /* StoresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE0A217D437A00DDC4C8 /* StoresTests.swift */; };
 		E75CDE0D217D437A00DDC4C8 /* Stores.h in Headers */ = {isa = PBXBuildFile; fileRef = E75CDDFF217D437A00DDC4C8 /* Stores.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E75CDE26217D443F00DDC4C8 /* StoreKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE18217D443E00DDC4C8 /* StoreKey.swift */; };
+		E75CDE28217D443F00DDC4C8 /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE1A217D443E00DDC4C8 /* Storable.swift */; };
+		E75CDE29217D443F00DDC4C8 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE1B217D443E00DDC4C8 /* Store.swift */; };
+		E75CDE2A217D443F00DDC4C8 /* StoreKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE1C217D443E00DDC4C8 /* StoreKind.swift */; };
+		E75CDE2B217D443F00DDC4C8 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE1E217D443E00DDC4C8 /* Storage.swift */; };
+		E75CDE2C217D443F00DDC4C8 /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE1F217D443E00DDC4C8 /* KeychainStorage.swift */; };
+		E75CDE2D217D443F00DDC4C8 /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE20217D443E00DDC4C8 /* UserDefaultsStorage.swift */; };
+		E75CDE2E217D443F00DDC4C8 /* Bundle+Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE22217D443E00DDC4C8 /* Bundle+Stores.swift */; };
+		E75CDE2F217D443F00DDC4C8 /* Stores.h in Headers */ = {isa = PBXBuildFile; fileRef = E75CDE24217D443E00DDC4C8 /* Stores.h */; };
+		E792A795217D47DD00D46FF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A794217D47DD00D46FF7 /* AppDelegate.swift */; };
+		E792A797217D47DD00D46FF7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A796217D47DD00D46FF7 /* ViewController.swift */; };
+		E792A79A217D47DD00D46FF7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E792A798217D47DD00D46FF7 /* Main.storyboard */; };
+		E792A79C217D47DE00D46FF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E792A79B217D47DE00D46FF7 /* Assets.xcassets */; };
+		E792A79F217D47DE00D46FF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E792A79D217D47DE00D46FF7 /* LaunchScreen.storyboard */; };
+		E792A7A8217D491F00D46FF7 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A7A7217D491F00D46FF7 /* MemoryStorage.swift */; };
+		E792A7AB217D4B5D00D46FF7 /* StoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A7AA217D4B5D00D46FF7 /* StoreProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -20,15 +38,48 @@
 			remoteGlobalIDString = E75CDDFB217D437A00DDC4C8;
 			remoteInfo = Stores;
 		};
+		E792A7A5217D482300D46FF7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E75CDDF3217D437A00DDC4C8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E792A791217D47DD00D46FF7;
+			remoteInfo = StoresTestHostApp;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06914400EE36C2D5ED4E2FF3 /* Pods-StoresTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoresTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StoresTests/Pods-StoresTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0AED1E8FACBB54157B26EBD7 /* Pods-Stores.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stores.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Stores/Pods-Stores.debug.xcconfig"; sourceTree = "<group>"; };
+		3E523AD3D6BAE65F71DA0202 /* Pods_Stores.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Stores.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7666A7413D4C8D0A00048E28 /* Pods_StoresTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StoresTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95D6C505CE78BF296CCA6C8D /* Pods-StoresTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoresTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StoresTests/Pods-StoresTests.release.xcconfig"; sourceTree = "<group>"; };
+		C68D0188660C44BF457099E5 /* Pods-Stores.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stores.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stores/Pods-Stores.release.xcconfig"; sourceTree = "<group>"; };
 		E75CDDFC217D437A00DDC4C8 /* Stores.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Stores.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E75CDDFF217D437A00DDC4C8 /* Stores.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Stores.h; sourceTree = "<group>"; };
 		E75CDE00217D437A00DDC4C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E75CDE05217D437A00DDC4C8 /* StoresTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoresTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E75CDE0A217D437A00DDC4C8 /* StoresTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresTests.swift; sourceTree = "<group>"; };
 		E75CDE0C217D437A00DDC4C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E75CDE18217D443E00DDC4C8 /* StoreKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreKey.swift; sourceTree = "<group>"; };
+		E75CDE1A217D443E00DDC4C8 /* Storable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storable.swift; sourceTree = "<group>"; };
+		E75CDE1B217D443E00DDC4C8 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		E75CDE1C217D443E00DDC4C8 /* StoreKind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreKind.swift; sourceTree = "<group>"; };
+		E75CDE1E217D443E00DDC4C8 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		E75CDE1F217D443E00DDC4C8 /* KeychainStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
+		E75CDE20217D443E00DDC4C8 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
+		E75CDE22217D443E00DDC4C8 /* Bundle+Stores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Stores.swift"; sourceTree = "<group>"; };
+		E75CDE24217D443E00DDC4C8 /* Stores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stores.h; sourceTree = "<group>"; };
+		E75CDE25217D443E00DDC4C8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E792A792217D47DD00D46FF7 /* StoresTestHostApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoresTestHostApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E792A794217D47DD00D46FF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E792A796217D47DD00D46FF7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E792A799217D47DD00D46FF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E792A79B217D47DE00D46FF7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E792A79E217D47DE00D46FF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E792A7A0217D47DE00D46FF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E792A7A4217D481400D46FF7 /* StoresTestHostApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StoresTestHostApp.entitlements; sourceTree = "<group>"; };
+		E792A7A7217D491F00D46FF7 /* MemoryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
+		E792A7AA217D4B5D00D46FF7 /* StoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21D2C08F3CAD291E2E11B703 /* Pods_Stores.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,18 +96,40 @@
 			buildActionMask = 2147483647;
 			files = (
 				E75CDE06217D437A00DDC4C8 /* Stores.framework in Frameworks */,
+				5DE02A832E6BC13AFC1416FC /* Pods_StoresTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E792A78F217D47DD00D46FF7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D371A06B8D9055941C0832AD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0AED1E8FACBB54157B26EBD7 /* Pods-Stores.debug.xcconfig */,
+				C68D0188660C44BF457099E5 /* Pods-Stores.release.xcconfig */,
+				06914400EE36C2D5ED4E2FF3 /* Pods-StoresTests.debug.xcconfig */,
+				95D6C505CE78BF296CCA6C8D /* Pods-StoresTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E75CDDF2217D437A00DDC4C8 = {
 			isa = PBXGroup;
 			children = (
 				E75CDDFE217D437A00DDC4C8 /* Stores */,
 				E75CDE09217D437A00DDC4C8 /* StoresTests */,
+				E792A793217D47DD00D46FF7 /* StoresTestHostApp */,
 				E75CDDFD217D437A00DDC4C8 /* Products */,
+				D371A06B8D9055941C0832AD /* Pods */,
+				EB2F71D39754D3BFD0326040 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +138,7 @@
 			children = (
 				E75CDDFC217D437A00DDC4C8 /* Stores.framework */,
 				E75CDE05217D437A00DDC4C8 /* StoresTests.xctest */,
+				E792A792217D47DD00D46FF7 /* StoresTestHostApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,8 +146,12 @@
 		E75CDDFE217D437A00DDC4C8 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
-				E75CDDFF217D437A00DDC4C8 /* Stores.h */,
-				E75CDE00217D437A00DDC4C8 /* Info.plist */,
+				E792A7A9217D4B5200D46FF7 /* Protocols */,
+				E75CDE21217D443E00DDC4C8 /* Extensions */,
+				E75CDE23217D443E00DDC4C8 /* Module */,
+				E75CDE1D217D443E00DDC4C8 /* PersistentStorage */,
+				E75CDE17217D443E00DDC4C8 /* Store */,
+				E75CDE16217D438100DDC4C8 /* Module */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -86,6 +165,85 @@
 			path = StoresTests;
 			sourceTree = "<group>";
 		};
+		E75CDE16217D438100DDC4C8 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				E75CDDFF217D437A00DDC4C8 /* Stores.h */,
+				E75CDE00217D437A00DDC4C8 /* Info.plist */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		E75CDE17217D443E00DDC4C8 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				E75CDE18217D443E00DDC4C8 /* StoreKey.swift */,
+				E75CDE1A217D443E00DDC4C8 /* Storable.swift */,
+				E75CDE1B217D443E00DDC4C8 /* Store.swift */,
+				E75CDE1C217D443E00DDC4C8 /* StoreKind.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		E75CDE1D217D443E00DDC4C8 /* PersistentStorage */ = {
+			isa = PBXGroup;
+			children = (
+				E75CDE1E217D443E00DDC4C8 /* Storage.swift */,
+				E75CDE1F217D443E00DDC4C8 /* KeychainStorage.swift */,
+				E75CDE20217D443E00DDC4C8 /* UserDefaultsStorage.swift */,
+				E792A7A7217D491F00D46FF7 /* MemoryStorage.swift */,
+			);
+			path = PersistentStorage;
+			sourceTree = "<group>";
+		};
+		E75CDE21217D443E00DDC4C8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E75CDE22217D443E00DDC4C8 /* Bundle+Stores.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E75CDE23217D443E00DDC4C8 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				E75CDE24217D443E00DDC4C8 /* Stores.h */,
+				E75CDE25217D443E00DDC4C8 /* Info.plist */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		E792A793217D47DD00D46FF7 /* StoresTestHostApp */ = {
+			isa = PBXGroup;
+			children = (
+				E792A7A4217D481400D46FF7 /* StoresTestHostApp.entitlements */,
+				E792A794217D47DD00D46FF7 /* AppDelegate.swift */,
+				E792A796217D47DD00D46FF7 /* ViewController.swift */,
+				E792A798217D47DD00D46FF7 /* Main.storyboard */,
+				E792A79B217D47DE00D46FF7 /* Assets.xcassets */,
+				E792A79D217D47DE00D46FF7 /* LaunchScreen.storyboard */,
+				E792A7A0217D47DE00D46FF7 /* Info.plist */,
+			);
+			path = StoresTestHostApp;
+			sourceTree = "<group>";
+		};
+		E792A7A9217D4B5200D46FF7 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E792A7AA217D4B5D00D46FF7 /* StoreProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		EB2F71D39754D3BFD0326040 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3E523AD3D6BAE65F71DA0202 /* Pods_Stores.framework */,
+				7666A7413D4C8D0A00048E28 /* Pods_StoresTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -93,6 +251,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E75CDE2F217D443F00DDC4C8 /* Stores.h in Headers */,
 				E75CDE0D217D437A00DDC4C8 /* Stores.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,6 +263,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E75CDE10217D437A00DDC4C8 /* Build configuration list for PBXNativeTarget "Stores" */;
 			buildPhases = (
+				0394B45442BE69440DC58A40 /* [CP] Check Pods Manifest.lock */,
 				E75CDDF7217D437A00DDC4C8 /* Headers */,
 				E75CDDF8217D437A00DDC4C8 /* Sources */,
 				E75CDDF9217D437A00DDC4C8 /* Frameworks */,
@@ -122,19 +282,39 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E75CDE13217D437A00DDC4C8 /* Build configuration list for PBXNativeTarget "StoresTests" */;
 			buildPhases = (
+				2075163459707A0ADFC1E785 /* [CP] Check Pods Manifest.lock */,
 				E75CDE01217D437A00DDC4C8 /* Sources */,
 				E75CDE02217D437A00DDC4C8 /* Frameworks */,
 				E75CDE03217D437A00DDC4C8 /* Resources */,
+				90B9D0D9ECF72F9C9515308C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				E75CDE08217D437A00DDC4C8 /* PBXTargetDependency */,
+				E792A7A6217D482300D46FF7 /* PBXTargetDependency */,
 			);
 			name = StoresTests;
 			productName = StoresTests;
 			productReference = E75CDE05217D437A00DDC4C8 /* StoresTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E792A791217D47DD00D46FF7 /* StoresTestHostApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E792A7A1217D47DE00D46FF7 /* Build configuration list for PBXNativeTarget "StoresTestHostApp" */;
+			buildPhases = (
+				E792A78E217D47DD00D46FF7 /* Sources */,
+				E792A78F217D47DD00D46FF7 /* Frameworks */,
+				E792A790217D47DD00D46FF7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StoresTestHostApp;
+			productName = StoresTestHostApp;
+			productReference = E792A792217D47DD00D46FF7 /* StoresTestHostApp.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -151,6 +331,15 @@
 					};
 					E75CDE04217D437A00DDC4C8 = {
 						CreatedOnToolsVersion = 10.0;
+						TestTargetID = E792A791217D47DD00D46FF7;
+					};
+					E792A791217D47DD00D46FF7 = {
+						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -160,6 +349,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = E75CDDF2217D437A00DDC4C8;
 			productRefGroup = E75CDDFD217D437A00DDC4C8 /* Products */;
@@ -168,6 +358,7 @@
 			targets = (
 				E75CDDFB217D437A00DDC4C8 /* Stores */,
 				E75CDE04217D437A00DDC4C8 /* StoresTests */,
+				E792A791217D47DD00D46FF7 /* StoresTestHostApp */,
 			);
 		};
 /* End PBXProject section */
@@ -187,13 +378,108 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E792A790217D47DD00D46FF7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E792A79F217D47DE00D46FF7 /* LaunchScreen.storyboard in Resources */,
+				E792A79C217D47DE00D46FF7 /* Assets.xcassets in Resources */,
+				E792A79A217D47DD00D46FF7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0394B45442BE69440DC58A40 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Stores-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2075163459707A0ADFC1E785 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StoresTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90B9D0D9ECF72F9C9515308C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-StoresTests/Pods-StoresTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StoresTests/Pods-StoresTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E75CDDF8217D437A00DDC4C8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E75CDE2D217D443F00DDC4C8 /* UserDefaultsStorage.swift in Sources */,
+				E792A7AB217D4B5D00D46FF7 /* StoreProtocol.swift in Sources */,
+				E75CDE2A217D443F00DDC4C8 /* StoreKind.swift in Sources */,
+				E75CDE28217D443F00DDC4C8 /* Storable.swift in Sources */,
+				E75CDE26217D443F00DDC4C8 /* StoreKey.swift in Sources */,
+				E792A7A8217D491F00D46FF7 /* MemoryStorage.swift in Sources */,
+				E75CDE2E217D443F00DDC4C8 /* Bundle+Stores.swift in Sources */,
+				E75CDE2C217D443F00DDC4C8 /* KeychainStorage.swift in Sources */,
+				E75CDE29217D443F00DDC4C8 /* Store.swift in Sources */,
+				E75CDE2B217D443F00DDC4C8 /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +491,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E792A78E217D47DD00D46FF7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E792A797217D47DD00D46FF7 /* ViewController.swift in Sources */,
+				E792A795217D47DD00D46FF7 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -213,7 +508,31 @@
 			target = E75CDDFB217D437A00DDC4C8 /* Stores */;
 			targetProxy = E75CDE07217D437A00DDC4C8 /* PBXContainerItemProxy */;
 		};
+		E792A7A6217D482300D46FF7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E792A791217D47DD00D46FF7 /* StoresTestHostApp */;
+			targetProxy = E792A7A5217D482300D46FF7 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E792A798217D47DD00D46FF7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E792A799217D47DD00D46FF7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E792A79D217D47DE00D46FF7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E792A79E217D47DE00D46FF7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E75CDE0E217D437A00DDC4C8 /* Debug */ = {
@@ -340,14 +659,17 @@
 		};
 		E75CDE11217D437A00DDC4C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AED1E8FACBB54157B26EBD7 /* Pods-Stores.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Stores/Info.plist;
+				ENTITLEMENTS_REQUIRED = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Stores/Module/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -356,7 +678,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.wallet.stores.Stores;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[sdk=iphonesimulator*]" = "DEBUG SIMULATOR";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,14 +688,17 @@
 		};
 		E75CDE12217D437A00DDC4C8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C68D0188660C44BF457099E5 /* Pods-Stores.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Stores/Info.plist;
+				ENTITLEMENTS_REQUIRED = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/Stores/Module/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -380,6 +707,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.wallet.stores.Stores;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -388,8 +716,13 @@
 		};
 		E75CDE14217D437A00DDC4C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06914400EE36C2D5ED4E2FF3 /* Pods-StoresTests.debug.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				ENTITLEMENTS_REQUIRED = YES;
 				INFOPLIST_FILE = StoresTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -398,15 +731,23 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.wallet.stores.StoresTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[sdk=iphonesimulator*]" = "SIMULATOR DEBUG";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StoresTestHostApp.app/StoresTestHostApp";
 			};
 			name = Debug;
 		};
 		E75CDE15217D437A00DDC4C8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 95D6C505CE78BF296CCA6C8D /* Pods-StoresTests.release.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				ENTITLEMENTS_REQUIRED = YES;
 				INFOPLIST_FILE = StoresTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -415,6 +756,49 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.wallet.stores.StoresTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StoresTestHostApp.app/StoresTestHostApp";
+			};
+			name = Release;
+		};
+		E792A7A2217D47DE00D46FF7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = StoresTestHostApp/StoresTestHostApp.entitlements;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 2Y9T96JTZT;
+				INFOPLIST_FILE = StoresTestHostApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.wallet.stores.StoresTestHostApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS[sdk=iphonesimulator*]" = "DEBUG SIMULATOR";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E792A7A3217D47DE00D46FF7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = StoresTestHostApp/StoresTestHostApp.entitlements;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = StoresTestHostApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.coinbase.wallet.stores.StoresTestHostApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -446,6 +830,15 @@
 			buildConfigurations = (
 				E75CDE14217D437A00DDC4C8 /* Debug */,
 				E75CDE15217D437A00DDC4C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E792A7A1217D47DE00D46FF7 /* Build configuration list for PBXNativeTarget "StoresTestHostApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E792A7A2217D47DE00D46FF7 /* Debug */,
+				E792A7A3217D47DE00D46FF7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
