@@ -28,6 +28,10 @@
 		E792A79F217D47DE00D46FF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E792A79D217D47DE00D46FF7 /* LaunchScreen.storyboard */; };
 		E792A7A8217D491F00D46FF7 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A7A7217D491F00D46FF7 /* MemoryStorage.swift */; };
 		E792A7AB217D4B5D00D46FF7 /* StoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A7AA217D4B5D00D46FF7 /* StoreProtocol.swift */; };
+		E792A7AD217D4BEA00D46FF7 /* KeychainStoreKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A7AC217D4BEA00D46FF7 /* KeychainStoreKey.swift */; };
+		E792A7B0217D4EA500D46FF7 /* KeychainAccessibleKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A7AF217D4EA500D46FF7 /* KeychainAccessibleKind.swift */; };
+		E792A7B2217D4F2100D46FF7 /* UserDefaultsStoreKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A7B1217D4F2100D46FF7 /* UserDefaultsStoreKey.swift */; };
+		E792A7B5217D4FF400D46FF7 /* MemoryStoreKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A7B4217D4FF400D46FF7 /* MemoryStoreKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +84,10 @@
 		E792A7A4217D481400D46FF7 /* StoresTestHostApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StoresTestHostApp.entitlements; sourceTree = "<group>"; };
 		E792A7A7217D491F00D46FF7 /* MemoryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
 		E792A7AA217D4B5D00D46FF7 /* StoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProtocol.swift; sourceTree = "<group>"; };
+		E792A7AC217D4BEA00D46FF7 /* KeychainStoreKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStoreKey.swift; sourceTree = "<group>"; };
+		E792A7AF217D4EA500D46FF7 /* KeychainAccessibleKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainAccessibleKind.swift; sourceTree = "<group>"; };
+		E792A7B1217D4F2100D46FF7 /* UserDefaultsStoreKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStoreKey.swift; sourceTree = "<group>"; };
+		E792A7B4217D4FF400D46FF7 /* MemoryStoreKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryStoreKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,12 +132,12 @@
 		E75CDDF2217D437A00DDC4C8 = {
 			isa = PBXGroup;
 			children = (
-				E75CDDFE217D437A00DDC4C8 /* Stores */,
-				E75CDE09217D437A00DDC4C8 /* StoresTests */,
-				E792A793217D47DD00D46FF7 /* StoresTestHostApp */,
-				E75CDDFD217D437A00DDC4C8 /* Products */,
-				D371A06B8D9055941C0832AD /* Pods */,
 				EB2F71D39754D3BFD0326040 /* Frameworks */,
+				D371A06B8D9055941C0832AD /* Pods */,
+				E75CDDFD217D437A00DDC4C8 /* Products */,
+				E75CDDFE217D437A00DDC4C8 /* Stores */,
+				E792A793217D47DD00D46FF7 /* StoresTestHostApp */,
+				E75CDE09217D437A00DDC4C8 /* StoresTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -146,12 +154,13 @@
 		E75CDDFE217D437A00DDC4C8 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
-				E792A7A9217D4B5200D46FF7 /* Protocols */,
 				E75CDE21217D443E00DDC4C8 /* Extensions */,
+				E792A7B3217D4F3300D46FF7 /* Keys */,
+				E792A7AE217D4E9900D46FF7 /* Models */,
+				E75CDE16217D438100DDC4C8 /* Module */,
 				E75CDE23217D443E00DDC4C8 /* Module */,
 				E75CDE1D217D443E00DDC4C8 /* PersistentStorage */,
-				E75CDE17217D443E00DDC4C8 /* Store */,
-				E75CDE16217D438100DDC4C8 /* Module */,
+				E792A7A9217D4B5200D46FF7 /* Protocols */,
 			);
 			path = Stores;
 			sourceTree = "<group>";
@@ -159,8 +168,8 @@
 		E75CDE09217D437A00DDC4C8 /* StoresTests */ = {
 			isa = PBXGroup;
 			children = (
-				E75CDE0A217D437A00DDC4C8 /* StoresTests.swift */,
 				E75CDE0C217D437A00DDC4C8 /* Info.plist */,
+				E75CDE0A217D437A00DDC4C8 /* StoresTests.swift */,
 			);
 			path = StoresTests;
 			sourceTree = "<group>";
@@ -168,30 +177,20 @@
 		E75CDE16217D438100DDC4C8 /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				E75CDDFF217D437A00DDC4C8 /* Stores.h */,
 				E75CDE00217D437A00DDC4C8 /* Info.plist */,
+				E75CDE1B217D443E00DDC4C8 /* Store.swift */,
+				E75CDDFF217D437A00DDC4C8 /* Stores.h */,
 			);
 			path = Module;
-			sourceTree = "<group>";
-		};
-		E75CDE17217D443E00DDC4C8 /* Store */ = {
-			isa = PBXGroup;
-			children = (
-				E75CDE18217D443E00DDC4C8 /* StoreKey.swift */,
-				E75CDE1A217D443E00DDC4C8 /* Storable.swift */,
-				E75CDE1B217D443E00DDC4C8 /* Store.swift */,
-				E75CDE1C217D443E00DDC4C8 /* StoreKind.swift */,
-			);
-			path = Store;
 			sourceTree = "<group>";
 		};
 		E75CDE1D217D443E00DDC4C8 /* PersistentStorage */ = {
 			isa = PBXGroup;
 			children = (
-				E75CDE1E217D443E00DDC4C8 /* Storage.swift */,
 				E75CDE1F217D443E00DDC4C8 /* KeychainStorage.swift */,
-				E75CDE20217D443E00DDC4C8 /* UserDefaultsStorage.swift */,
 				E792A7A7217D491F00D46FF7 /* MemoryStorage.swift */,
+				E75CDE1E217D443E00DDC4C8 /* Storage.swift */,
+				E75CDE20217D443E00DDC4C8 /* UserDefaultsStorage.swift */,
 			);
 			path = PersistentStorage;
 			sourceTree = "<group>";
@@ -207,8 +206,8 @@
 		E75CDE23217D443E00DDC4C8 /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				E75CDE24217D443E00DDC4C8 /* Stores.h */,
 				E75CDE25217D443E00DDC4C8 /* Info.plist */,
+				E75CDE24217D443E00DDC4C8 /* Stores.h */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -216,13 +215,13 @@
 		E792A793217D47DD00D46FF7 /* StoresTestHostApp */ = {
 			isa = PBXGroup;
 			children = (
-				E792A7A4217D481400D46FF7 /* StoresTestHostApp.entitlements */,
 				E792A794217D47DD00D46FF7 /* AppDelegate.swift */,
-				E792A796217D47DD00D46FF7 /* ViewController.swift */,
-				E792A798217D47DD00D46FF7 /* Main.storyboard */,
 				E792A79B217D47DE00D46FF7 /* Assets.xcassets */,
-				E792A79D217D47DE00D46FF7 /* LaunchScreen.storyboard */,
 				E792A7A0217D47DE00D46FF7 /* Info.plist */,
+				E792A79D217D47DE00D46FF7 /* LaunchScreen.storyboard */,
+				E792A798217D47DD00D46FF7 /* Main.storyboard */,
+				E792A7A4217D481400D46FF7 /* StoresTestHostApp.entitlements */,
+				E792A796217D47DD00D46FF7 /* ViewController.swift */,
 			);
 			path = StoresTestHostApp;
 			sourceTree = "<group>";
@@ -230,9 +229,30 @@
 		E792A7A9217D4B5200D46FF7 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				E75CDE1A217D443E00DDC4C8 /* Storable.swift */,
 				E792A7AA217D4B5D00D46FF7 /* StoreProtocol.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		E792A7AE217D4E9900D46FF7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E792A7AF217D4EA500D46FF7 /* KeychainAccessibleKind.swift */,
+				E75CDE1C217D443E00DDC4C8 /* StoreKind.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E792A7B3217D4F3300D46FF7 /* Keys */ = {
+			isa = PBXGroup;
+			children = (
+				E792A7AC217D4BEA00D46FF7 /* KeychainStoreKey.swift */,
+				E75CDE18217D443E00DDC4C8 /* StoreKey.swift */,
+				E792A7B1217D4F2100D46FF7 /* UserDefaultsStoreKey.swift */,
+				E792A7B4217D4FF400D46FF7 /* MemoryStoreKey.swift */,
+			);
+			path = Keys;
 			sourceTree = "<group>";
 		};
 		EB2F71D39754D3BFD0326040 /* Frameworks */ = {
@@ -470,9 +490,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E792A7B5217D4FF400D46FF7 /* MemoryStoreKey.swift in Sources */,
 				E75CDE2D217D443F00DDC4C8 /* UserDefaultsStorage.swift in Sources */,
 				E792A7AB217D4B5D00D46FF7 /* StoreProtocol.swift in Sources */,
 				E75CDE2A217D443F00DDC4C8 /* StoreKind.swift in Sources */,
+				E792A7B0217D4EA500D46FF7 /* KeychainAccessibleKind.swift in Sources */,
+				E792A7AD217D4BEA00D46FF7 /* KeychainStoreKey.swift in Sources */,
+				E792A7B2217D4F2100D46FF7 /* UserDefaultsStoreKey.swift in Sources */,
 				E75CDE28217D443F00DDC4C8 /* Storable.swift in Sources */,
 				E75CDE26217D443F00DDC4C8 /* StoreKey.swift in Sources */,
 				E792A7A8217D491F00D46FF7 /* MemoryStorage.swift in Sources */,
@@ -522,6 +546,7 @@
 				E792A799217D47DD00D46FF7 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		E792A79D217D47DE00D46FF7 /* LaunchScreen.storyboard */ = {
@@ -530,6 +555,7 @@
 				E792A79E217D47DE00D46FF7 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

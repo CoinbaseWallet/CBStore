@@ -1,7 +1,7 @@
 // Copyright (c) 2017-2018 Coinbase Inc. See LICENSE
 
 import RxSwift
-@testable import Stores
+import Stores
 import XCTest
 
 let unitTestsTimeout: TimeInterval = 1
@@ -188,19 +188,19 @@ class StoresTests: XCTestCase {
 
 extension StoreKeys {
     // user defaults based
-    static let stringBasedKey = StoreKey<String>("string_key", kind: .userDefaults)
-    static let floatBasedKey = StoreKey<Float>("float_key", kind: .userDefaults)
-    static let dataKey = StoreKey<Data>("data_key", kind: .userDefaults)
+    static let stringBasedKey = UserDefaultsStoreKey<String>("string_key")
+    static let floatBasedKey = UserDefaultsStoreKey<Float>("float_key")
+    static let dataKey = UserDefaultsStoreKey<Data>("data_key")
 
     // keychain based
-    static let keychainStringBasedKey = StoreKey<String>("kstring_key", kind: .keychain)
-    static let keychainFloatBasedKey = StoreKey<Float>("kfloat_key", kind: .keychain)
-    static let keychainDataKey = StoreKey<Data>("kchain_data_key", kind: .keychain)
+    static let keychainStringBasedKey = KeychainStoreKey<String>("kstring_key")
+    static let keychainFloatBasedKey = KeychainStoreKey<Float>("kfloat_key")
+    static let keychainDataKey = KeychainStoreKey<Data>("kchain_data_key")
 
     // Memory based
-    static let memStringBasedKey = StoreKey<String>("mem_string_key", kind: .memory)
-    static let memFloatBasedKey = StoreKey<Float>("mem_float_key", kind: .memory)
-    static let memDataKey = StoreKey<Data>("memdata_key", kind: .memory)
+    static let memStringBasedKey = MemoryStoreKey<String>("mem_string_key")
+    static let memFloatBasedKey = MemoryStoreKey<Float>("mem_float_key")
+    static let memDataKey = MemoryStoreKey<Data>("memdata_key")
 
 }
 

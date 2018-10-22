@@ -11,6 +11,8 @@ public final class Store: StoreProtocol {
     private let userDefaultStorage = UserDefaultsStorage()
     private let memoryStorage = MemoryStorage()
 
+    public init() { }
+
     /// Set value for key
     ///
     /// - parameter key:   Key for store value
@@ -78,7 +80,7 @@ public final class Store: StoreProtocol {
     ///
     /// - returns: Observer
     public func observe<T: Storable>(_ key: StoreKey<T>) -> Observable<T?> {
-        return self.observer(for: key).asObservable()
+        return observer(for: key).asObservable()
     }
 
     // MARK: -
@@ -88,7 +90,7 @@ public final class Store: StoreProtocol {
             return observer
         } else {
             let observer = PublishSubject<T?>()
-            self.changeObservers[key.name] = observer
+            changeObservers[key.name] = observer
             return observer
         }
     }
@@ -97,12 +99,16 @@ public final class Store: StoreProtocol {
         switch key.kind {
         case .keychain:
             let group = Bundle.main.keychainGroupID
-            return KeychainStorage(group: group, accessible: key.keychainAccessibleKind)
+            if let accessible = (key as? KeychainStoreKey<T>)?.accessible {
+                return KeychainStorage(group: group, accessible: accessible.asSecurityAttribute)
+            } else {
+                return KeychainStorage(group: group)
+            }
 
         case .userDefaults:
-            return self.userDefaultStorage
+            return userDefaultStorage
         case .memory:
-            return self.memoryStorage
+            return memoryStorage
         }
     }
 }

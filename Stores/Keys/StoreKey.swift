@@ -2,7 +2,7 @@
 
 import Foundation
 
-public final class StoreKey<T>: StoreKeys {
+public class StoreKey<T>: StoreKeys {
     /// Type of store. i.e. keychain vs user defaults vs cloud KeyValue store
     public let kind: StoreKind
 
@@ -15,22 +15,17 @@ public final class StoreKey<T>: StoreKeys {
     /// Stored value type
     let valueType: T.Type
 
-    /// Keychain `kSecAttrAccessible` value. Ignored for UserDefaults
-    let keychainAccessibleKind: CFString
-
     /// Constructor to create a custom store key
     ///
     /// - parameter prefixOrName:           Key name or key prefix if udid is specified
     /// - parameter uuid:                   Optional unique identifier
     /// - parameter kind:                   Type of value to store.
-    /// - parameter keychainAccessibleKind: Sets the keychain accessible kind. This is ignored for user defaults
     ///
     /// - returns: A new `StoreKey` instance
-    public init(
+    init(
         _ prefixOrName: String,
         uuid: String? = nil,
-        kind: StoreKind = .userDefaults,
-        keychainAccessibleKind: CFString = kSecAttrAccessibleWhenUnlockedThisDeviceOnly
+        kind: StoreKind = .userDefaults
     ) {
         let valueType = T.self
         let pieces = [kind.rawValue, prefixOrName, uuid, "\(type(of: valueType))"]
@@ -39,7 +34,6 @@ public final class StoreKey<T>: StoreKeys {
         self.valueType = valueType
         self.uuid = uuid
         self.kind = kind
-        self.keychainAccessibleKind = keychainAccessibleKind
     }
 }
 
