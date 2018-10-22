@@ -11,26 +11,26 @@
 		E35FDB70B7672CCC81BEFD4A /* Pods_CBStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF618C0AE9E56F89FD6BC6DB /* Pods_CBStore.framework */; };
 		E75CDE06217D437A00DDC4C8 /* CBStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75CDDFC217D437A00DDC4C8 /* CBStore.framework */; };
 		E75CDE0B217D437A00DDC4C8 /* StoresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE0A217D437A00DDC4C8 /* StoresTests.swift */; };
-		E75CDE0D217D437A00DDC4C8 /* Stores.h in Headers */ = {isa = PBXBuildFile; fileRef = E75CDDFF217D437A00DDC4C8 /* Stores.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E75CDE26217D443F00DDC4C8 /* StoreKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE18217D443E00DDC4C8 /* StoreKey.swift */; };
-		E75CDE28217D443F00DDC4C8 /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE1A217D443E00DDC4C8 /* Storable.swift */; };
-		E75CDE29217D443F00DDC4C8 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE1B217D443E00DDC4C8 /* Store.swift */; };
-		E75CDE2A217D443F00DDC4C8 /* StoreKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE1C217D443E00DDC4C8 /* StoreKind.swift */; };
-		E75CDE2B217D443F00DDC4C8 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE1E217D443E00DDC4C8 /* Storage.swift */; };
-		E75CDE2C217D443F00DDC4C8 /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE1F217D443E00DDC4C8 /* KeychainStorage.swift */; };
-		E75CDE2D217D443F00DDC4C8 /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE20217D443E00DDC4C8 /* UserDefaultsStorage.swift */; };
-		E75CDE2E217D443F00DDC4C8 /* Bundle+Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE22217D443E00DDC4C8 /* Bundle+Stores.swift */; };
+		E78E5042217E66350071C075 /* Stores.h in Headers */ = {isa = PBXBuildFile; fileRef = E78E502D217E66350071C075 /* Stores.h */; };
+		E78E5043217E66350071C075 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78E502E217E66350071C075 /* Store.swift */; };
+		E78E5045217E66350071C075 /* KeychainAccessibleKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78E5031217E66350071C075 /* KeychainAccessibleKind.swift */; };
+		E78E5046217E66350071C075 /* StoreKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78E5032217E66350071C075 /* StoreKind.swift */; };
+		E78E5047217E66350071C075 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78E5034217E66350071C075 /* Storage.swift */; };
+		E78E5048217E66350071C075 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78E5035217E66350071C075 /* MemoryStorage.swift */; };
+		E78E5049217E66350071C075 /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78E5036217E66350071C075 /* KeychainStorage.swift */; };
+		E78E504A217E66350071C075 /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78E5037217E66350071C075 /* UserDefaultsStorage.swift */; };
+		E78E504B217E66350071C075 /* Bundle+Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78E5039217E66350071C075 /* Bundle+Stores.swift */; };
+		E78E504C217E66350071C075 /* StoreKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78E503B217E66350071C075 /* StoreKey.swift */; };
+		E78E504D217E66350071C075 /* KeychainStoreKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78E503C217E66350071C075 /* KeychainStoreKey.swift */; };
+		E78E504E217E66350071C075 /* UserDefaultsStoreKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78E503D217E66350071C075 /* UserDefaultsStoreKey.swift */; };
+		E78E504F217E66350071C075 /* MemoryStoreKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78E503E217E66350071C075 /* MemoryStoreKey.swift */; };
+		E78E5050217E66350071C075 /* StoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78E5040217E66350071C075 /* StoreProtocol.swift */; };
+		E78E5051217E66350071C075 /* Storable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78E5041217E66350071C075 /* Storable.swift */; };
 		E792A795217D47DD00D46FF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A794217D47DD00D46FF7 /* AppDelegate.swift */; };
 		E792A797217D47DD00D46FF7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A796217D47DD00D46FF7 /* ViewController.swift */; };
 		E792A79A217D47DD00D46FF7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E792A798217D47DD00D46FF7 /* Main.storyboard */; };
 		E792A79C217D47DE00D46FF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E792A79B217D47DE00D46FF7 /* Assets.xcassets */; };
 		E792A79F217D47DE00D46FF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E792A79D217D47DE00D46FF7 /* LaunchScreen.storyboard */; };
-		E792A7A8217D491F00D46FF7 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A7A7217D491F00D46FF7 /* MemoryStorage.swift */; };
-		E792A7AB217D4B5D00D46FF7 /* StoreProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A7AA217D4B5D00D46FF7 /* StoreProtocol.swift */; };
-		E792A7AD217D4BEA00D46FF7 /* KeychainStoreKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A7AC217D4BEA00D46FF7 /* KeychainStoreKey.swift */; };
-		E792A7B0217D4EA500D46FF7 /* KeychainAccessibleKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A7AF217D4EA500D46FF7 /* KeychainAccessibleKind.swift */; };
-		E792A7B2217D4F2100D46FF7 /* UserDefaultsStoreKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A7B1217D4F2100D46FF7 /* UserDefaultsStoreKey.swift */; };
-		E792A7B5217D4FF400D46FF7 /* MemoryStoreKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A7B4217D4FF400D46FF7 /* MemoryStoreKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,19 +63,25 @@
 		AF618C0AE9E56F89FD6BC6DB /* Pods_CBStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CBStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C68D0188660C44BF457099E5 /* Pods-Stores.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stores.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stores/Pods-Stores.release.xcconfig"; sourceTree = "<group>"; };
 		E75CDDFC217D437A00DDC4C8 /* CBStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CBStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E75CDDFF217D437A00DDC4C8 /* Stores.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Stores.h; sourceTree = "<group>"; };
-		E75CDE00217D437A00DDC4C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E75CDE05217D437A00DDC4C8 /* CBStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CBStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E75CDE0A217D437A00DDC4C8 /* StoresTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresTests.swift; sourceTree = "<group>"; };
 		E75CDE0C217D437A00DDC4C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E75CDE18217D443E00DDC4C8 /* StoreKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreKey.swift; sourceTree = "<group>"; };
-		E75CDE1A217D443E00DDC4C8 /* Storable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storable.swift; sourceTree = "<group>"; };
-		E75CDE1B217D443E00DDC4C8 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		E75CDE1C217D443E00DDC4C8 /* StoreKind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreKind.swift; sourceTree = "<group>"; };
-		E75CDE1E217D443E00DDC4C8 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		E75CDE1F217D443E00DDC4C8 /* KeychainStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
-		E75CDE20217D443E00DDC4C8 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
-		E75CDE22217D443E00DDC4C8 /* Bundle+Stores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Stores.swift"; sourceTree = "<group>"; };
+		E78E502D217E66350071C075 /* Stores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stores.h; sourceTree = "<group>"; };
+		E78E502E217E66350071C075 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		E78E502F217E66350071C075 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E78E5031217E66350071C075 /* KeychainAccessibleKind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainAccessibleKind.swift; sourceTree = "<group>"; };
+		E78E5032217E66350071C075 /* StoreKind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreKind.swift; sourceTree = "<group>"; };
+		E78E5034217E66350071C075 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		E78E5035217E66350071C075 /* MemoryStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
+		E78E5036217E66350071C075 /* KeychainStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
+		E78E5037217E66350071C075 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
+		E78E5039217E66350071C075 /* Bundle+Stores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Stores.swift"; sourceTree = "<group>"; };
+		E78E503B217E66350071C075 /* StoreKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreKey.swift; sourceTree = "<group>"; };
+		E78E503C217E66350071C075 /* KeychainStoreKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainStoreKey.swift; sourceTree = "<group>"; };
+		E78E503D217E66350071C075 /* UserDefaultsStoreKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsStoreKey.swift; sourceTree = "<group>"; };
+		E78E503E217E66350071C075 /* MemoryStoreKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryStoreKey.swift; sourceTree = "<group>"; };
+		E78E5040217E66350071C075 /* StoreProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreProtocol.swift; sourceTree = "<group>"; };
+		E78E5041217E66350071C075 /* Storable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storable.swift; sourceTree = "<group>"; };
 		E792A792217D47DD00D46FF7 /* CBStoreTestHostApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CBStoreTestHostApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E792A794217D47DD00D46FF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E792A796217D47DD00D46FF7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,12 +90,6 @@
 		E792A79E217D47DE00D46FF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E792A7A0217D47DE00D46FF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E792A7A4217D481400D46FF7 /* StoresTestHostApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StoresTestHostApp.entitlements; sourceTree = "<group>"; };
-		E792A7A7217D491F00D46FF7 /* MemoryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
-		E792A7AA217D4B5D00D46FF7 /* StoreProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreProtocol.swift; sourceTree = "<group>"; };
-		E792A7AC217D4BEA00D46FF7 /* KeychainStoreKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStoreKey.swift; sourceTree = "<group>"; };
-		E792A7AF217D4EA500D46FF7 /* KeychainAccessibleKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainAccessibleKind.swift; sourceTree = "<group>"; };
-		E792A7B1217D4F2100D46FF7 /* UserDefaultsStoreKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStoreKey.swift; sourceTree = "<group>"; };
-		E792A7B4217D4FF400D46FF7 /* MemoryStoreKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryStoreKey.swift; sourceTree = "<group>"; };
 		F283C25CB67B68CB78CFCADD /* Pods-CBStoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CBStoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CBStoreTests/Pods-CBStoreTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,10 +139,10 @@
 		E75CDDF2217D437A00DDC4C8 = {
 			isa = PBXGroup;
 			children = (
+				E78E502B217E66350071C075 /* CBStore */,
 				EB2F71D39754D3BFD0326040 /* Frameworks */,
 				D371A06B8D9055941C0832AD /* Pods */,
 				E75CDDFD217D437A00DDC4C8 /* Products */,
-				E75CDDFE217D437A00DDC4C8 /* Stores */,
 				E792A793217D47DD00D46FF7 /* StoresTestHostApp */,
 				E75CDE09217D437A00DDC4C8 /* StoresTests */,
 			);
@@ -158,19 +158,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E75CDDFE217D437A00DDC4C8 /* Stores */ = {
-			isa = PBXGroup;
-			children = (
-				E75CDE21217D443E00DDC4C8 /* Extensions */,
-				E792A7B3217D4F3300D46FF7 /* Keys */,
-				E792A7AE217D4E9900D46FF7 /* Models */,
-				E75CDE16217D438100DDC4C8 /* Module */,
-				E75CDE1D217D443E00DDC4C8 /* PersistentStorage */,
-				E792A7A9217D4B5200D46FF7 /* Protocols */,
-			);
-			path = Stores;
-			sourceTree = "<group>";
-		};
 		E75CDE09217D437A00DDC4C8 /* StoresTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,33 +167,75 @@
 			path = StoresTests;
 			sourceTree = "<group>";
 		};
-		E75CDE16217D438100DDC4C8 /* Module */ = {
+		E78E502B217E66350071C075 /* CBStore */ = {
 			isa = PBXGroup;
 			children = (
-				E75CDE00217D437A00DDC4C8 /* Info.plist */,
-				E75CDE1B217D443E00DDC4C8 /* Store.swift */,
-				E75CDDFF217D437A00DDC4C8 /* Stores.h */,
+				E78E5038217E66350071C075 /* Extensions */,
+				E78E503A217E66350071C075 /* Keys */,
+				E78E5030217E66350071C075 /* Models */,
+				E78E502C217E66350071C075 /* Module */,
+				E78E5033217E66350071C075 /* PersistentStorage */,
+				E78E503F217E66350071C075 /* Protocols */,
+			);
+			path = CBStore;
+			sourceTree = "<group>";
+		};
+		E78E502C217E66350071C075 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				E78E502F217E66350071C075 /* Info.plist */,
+				E78E502E217E66350071C075 /* Store.swift */,
+				E78E502D217E66350071C075 /* Stores.h */,
 			);
 			path = Module;
 			sourceTree = "<group>";
 		};
-		E75CDE1D217D443E00DDC4C8 /* PersistentStorage */ = {
+		E78E5030217E66350071C075 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				E75CDE1F217D443E00DDC4C8 /* KeychainStorage.swift */,
-				E792A7A7217D491F00D46FF7 /* MemoryStorage.swift */,
-				E75CDE1E217D443E00DDC4C8 /* Storage.swift */,
-				E75CDE20217D443E00DDC4C8 /* UserDefaultsStorage.swift */,
+				E78E5031217E66350071C075 /* KeychainAccessibleKind.swift */,
+				E78E5032217E66350071C075 /* StoreKind.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E78E5033217E66350071C075 /* PersistentStorage */ = {
+			isa = PBXGroup;
+			children = (
+				E78E5036217E66350071C075 /* KeychainStorage.swift */,
+				E78E5035217E66350071C075 /* MemoryStorage.swift */,
+				E78E5034217E66350071C075 /* Storage.swift */,
+				E78E5037217E66350071C075 /* UserDefaultsStorage.swift */,
 			);
 			path = PersistentStorage;
 			sourceTree = "<group>";
 		};
-		E75CDE21217D443E00DDC4C8 /* Extensions */ = {
+		E78E5038217E66350071C075 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E75CDE22217D443E00DDC4C8 /* Bundle+Stores.swift */,
+				E78E5039217E66350071C075 /* Bundle+Stores.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E78E503A217E66350071C075 /* Keys */ = {
+			isa = PBXGroup;
+			children = (
+				E78E503C217E66350071C075 /* KeychainStoreKey.swift */,
+				E78E503E217E66350071C075 /* MemoryStoreKey.swift */,
+				E78E503B217E66350071C075 /* StoreKey.swift */,
+				E78E503D217E66350071C075 /* UserDefaultsStoreKey.swift */,
+			);
+			path = Keys;
+			sourceTree = "<group>";
+		};
+		E78E503F217E66350071C075 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				E78E5041217E66350071C075 /* Storable.swift */,
+				E78E5040217E66350071C075 /* StoreProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		E792A793217D47DD00D46FF7 /* StoresTestHostApp */ = {
@@ -221,35 +250,6 @@
 				E792A796217D47DD00D46FF7 /* ViewController.swift */,
 			);
 			path = StoresTestHostApp;
-			sourceTree = "<group>";
-		};
-		E792A7A9217D4B5200D46FF7 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				E75CDE1A217D443E00DDC4C8 /* Storable.swift */,
-				E792A7AA217D4B5D00D46FF7 /* StoreProtocol.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		E792A7AE217D4E9900D46FF7 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				E792A7AF217D4EA500D46FF7 /* KeychainAccessibleKind.swift */,
-				E75CDE1C217D443E00DDC4C8 /* StoreKind.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		E792A7B3217D4F3300D46FF7 /* Keys */ = {
-			isa = PBXGroup;
-			children = (
-				E792A7AC217D4BEA00D46FF7 /* KeychainStoreKey.swift */,
-				E792A7B4217D4FF400D46FF7 /* MemoryStoreKey.swift */,
-				E75CDE18217D443E00DDC4C8 /* StoreKey.swift */,
-				E792A7B1217D4F2100D46FF7 /* UserDefaultsStoreKey.swift */,
-			);
-			path = Keys;
 			sourceTree = "<group>";
 		};
 		EB2F71D39754D3BFD0326040 /* Frameworks */ = {
@@ -270,7 +270,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E75CDE0D217D437A00DDC4C8 /* Stores.h in Headers */,
+				E78E5042217E66350071C075 /* Stores.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,20 +488,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E792A7B5217D4FF400D46FF7 /* MemoryStoreKey.swift in Sources */,
-				E75CDE2D217D443F00DDC4C8 /* UserDefaultsStorage.swift in Sources */,
-				E792A7AB217D4B5D00D46FF7 /* StoreProtocol.swift in Sources */,
-				E75CDE2A217D443F00DDC4C8 /* StoreKind.swift in Sources */,
-				E792A7B0217D4EA500D46FF7 /* KeychainAccessibleKind.swift in Sources */,
-				E792A7AD217D4BEA00D46FF7 /* KeychainStoreKey.swift in Sources */,
-				E792A7B2217D4F2100D46FF7 /* UserDefaultsStoreKey.swift in Sources */,
-				E75CDE28217D443F00DDC4C8 /* Storable.swift in Sources */,
-				E75CDE26217D443F00DDC4C8 /* StoreKey.swift in Sources */,
-				E792A7A8217D491F00D46FF7 /* MemoryStorage.swift in Sources */,
-				E75CDE2E217D443F00DDC4C8 /* Bundle+Stores.swift in Sources */,
-				E75CDE2C217D443F00DDC4C8 /* KeychainStorage.swift in Sources */,
-				E75CDE29217D443F00DDC4C8 /* Store.swift in Sources */,
-				E75CDE2B217D443F00DDC4C8 /* Storage.swift in Sources */,
+				E78E5046217E66350071C075 /* StoreKind.swift in Sources */,
+				E78E5051217E66350071C075 /* Storable.swift in Sources */,
+				E78E504C217E66350071C075 /* StoreKey.swift in Sources */,
+				E78E504A217E66350071C075 /* UserDefaultsStorage.swift in Sources */,
+				E78E5047217E66350071C075 /* Storage.swift in Sources */,
+				E78E504B217E66350071C075 /* Bundle+Stores.swift in Sources */,
+				E78E5043217E66350071C075 /* Store.swift in Sources */,
+				E78E504F217E66350071C075 /* MemoryStoreKey.swift in Sources */,
+				E78E5045217E66350071C075 /* KeychainAccessibleKind.swift in Sources */,
+				E78E504E217E66350071C075 /* UserDefaultsStoreKey.swift in Sources */,
+				E78E504D217E66350071C075 /* KeychainStoreKey.swift in Sources */,
+				E78E5048217E66350071C075 /* MemoryStorage.swift in Sources */,
+				E78E5049217E66350071C075 /* KeychainStorage.swift in Sources */,
+				E78E5050217E66350071C075 /* StoreProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,7 +693,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENTITLEMENTS_REQUIRED = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Stores/Module/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/CBStore/Module/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -722,7 +722,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENTITLEMENTS_REQUIRED = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/Stores/Module/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/CBStore/Module/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
