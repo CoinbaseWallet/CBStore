@@ -17,9 +17,9 @@ public class StoreKey<T>: StoreKeys {
 
     /// Constructor to create a custom store key
     ///
-    /// - parameter prefixOrName:           Key name or key prefix if udid is specified
-    /// - parameter uuid:                   Optional unique identifier
-    /// - parameter kind:                   Type of value to store.
+    /// - parameter prefixOrName: Key name or key prefix if udid is specified
+    /// - parameter uuid:         Optional unique identifier
+    /// - parameter kind:         Type of value to store.
     ///
     /// - returns: A new `StoreKey` instance
     init(

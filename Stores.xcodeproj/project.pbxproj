@@ -20,7 +20,6 @@
 		E75CDE2C217D443F00DDC4C8 /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE1F217D443E00DDC4C8 /* KeychainStorage.swift */; };
 		E75CDE2D217D443F00DDC4C8 /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE20217D443E00DDC4C8 /* UserDefaultsStorage.swift */; };
 		E75CDE2E217D443F00DDC4C8 /* Bundle+Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE22217D443E00DDC4C8 /* Bundle+Stores.swift */; };
-		E75CDE2F217D443F00DDC4C8 /* Stores.h in Headers */ = {isa = PBXBuildFile; fileRef = E75CDE24217D443E00DDC4C8 /* Stores.h */; };
 		E792A795217D47DD00D46FF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A794217D47DD00D46FF7 /* AppDelegate.swift */; };
 		E792A797217D47DD00D46FF7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A796217D47DD00D46FF7 /* ViewController.swift */; };
 		E792A79A217D47DD00D46FF7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E792A798217D47DD00D46FF7 /* Main.storyboard */; };
@@ -72,8 +71,6 @@
 		E75CDE1F217D443E00DDC4C8 /* KeychainStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		E75CDE20217D443E00DDC4C8 /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
 		E75CDE22217D443E00DDC4C8 /* Bundle+Stores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Stores.swift"; sourceTree = "<group>"; };
-		E75CDE24217D443E00DDC4C8 /* Stores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stores.h; sourceTree = "<group>"; };
-		E75CDE25217D443E00DDC4C8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E792A792217D47DD00D46FF7 /* StoresTestHostApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoresTestHostApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E792A794217D47DD00D46FF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E792A796217D47DD00D46FF7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -158,7 +155,6 @@
 				E792A7B3217D4F3300D46FF7 /* Keys */,
 				E792A7AE217D4E9900D46FF7 /* Models */,
 				E75CDE16217D438100DDC4C8 /* Module */,
-				E75CDE23217D443E00DDC4C8 /* Module */,
 				E75CDE1D217D443E00DDC4C8 /* PersistentStorage */,
 				E792A7A9217D4B5200D46FF7 /* Protocols */,
 			);
@@ -203,15 +199,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		E75CDE23217D443E00DDC4C8 /* Module */ = {
-			isa = PBXGroup;
-			children = (
-				E75CDE25217D443E00DDC4C8 /* Info.plist */,
-				E75CDE24217D443E00DDC4C8 /* Stores.h */,
-			);
-			path = Module;
-			sourceTree = "<group>";
-		};
 		E792A793217D47DD00D46FF7 /* StoresTestHostApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,9 +235,9 @@
 			isa = PBXGroup;
 			children = (
 				E792A7AC217D4BEA00D46FF7 /* KeychainStoreKey.swift */,
+				E792A7B4217D4FF400D46FF7 /* MemoryStoreKey.swift */,
 				E75CDE18217D443E00DDC4C8 /* StoreKey.swift */,
 				E792A7B1217D4F2100D46FF7 /* UserDefaultsStoreKey.swift */,
-				E792A7B4217D4FF400D46FF7 /* MemoryStoreKey.swift */,
 			);
 			path = Keys;
 			sourceTree = "<group>";
@@ -271,7 +258,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E75CDE2F217D443F00DDC4C8 /* Stores.h in Headers */,
 				E75CDE0D217D437A00DDC4C8 /* Stores.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
