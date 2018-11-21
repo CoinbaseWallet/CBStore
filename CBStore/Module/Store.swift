@@ -85,11 +85,12 @@ public final class Store: StoreProtocol {
 
     // MARK: -
 
-    private func observer<T: Storable>(for key: StoreKey<T>) -> PublishSubject<T?> {
-        if let observer = self.changeObservers[key.name] as? PublishSubject<T?> {
+    private func observer<T: Storable>(for key: StoreKey<T>) -> BehaviorSubject<T?> {
+        if let observer = self.changeObservers[key.name] as? BehaviorSubject<T?> {
             return observer
         } else {
-            let observer = PublishSubject<T?>()
+            let value = get(key)
+            let observer = BehaviorSubject<T?>(value: value)
             changeObservers[key.name] = observer
             return observer
         }
