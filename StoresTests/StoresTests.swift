@@ -131,13 +131,29 @@ class StoresTests: XCTestCase {
 
     // MARK: - Test observers
 
+    func testUserDefaultsObserverForInitialValue() {
+        let expectation = self.expectation(description: "testUserDefaultsObserverForInitialValue")
+        let disposeBag = DisposeBag()
+        let expected = ""
+        var actual = "whatever"
+
+        stores.observe(.stringBasedKey).subscribe(onNext: { value in
+            actual = value ?? ""
+            expectation.fulfill()
+        }).disposed(by: disposeBag)
+
+        wait(for: [expectation], timeout: unitTestsTimeout)
+
+        XCTAssertEqual(expected, actual)
+    }
+
     func testUserDefaultsObserver() {
         let expectation = self.expectation(description: "testUserDefaultsObserver")
         let disposeBag = DisposeBag()
         let expected = "Helllllllo"
         var actual = ""
 
-        stores.observe(.stringBasedKey).subscribe(onNext: { value in
+        stores.observe(.stringBasedKey).skip(1).subscribe(onNext: { value in
             actual = value ?? ""
             expectation.fulfill()
         }).disposed(by: disposeBag)
@@ -155,7 +171,7 @@ class StoresTests: XCTestCase {
         let expected = "Hello Coinbase"
         var actual = ""
 
-        stores.observe(.keychainStringBasedKey).subscribe(onNext: { value in
+        stores.observe(.keychainStringBasedKey).skip(1).subscribe(onNext: { value in
             actual = value ?? ""
             expectation.fulfill()
         }).disposed(by: disposeBag)
@@ -173,7 +189,7 @@ class StoresTests: XCTestCase {
         let expected = "Hello Coinbase"
         var actual = ""
 
-        stores.observe(.memStringBasedKey).subscribe(onNext: { value in
+        stores.observe(.memStringBasedKey).skip(1).subscribe(onNext: { value in
             actual = value ?? ""
             expectation.fulfill()
         }).disposed(by: disposeBag)
