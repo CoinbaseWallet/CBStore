@@ -10,6 +10,7 @@ public final class Store: StoreProtocol {
     private var changeObservers = [String: Any]()
     private let userDefaultStorage = UserDefaultsStorage()
     private let memoryStorage = MemoryStorage()
+    private let cloudStorage = CloudStorage()
 
     public init() { }
 
@@ -33,6 +34,8 @@ public final class Store: StoreProtocol {
             }
         case .userDefaults, .memory:
             storage.set(key.name, value: value?.toStoreValue())
+        case .cloud:
+            cloudStorage.set(key.name, value: value?.toStoreValue())
         }
 
         observer(for: key).onNext(value)
@@ -59,6 +62,9 @@ public final class Store: StoreProtocol {
                 return nil
             }
         case .userDefaults, .memory:
+            let storedValue = storage.get(key.name)
+            return T.fromStoreValue(storedValue)
+        case .cloud:
             let storedValue = storage.get(key.name)
             return T.fromStoreValue(storedValue)
         }
@@ -110,6 +116,8 @@ public final class Store: StoreProtocol {
             return userDefaultStorage
         case .memory:
             return memoryStorage
+        case .cloud:
+            return cloudStorage
         }
     }
 }
