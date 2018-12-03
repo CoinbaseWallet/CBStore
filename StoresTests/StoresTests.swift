@@ -57,6 +57,43 @@ class StoresTests: XCTestCase {
         XCTAssertEqual(expectedString, stores.get(.stringBasedKey))
     }
 
+    // MARK: - Cloud tests
+
+    func testCloudDataBasedKey() {
+        let expectedData = "hello world".data(using: .utf8)!
+        stores.set(.cloudDataBasedKey, value: expectedData)
+        let actualData = stores.get(.cloudDataBasedKey)
+
+        XCTAssertEqual(expectedData, actualData)
+    }
+
+    func testCloudStringBasedKey() {
+        let expected = "hello world"
+        stores.set(.cloudStringBasedKey, value: expected)
+        let actual = stores.get(.cloudStringBasedKey)
+
+        XCTAssertEqual(expected, actual)
+    }
+
+    func testCloudFloatBasedKey() {
+        let expected: Float = 1234
+        stores.set(.cloudFloatBasedKey, value: expected)
+        let actual = stores.get(.cloudFloatBasedKey)
+
+        XCTAssertEqual(expected, actual)
+    }
+
+    func testCloudSetsWithMultipleKey() {
+        let expectedFloat: Float = 234_567
+        let expectedString = "hello world"
+
+        stores.set(.cloudFloatBasedKey, value: expectedFloat)
+        stores.set(.cloudStringBasedKey, value: expectedString)
+
+        XCTAssertEqual(expectedFloat, stores.get(.cloudFloatBasedKey))
+        XCTAssertEqual(expectedString, stores.get(.cloudStringBasedKey))
+    }
+
     // MARK: - Keychain tests
 
     func testKeychainDataBasedKey() {
@@ -208,6 +245,11 @@ extension StoreKeys {
     static let floatBasedKey = UserDefaultsStoreKey<Float>("float_key")
     static let dataKey = UserDefaultsStoreKey<Data>("data_key")
 
+    // cloud based
+    static let cloudStringBasedKey = CloudStoreKey<String>("cloud_string_key")
+    static let cloudFloatBasedKey = CloudStoreKey<Float>("cloud_float_key")
+    static let cloudDataBasedKey = CloudStoreKey<Data>("cloud_data_key")
+
     // keychain based
     static let keychainStringBasedKey = KeychainStoreKey<String>("kstring_key")
     static let keychainFloatBasedKey = KeychainStoreKey<Float>("kfloat_key")
@@ -217,7 +259,6 @@ extension StoreKeys {
     static let memStringBasedKey = MemoryStoreKey<String>("mem_string_key")
     static let memFloatBasedKey = MemoryStoreKey<Float>("mem_float_key")
     static let memDataKey = MemoryStoreKey<Data>("memdata_key")
-
 }
 
 struct ExampleStruct: Storable, Codable, Equatable {

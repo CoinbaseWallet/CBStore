@@ -1,0 +1,18 @@
+// Copyright (c) 2017-2018 Coinbase Inc. See LICENSE
+
+import Foundation
+
+/// Storage for iCloud key-value store
+struct CloudStorage: Storage {
+    func set(_ key: String, value: Any?) {
+        if let value = value {
+            return NSUbiquitousKeyValueStore.default.set(value, forKey: key)
+        } else if value == nil {
+            return NSUbiquitousKeyValueStore.default.removeObject(forKey: key)
+        }
+    }
+
+    func get(_ key: String) -> Any? {
+        return NSUbiquitousKeyValueStore.default.object(forKey: key)
+    }
+}

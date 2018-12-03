@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		41BE6F37003A58D8BD0D2CF6 /* Pods_CBStoreTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E99D7A6EFF2092312E72EF /* Pods_CBStoreTests.framework */; };
+		D36CAF5421B5EC7900CB3257 /* CloudStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36CAF5321B5EC7900CB3257 /* CloudStorage.swift */; };
+		D36CAF5621B5EDC100CB3257 /* CloudStoreKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36CAF5521B5EDC000CB3257 /* CloudStoreKey.swift */; };
 		E35FDB70B7672CCC81BEFD4A /* Pods_CBStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF618C0AE9E56F89FD6BC6DB /* Pods_CBStore.framework */; };
 		E75CDE06217D437A00DDC4C8 /* CBStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E75CDDFC217D437A00DDC4C8 /* CBStore.framework */; };
 		E75CDE0B217D437A00DDC4C8 /* StoresTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75CDE0A217D437A00DDC4C8 /* StoresTests.swift */; };
@@ -62,6 +64,8 @@
 		A5AD7B90C93FB605A25805FF /* Pods-CBStoreTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CBStoreTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CBStoreTests/Pods-CBStoreTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AF618C0AE9E56F89FD6BC6DB /* Pods_CBStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CBStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C68D0188660C44BF457099E5 /* Pods-Stores.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Stores.release.xcconfig"; path = "Pods/Target Support Files/Pods-Stores/Pods-Stores.release.xcconfig"; sourceTree = "<group>"; };
+		D36CAF5321B5EC7900CB3257 /* CloudStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorage.swift; sourceTree = "<group>"; };
+		D36CAF5521B5EDC000CB3257 /* CloudStoreKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStoreKey.swift; sourceTree = "<group>"; };
 		E75CDDFC217D437A00DDC4C8 /* CBStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CBStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E75CDE05217D437A00DDC4C8 /* CBStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CBStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E75CDE0A217D437A00DDC4C8 /* StoresTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoresTests.swift; sourceTree = "<group>"; };
@@ -206,6 +210,7 @@
 				E78E5035217E66350071C075 /* MemoryStorage.swift */,
 				E78E5034217E66350071C075 /* Storage.swift */,
 				E78E5037217E66350071C075 /* UserDefaultsStorage.swift */,
+				D36CAF5321B5EC7900CB3257 /* CloudStorage.swift */,
 			);
 			path = PersistentStorage;
 			sourceTree = "<group>";
@@ -225,6 +230,7 @@
 				E78E503E217E66350071C075 /* MemoryStoreKey.swift */,
 				E78E503B217E66350071C075 /* StoreKey.swift */,
 				E78E503D217E66350071C075 /* UserDefaultsStoreKey.swift */,
+				D36CAF5521B5EDC000CB3257 /* CloudStoreKey.swift */,
 			);
 			path = Keys;
 			sourceTree = "<group>";
@@ -493,9 +499,11 @@
 				E78E504C217E66350071C075 /* StoreKey.swift in Sources */,
 				E78E504A217E66350071C075 /* UserDefaultsStorage.swift in Sources */,
 				E78E5047217E66350071C075 /* Storage.swift in Sources */,
+				D36CAF5621B5EDC100CB3257 /* CloudStoreKey.swift in Sources */,
 				E78E504B217E66350071C075 /* Bundle+Stores.swift in Sources */,
 				E78E5043217E66350071C075 /* Store.swift in Sources */,
 				E78E504F217E66350071C075 /* MemoryStoreKey.swift in Sources */,
+				D36CAF5421B5EC7900CB3257 /* CloudStorage.swift in Sources */,
 				E78E5045217E66350071C075 /* KeychainAccessibleKind.swift in Sources */,
 				E78E504E217E66350071C075 /* UserDefaultsStoreKey.swift in Sources */,
 				E78E504D217E66350071C075 /* KeychainStoreKey.swift in Sources */,

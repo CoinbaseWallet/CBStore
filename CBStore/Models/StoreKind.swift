@@ -12,4 +12,7 @@ public enum StoreKind: String {
 
     /// Store data to memory.
     case memory
+
+    /// Store data to iCloud
+    case cloud
 }
