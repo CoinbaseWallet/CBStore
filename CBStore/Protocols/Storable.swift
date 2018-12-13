@@ -23,6 +23,18 @@ public extension Storable {
     }
 }
 
+extension RawRepresentable where Self: Storable {
+    func toStoreValue() -> Any? {
+        return self.rawValue
+    }
+
+    public static func fromStoreValue(_ value: Any?) -> Self? {
+        guard let value = value as? RawValue else { return nil }
+
+        return self.init(rawValue: value)
+    }
+}
+
 extension String: Storable {}
 extension Int: Storable {}
 extension Int32: Storable {}
