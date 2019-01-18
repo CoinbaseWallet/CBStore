@@ -97,6 +97,7 @@ public final class Store: StoreProtocol {
             switch kind {
             case .keychain:
                 let group = Bundle.main.keychainGroupID
+                
                 KeychainStorage(group: group).destroy()
 
             case .userDefaults:
