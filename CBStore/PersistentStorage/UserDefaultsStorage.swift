@@ -15,4 +15,10 @@ struct UserDefaultsStorage: Storage {
     func get(_ key: String) -> Any? {
         return UserDefaults.standard.object(forKey: key)
     }
+
+    func destroy() {
+        if let domain = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: domain)
+        }
+    }
 }

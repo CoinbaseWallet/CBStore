@@ -16,4 +16,7 @@ protocol Storage {
     ///
     /// - returns: The stored value if available. Otherwise, nil
     func get(_ key: String) -> Any?
+
+    /// Delete all keys in storage
+    func destroy()
 }

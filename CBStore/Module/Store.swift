@@ -76,7 +76,7 @@ public final class Store: StoreProtocol {
     ///
     /// - returns: True if value exists.
     public func has<T: Storable>(_ key: StoreKey<T>) -> Bool {
-        let storedValue = storage(for: key).get(key.name)
+        let storedValue = get(key)
         return T.fromStoreValue(storedValue) != nil
     }
 
@@ -87,6 +87,26 @@ public final class Store: StoreProtocol {
     /// - returns: Observer
     public func observe<T: Storable>(_ key: StoreKey<T>) -> Observable<T?> {
         return observer(for: key).asObservable()
+    }
+
+    /// Delete all entries for given store kinds
+    ///
+    /// - parameter kinds: Array of `StoreKind` to clear out
+    public func destroy(kinds: [StoreKind]) {
+        kinds.forEach { kind in
+            switch kind {
+            case .keychain:
+                let group = Bundle.main.keychainGroupID
+                KeychainStorage(group: group).destroy()
+
+            case .userDefaults:
+                userDefaultStorage.destroy()
+            case .memory:
+                memoryStorage.destroy()
+            case .cloud:
+                cloudStorage.destroy()
+            }
+        }
     }
 
     // MARK: -

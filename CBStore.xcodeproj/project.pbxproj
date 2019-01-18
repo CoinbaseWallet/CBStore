@@ -206,11 +206,10 @@
 		E78E5033217E66350071C075 /* PersistentStorage */ = {
 			isa = PBXGroup;
 			children = (
+				D36CAF5321B5EC7900CB3257 /* CloudStorage.swift */,
 				E78E5036217E66350071C075 /* KeychainStorage.swift */,
 				E78E5035217E66350071C075 /* MemoryStorage.swift */,
-				E78E5034217E66350071C075 /* Storage.swift */,
 				E78E5037217E66350071C075 /* UserDefaultsStorage.swift */,
-				D36CAF5321B5EC7900CB3257 /* CloudStorage.swift */,
 			);
 			path = PersistentStorage;
 			sourceTree = "<group>";
@@ -226,11 +225,11 @@
 		E78E503A217E66350071C075 /* Keys */ = {
 			isa = PBXGroup;
 			children = (
+				D36CAF5521B5EDC000CB3257 /* CloudStoreKey.swift */,
 				E78E503C217E66350071C075 /* KeychainStoreKey.swift */,
 				E78E503E217E66350071C075 /* MemoryStoreKey.swift */,
 				E78E503B217E66350071C075 /* StoreKey.swift */,
 				E78E503D217E66350071C075 /* UserDefaultsStoreKey.swift */,
-				D36CAF5521B5EDC000CB3257 /* CloudStoreKey.swift */,
 			);
 			path = Keys;
 			sourceTree = "<group>";
@@ -239,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				E78E5041217E66350071C075 /* Storable.swift */,
+				E78E5034217E66350071C075 /* Storage.swift */,
 				E78E5040217E66350071C075 /* StoreProtocol.swift */,
 			);
 			path = Protocols;
