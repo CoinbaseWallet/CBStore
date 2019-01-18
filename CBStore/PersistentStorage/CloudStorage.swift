@@ -15,4 +15,10 @@ struct CloudStorage: Storage {
     func get(_ key: String) -> Any? {
         return NSUbiquitousKeyValueStore.default.object(forKey: key)
     }
+
+    func destroy() {
+        let keys = NSUbiquitousKeyValueStore.default.dictionaryRepresentation.keys
+
+        keys.forEach { NSUbiquitousKeyValueStore.default.removeObject(forKey: $0) }
+    }
 }

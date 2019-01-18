@@ -28,4 +28,9 @@ public protocol StoreProtocol {
     ///
     /// - returns: Observer
     func observe<T>(_ key: StoreKey<T>) -> Observable<T?> where T: Storable
+
+    /// Delete all entries for given store kinds
+    ///
+    /// - parameter kinds: Array of `StoreKind` to clear out
+    func destroy(kinds: [StoreKind])
 }

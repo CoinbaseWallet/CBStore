@@ -13,4 +13,8 @@ final class MemoryStorage: Storage {
     func get(_ key: String) -> Any? {
         return cache[key]
     }
+
+    func destroy() {
+        cache.removeAll()
+    }
 }

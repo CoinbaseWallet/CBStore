@@ -11,13 +11,8 @@ class StoresTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        stores.set(.stringBasedKey, value: nil)
-        stores.set(.floatBasedKey, value: nil)
-        stores.set(.dataKey, value: nil)
 
-        stores.set(.keychainStringBasedKey, value: nil)
-        stores.set(.keychainFloatBasedKey, value: nil)
-        stores.set(.keychainDataKey, value: nil)
+        stores.destroy(kinds: [.cloud, .keychain, .memory, .userDefaults])
     }
 
     // MARK: - User Default tests
@@ -164,6 +159,32 @@ class StoresTests: XCTestCase {
 
         XCTAssertEqual(expectedFloat, stores.get(.memFloatBasedKey))
         XCTAssertEqual(expectedString, stores.get(.memStringBasedKey))
+    }
+
+    func testDestroy() {
+        let expected: Float = 4321
+
+        XCTAssertFalse(stores.has(.memFloatBasedKey))
+        XCTAssertFalse(stores.has(.keychainFloatBasedKey))
+        XCTAssertFalse(stores.has(.floatBasedKey))
+        XCTAssertFalse(stores.has(.cloudFloatBasedKey))
+
+        stores.set(.memFloatBasedKey, value: expected)
+        stores.set(.keychainFloatBasedKey, value: expected)
+        stores.set(.floatBasedKey, value: expected)
+        stores.set(.cloudFloatBasedKey, value: expected)
+
+        XCTAssertTrue(stores.has(.memFloatBasedKey))
+        XCTAssertTrue(stores.has(.keychainFloatBasedKey))
+        XCTAssertTrue(stores.has(.floatBasedKey))
+        XCTAssertTrue(stores.has(.cloudFloatBasedKey))
+
+        stores.destroy(kinds: [.cloud, .keychain, .memory, .userDefaults])
+
+        XCTAssertFalse(stores.has(.memFloatBasedKey))
+        XCTAssertFalse(stores.has(.keychainFloatBasedKey))
+        XCTAssertFalse(stores.has(.floatBasedKey))
+        XCTAssertFalse(stores.has(.cloudFloatBasedKey))
     }
 
     // MARK: - Test observers
