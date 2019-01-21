@@ -76,8 +76,7 @@ public final class Store: StoreProtocol {
     ///
     /// - returns: True if value exists.
     public func has<T: Storable>(_ key: StoreKey<T>) -> Bool {
-        let storedValue = get(key)
-        return T.fromStoreValue(storedValue) != nil
+        return get(key) != nil
     }
 
     /// Add observer for store changes
