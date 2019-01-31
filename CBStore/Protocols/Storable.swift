@@ -12,8 +12,11 @@ public protocol Storable {
     static func fromStoreValue(_ value: Any?) -> Self?
 }
 
-/// Default Storable implementation
-public extension Storable {
+/// This protocol should be implemented by structs/classes that want to use the default Storable implementation
+public protocol DefaultStorable: Storable { }
+
+/// Default Storable implementation for IdentityStorable structs and classes
+public extension DefaultStorable {
     func toStoreValue() -> Any? {
         return self
     }
@@ -23,15 +26,37 @@ public extension Storable {
     }
 }
 
-extension String: Storable {}
-extension Int: Storable {}
-extension Int32: Storable {}
-extension UInt32: Storable {}
-extension Double: Storable {}
-extension Float: Storable {}
-extension CGFloat: Storable {}
-extension Bool: Storable {}
-extension Date: Storable {}
-extension Data: Storable {}
-extension Dictionary: Storable {}
-extension Array: Storable {}
+extension String: DefaultStorable {}
+extension Int: DefaultStorable {}
+extension Int32: DefaultStorable {}
+extension UInt32: DefaultStorable {}
+extension Double: DefaultStorable {}
+extension Float: DefaultStorable {}
+extension CGFloat: DefaultStorable {}
+extension Bool: DefaultStorable {}
+extension Date: DefaultStorable {}
+extension Data: DefaultStorable {}
+extension Dictionary: DefaultStorable {}
+extension Array: DefaultStorable {}
+
+/// Default Storable implementation for Codable structs/classes
+public extension Storable where Self: Codable {
+    public func toStoreValue() -> Any? {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .millisecondsSince1970
+        encoder.dataEncodingStrategy = .base64
+        return try? encoder.encode(self).base64EncodedString()
+    }
+
+    public static func fromStoreValue(_ value: Any?) -> Self? {
+        let decoder = JSONDecoder()
+        decoder.dataDecodingStrategy = .base64
+        decoder.dateDecodingStrategy = .millisecondsSince1970
+
+        guard let base64String = value as? String, let data = Data(base64Encoded: base64String) else {
+            return nil
+        }
+
+        return try? decoder.decode(self, from: data)
+    }
+}
