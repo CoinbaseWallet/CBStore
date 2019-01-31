@@ -52,6 +52,13 @@ class StoresTests: XCTestCase {
         XCTAssertEqual(expectedString, stores.get(.stringBasedKey))
     }
 
+    func testUserDefaultCodableKey() {
+        let obj = ExampleStruct(name: "testName", age: 123)
+        stores.set(.codableKey, value: obj)
+
+        XCTAssertEqual(obj, stores.get(.codableKey))
+    }
+
     // MARK: - Cloud tests
 
     func testCloudDataBasedKey() {
@@ -87,6 +94,13 @@ class StoresTests: XCTestCase {
 
         XCTAssertEqual(expectedFloat, stores.get(.cloudFloatBasedKey))
         XCTAssertEqual(expectedString, stores.get(.cloudStringBasedKey))
+    }
+
+    func testCloudCodableKey() {
+        let obj = ExampleStruct(name: "testName", age: 123)
+        stores.set(.cloudCodableKey, value: obj)
+
+        XCTAssertEqual(obj, stores.get(.cloudCodableKey))
     }
 
     // MARK: - Keychain tests
@@ -126,6 +140,15 @@ class StoresTests: XCTestCase {
         XCTAssertEqual(expectedString, stores.get(.keychainStringBasedKey))
     }
 
+    func testKeychainCodableKey() {
+        let obj = ExampleStruct(name: "testName", age: 123)
+        stores.set(.keychainCodableKey, value: obj)
+
+        XCTAssertEqual(obj, stores.get(.keychainCodableKey))
+    }
+
+    // MARK: - Memory store tests
+
     func testMemoryDataBasedKey() {
         let expectedData = "hello world".data(using: .utf8)!
         stores.set(.memDataKey, value: expectedData)
@@ -159,6 +182,13 @@ class StoresTests: XCTestCase {
 
         XCTAssertEqual(expectedFloat, stores.get(.memFloatBasedKey))
         XCTAssertEqual(expectedString, stores.get(.memStringBasedKey))
+    }
+
+    func testMemoryCodableKey() {
+        let obj = ExampleStruct(name: "testName", age: 123)
+        stores.set(.memCodableKey, value: obj)
+
+        XCTAssertEqual(obj, stores.get(.memCodableKey))
     }
 
     func testDestroy() {
@@ -265,21 +295,25 @@ extension StoreKeys {
     static let stringBasedKey = UserDefaultsStoreKey<String>("string_key")
     static let floatBasedKey = UserDefaultsStoreKey<Float>("float_key")
     static let dataKey = UserDefaultsStoreKey<Data>("data_key")
+    static let codableKey = UserDefaultsStoreKey<ExampleStruct>("codable_key")
 
     // cloud based
     static let cloudStringBasedKey = CloudStoreKey<String>("cloud_string_key")
     static let cloudFloatBasedKey = CloudStoreKey<Float>("cloud_float_key")
     static let cloudDataBasedKey = CloudStoreKey<Data>("cloud_data_key")
+    static let cloudCodableKey = CloudStoreKey<ExampleStruct>("cloud_codable_key")
 
     // keychain based
     static let keychainStringBasedKey = KeychainStoreKey<String>("kstring_key")
     static let keychainFloatBasedKey = KeychainStoreKey<Float>("kfloat_key")
     static let keychainDataKey = KeychainStoreKey<Data>("kchain_data_key")
+    static let keychainCodableKey = KeychainStoreKey<ExampleStruct>("keychain_codable_key")
 
     // Memory based
     static let memStringBasedKey = MemoryStoreKey<String>("mem_string_key")
     static let memFloatBasedKey = MemoryStoreKey<Float>("mem_float_key")
     static let memDataKey = MemoryStoreKey<Data>("memdata_key")
+    static let memCodableKey = MemoryStoreKey<ExampleStruct>("mem_codable_key")
 }
 
 struct ExampleStruct: Storable, Codable, Equatable {
