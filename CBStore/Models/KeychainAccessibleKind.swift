@@ -1,3 +1,5 @@
+// Copyright (c) 2017-2019 Coinbase Inc. See LICENSE
+
 import Foundation
 
 public enum KeychainAccessibleKind: String {
@@ -44,5 +46,4 @@ public enum KeychainAccessibleKind: String {
             return kSecAttrAccessibleAlwaysThisDeviceOnly
         }
     }
-        
 }

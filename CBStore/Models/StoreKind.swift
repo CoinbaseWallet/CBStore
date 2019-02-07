@@ -1,9 +1,9 @@
-// Copyright (c) 2017-2018 Coinbase Inc. See LICENSE
+// Copyright (c) 2017-2019 Coinbase Inc. See LICENSE
 
 import Foundation
 
 /// Represents the kind of store.
-public enum StoreKind: String {
+public enum StoreKind: String, CaseIterable {
     /// Store data to Keychain.
     case keychain
 

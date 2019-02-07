@@ -33,6 +33,7 @@
 		E792A79A217D47DD00D46FF7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E792A798217D47DD00D46FF7 /* Main.storyboard */; };
 		E792A79C217D47DE00D46FF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E792A79B217D47DE00D46FF7 /* Assets.xcassets */; };
 		E792A79F217D47DE00D46FF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E792A79D217D47DE00D46FF7 /* LaunchScreen.storyboard */; };
+		E7EFBD5F220CE5B700496787 /* StoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EFBD5E220CE5B700496787 /* StoreError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		E792A79E217D47DE00D46FF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E792A7A0217D47DE00D46FF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E792A7A4217D481400D46FF7 /* StoresTestHostApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StoresTestHostApp.entitlements; sourceTree = "<group>"; };
+		E7EFBD5E220CE5B700496787 /* StoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreError.swift; sourceTree = "<group>"; };
 		F283C25CB67B68CB78CFCADD /* Pods-CBStoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CBStoreTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CBStoreTests/Pods-CBStoreTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,6 +176,7 @@
 		E78E502B217E66350071C075 /* CBStore */ = {
 			isa = PBXGroup;
 			children = (
+				E7EFBD5D220CE5A500496787 /* Errors */,
 				E78E5038217E66350071C075 /* Extensions */,
 				E78E503A217E66350071C075 /* Keys */,
 				E78E5030217E66350071C075 /* Models */,
@@ -256,6 +259,14 @@
 				E792A796217D47DD00D46FF7 /* ViewController.swift */,
 			);
 			path = StoresTestHostApp;
+			sourceTree = "<group>";
+		};
+		E7EFBD5D220CE5A500496787 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				E7EFBD5E220CE5B700496787 /* StoreError.swift */,
+			);
+			path = Errors;
 			sourceTree = "<group>";
 		};
 		EB2F71D39754D3BFD0326040 /* Frameworks */ = {
@@ -512,6 +523,7 @@
 				E78E5048217E66350071C075 /* MemoryStorage.swift in Sources */,
 				E78E5049217E66350071C075 /* KeychainStorage.swift in Sources */,
 				E78E5050217E66350071C075 /* StoreProtocol.swift in Sources */,
+				E7EFBD5F220CE5B700496787 /* StoreError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

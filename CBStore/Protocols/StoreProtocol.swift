@@ -1,3 +1,5 @@
+// Copyright (c) 2017-2019 Coinbase Inc. See LICENSE
+
 import RxSwift
 
 /// Store operation protocol. Generally used to stub out Stores in unit tests
@@ -29,8 +31,11 @@ public protocol StoreProtocol {
     /// - returns: Observer
     func observe<T>(_ key: StoreKey<T>) -> Observable<T?> where T: Storable
 
+    /// Destroy the store. This will make the current store unusable
+    func destroy()
+
     /// Delete all entries for given store kinds
     ///
     /// - parameter kinds: Array of `StoreKind` to clear out
-    func destroy(kinds: [StoreKind])
+    func removeAll(kinds: [StoreKind])
 }

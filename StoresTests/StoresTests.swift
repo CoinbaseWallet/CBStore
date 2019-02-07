@@ -1,7 +1,8 @@
-// Copyright (c) 2017-2018 Coinbase Inc. See LICENSE
+// Copyright (c) 2017-2019 Coinbase Inc. See LICENSE
 
-import RxSwift
 import CBStore
+import RxBlocking
+import RxSwift
 import XCTest
 
 let unitTestsTimeout: TimeInterval = 1
@@ -12,7 +13,7 @@ class StoresTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        stores.destroy(kinds: [.cloud, .keychain, .memory, .userDefaults])
+        stores.removeAll(kinds: [.cloud, .keychain, .memory, .userDefaults])
     }
 
     // MARK: - User Default tests
@@ -191,7 +192,7 @@ class StoresTests: XCTestCase {
         XCTAssertEqual(obj, stores.get(.memCodableKey))
     }
 
-    func testDestroy() {
+    func testDestroy() throws {
         let expected: Float = 4321
 
         XCTAssertFalse(stores.has(.memFloatBasedKey))
@@ -209,12 +210,50 @@ class StoresTests: XCTestCase {
         XCTAssertTrue(stores.has(.floatBasedKey))
         XCTAssertTrue(stores.has(.cloudFloatBasedKey))
 
-        stores.destroy(kinds: [.cloud, .keychain, .memory, .userDefaults])
+        let memFloatValue = try stores.observe(.memFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+        let kChainFloatValue = try stores.observe(.keychainFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+        let floatValue = try stores.observe(.floatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+        let cloudFloatValue = try stores.observe(.cloudFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+
+        XCTAssertEqual(expected, memFloatValue)
+        XCTAssertEqual(expected, kChainFloatValue)
+        XCTAssertEqual(expected, floatValue)
+        XCTAssertEqual(expected, cloudFloatValue)
+
+        stores.destroy()
 
         XCTAssertFalse(stores.has(.memFloatBasedKey))
         XCTAssertFalse(stores.has(.keychainFloatBasedKey))
         XCTAssertFalse(stores.has(.floatBasedKey))
         XCTAssertFalse(stores.has(.cloudFloatBasedKey))
+
+        do {
+            _ = try stores.observe(.memFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+            XCTFail("Should've thrown an exception")
+        } catch {
+            XCTAssertTrue((error as? StoreError) == StoreError.storeDestroyed)
+        }
+
+        do {
+            _ = try stores.observe(.keychainFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+            XCTFail("Should've thrown an exception")
+        } catch {
+            XCTAssertTrue((error as? StoreError) == StoreError.storeDestroyed)
+        }
+
+        do {
+            _ = try stores.observe(.floatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+            XCTFail("Should've thrown an exception")
+        } catch {
+            XCTAssertTrue((error as? StoreError) == StoreError.storeDestroyed)
+        }
+
+        do {
+            _ = try stores.observe(.cloudFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+            XCTFail("Should've thrown an exception")
+        } catch {
+            XCTAssertTrue((error as? StoreError) == StoreError.storeDestroyed)
+        }
     }
 
     // MARK: - Test observers
