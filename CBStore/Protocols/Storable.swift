@@ -1,7 +1,7 @@
-// Copyright (c) 2017-2018 Coinbase Inc. See LICENSE
+// Copyright (c) 2017-2019 Coinbase Inc. See LICENSE
 
-import Foundation
 import CoreGraphics
+import Foundation
 
 /// This protocol should be used to declare data types that can be stored in keychain or user defaults.
 public protocol Storable {
@@ -13,7 +13,7 @@ public protocol Storable {
 }
 
 /// This protocol should be implemented by structs/classes that want to use the default Storable implementation
-public protocol DefaultStorable: Storable { }
+public protocol DefaultStorable: Storable {}
 
 /// Default Storable implementation for IdentityStorable structs and classes
 public extension DefaultStorable {

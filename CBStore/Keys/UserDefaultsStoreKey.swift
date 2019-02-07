@@ -1,9 +1,8 @@
-// Copyright (c) 2017-2018 Coinbase Inc. See LICENSE
+// Copyright (c) 2017-2019 Coinbase Inc. See LICENSE
 
 import Foundation
 
 public class UserDefaultsStoreKey<T>: StoreKey<T> {
-
     /// Constructor to create a custom user defaults store key
     ///
     /// - parameter prefixOrName: Key name or key prefix if udid is specified

@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2018 Coinbase Inc. See LICENSE
+// Copyright (c) 2017-2019 Coinbase Inc. See LICENSE
 
 import Foundation
 
@@ -8,16 +8,14 @@ public class KeychainStoreKey<T>: StoreKey<T> {
 
     /// Constructor to create a custom keychain store key
     ///
-    /// - parameter prefixOrName:           Key name or key prefix if udid is specified
-    /// - parameter uuid:                   Optional unique identifier
-    /// - parameter kind:                   Type of value to store.
-    /// - parameter keychainAccessibleKind: Sets the keychain accessible kind. This is ignored for user defaults
+    /// - parameter prefixOrName: Key name or key prefix if udid is specified
+    /// - parameter uuid:         Optional unique identifier
+    /// - parameter accessible:   Sets the keychain accessible kind. This is ignored for user defaults
     ///
     /// - returns: A new `StoreKey` instance
     public init(
         _ prefixOrName: String,
         uuid: String? = nil,
-        group: String = Bundle.main.keychainGroupID,
         accessible: KeychainAccessibleKind = .whenUnlockedThisDeviceOnly
     ) {
         self.accessible = accessible

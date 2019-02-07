@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2018 Coinbase Inc. See LICENSE
+// Copyright (c) 2017-2019 Coinbase Inc. See LICENSE
 
 import Foundation
 import RxSwift
@@ -11,34 +11,56 @@ public final class Store: StoreProtocol {
     private let userDefaultStorage = UserDefaultsStorage()
     private let memoryStorage = MemoryStorage()
     private let cloudStorage = CloudStorage()
+    private let accessQueue = DispatchQueue(
+        label: "CBStore.Store.accessQueue",
+        qos: .userInitiated,
+        attributes: .concurrent
+    )
 
-    public init() { }
+    /// Determine whether the store is destroyed
+    public private(set) var isDestroyed: Bool = false
+
+    public init() {}
 
     /// Set value for key
     ///
     /// - parameter key:   Key for store value
     /// - parameter value: Value to be stored
     public func set<T: Storable>(_ key: StoreKey<T>, value: T?) {
-        let storage = self.storage(for: key)
+        var hasObserver = false
 
-        switch key.kind {
-        case .keychain:
-            if T.self == Data.self {
-                storage.set(key.name, value: value?.toStoreValue())
-            } else if let value = value {
-                let dict = [kValueKey: value.toStoreValue() as AnyObject]
-                let data = try? JSONSerialization.data(withJSONObject: dict, options: [])
-                storage.set(key.name, value: data)
-            } else {
-                storage.set(key.name, value: nil)
+        accessQueue.sync {
+            hasObserver = self.changeObservers[key.name] != nil
+
+            if self.isDestroyed {
+                return
             }
-        case .userDefaults, .memory:
-            storage.set(key.name, value: value?.toStoreValue())
-        case .cloud:
-            cloudStorage.set(key.name, value: value?.toStoreValue())
+
+            let storage = self.storage(for: key)
+
+            switch key.kind {
+            case .keychain:
+                if T.self == Data.self {
+                    storage.set(key.name, value: value?.toStoreValue())
+                } else if let value = value {
+                    let dict = [kValueKey: value.toStoreValue() as AnyObject]
+                    let data = try? JSONSerialization.data(withJSONObject: dict, options: [])
+                    storage.set(key.name, value: data)
+                } else {
+                    storage.set(key.name, value: nil)
+                }
+            case .userDefaults, .memory:
+                storage.set(key.name, value: value?.toStoreValue())
+            case .cloud:
+                cloudStorage.set(key.name, value: value?.toStoreValue())
+            }
         }
 
-        observer(for: key).onNext(value)
+        if hasObserver && isDestroyed {
+            observer(for: key).onError(StoreError.storeDestroyed)
+        } else if !isDestroyed {
+            observer(for: key).onNext(value)
+        }
     }
 
     /// Get value for key
@@ -47,27 +69,42 @@ public final class Store: StoreProtocol {
     ///
     /// - returns: Value if exists or nil
     public func get<T: Storable>(_ key: StoreKey<T>) -> T? {
-        let storage = self.storage(for: key)
+        var value: T?
 
-        switch key.kind {
-        case .keychain:
-            if T.self == Data.self {
-                let storedValue = storage.get(key.name)
-                return T.fromStoreValue(storedValue)
-            } else if let data = storage.get(key.name) as? Data,
-                let dict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
-                let storedValue = dict?[kValueKey]
-                return T.fromStoreValue(storedValue)
-            } else {
-                return nil
+        accessQueue.sync {
+            if self.isDestroyed {
+                value = nil
+                return
             }
-        case .userDefaults, .memory:
-            let storedValue = storage.get(key.name)
-            return T.fromStoreValue(storedValue)
-        case .cloud:
-            let storedValue = storage.get(key.name)
-            return T.fromStoreValue(storedValue)
+
+            let storage = self.storage(for: key)
+
+            switch key.kind {
+            case .keychain:
+                if T.self == Data.self {
+                    let storedValue = storage.get(key.name)
+
+                    value = T.fromStoreValue(storedValue)
+                } else if let data = storage.get(key.name) as? Data,
+                    let dict = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject] {
+                    let storedValue = dict?[kValueKey]
+
+                    value = T.fromStoreValue(storedValue)
+                } else {
+                    value = nil
+                }
+            case .userDefaults, .memory:
+                let storedValue = storage.get(key.name)
+
+                value = T.fromStoreValue(storedValue)
+            case .cloud:
+                let storedValue = storage.get(key.name)
+
+                value = T.fromStoreValue(storedValue)
+            }
         }
+
+        return value
     }
 
     /// Determine whether a value exists
@@ -76,7 +113,17 @@ public final class Store: StoreProtocol {
     ///
     /// - returns: True if value exists.
     public func has<T: Storable>(_ key: StoreKey<T>) -> Bool {
-        return get(key) != nil
+        var hasValue: Bool = false
+
+        accessQueue.sync {
+            if self.isDestroyed {
+                hasValue = false
+            } else {
+                hasValue = get(key) != nil
+            }
+        }
+
+        return hasValue
     }
 
     /// Add observer for store changes
@@ -85,18 +132,52 @@ public final class Store: StoreProtocol {
     ///
     /// - returns: Observer
     public func observe<T: Storable>(_ key: StoreKey<T>) -> Observable<T?> {
-        return observer(for: key).asObservable()
+        var observable: Observable<T?>!
+
+        accessQueue.sync {
+            if self.isDestroyed {
+                observable = .error(StoreError.storeDestroyed)
+            } else {
+                observable = observer(for: key).asObservable()
+            }
+        }
+
+        return observable
+    }
+
+    /// Destroy the store. This will make the current store unusable
+    public func destroy() {
+        accessQueue.sync(flags: .barrier) {
+            if self.isDestroyed {
+                return
+            }
+
+            self.isDestroyed = true
+            self.deleteAllEntries(kinds: StoreKind.allCases)
+        }
     }
 
     /// Delete all entries for given store kinds
     ///
     /// - parameter kinds: Array of `StoreKind` to clear out
-    public func destroy(kinds: [StoreKind]) {
+    public func removeAll(kinds: [StoreKind]) {
+        accessQueue.sync {
+            if self.isDestroyed {
+                return
+            }
+
+            self.deleteAllEntries(kinds: kinds)
+        }
+    }
+
+    // MARK: -
+
+    private func deleteAllEntries(kinds: [StoreKind]) {
         kinds.forEach { kind in
             switch kind {
             case .keychain:
                 let group = Bundle.main.keychainGroupID
-                
+
                 KeychainStorage(group: group).destroy()
 
             case .userDefaults:
@@ -108,8 +189,6 @@ public final class Store: StoreProtocol {
             }
         }
     }
-
-    // MARK: -
 
     private func observer<T: Storable>(for key: StoreKey<T>) -> BehaviorSubject<T?> {
         if let observer = self.changeObservers[key.name] as? BehaviorSubject<T?> {
