@@ -7,7 +7,6 @@ private let kValueKey = "StoresKeychainStorageKey"
 
 /// Utility used to simplify interface to keychain or user defaults
 public final class Store: StoreProtocol {
-    private var isDestroyed: Bool = false
     private var changeObservers = [String: Any]()
     private let userDefaultStorage = UserDefaultsStorage()
     private let memoryStorage = MemoryStorage()
@@ -18,6 +17,9 @@ public final class Store: StoreProtocol {
         attributes: .concurrent
     )
 
+    /// Determine whether the store is destroyed
+    public private(set) var isDestroyed: Bool = false
+
     public init() {}
 
     /// Set value for key
@@ -26,13 +28,11 @@ public final class Store: StoreProtocol {
     /// - parameter value: Value to be stored
     public func set<T: Storable>(_ key: StoreKey<T>, value: T?) {
         var hasObserver = false
-        var shouldNotifyObserver = true
 
         accessQueue.sync {
             hasObserver = self.changeObservers[key.name] != nil
 
             if self.isDestroyed {
-                shouldNotifyObserver = false
                 return
             }
 
@@ -56,9 +56,9 @@ public final class Store: StoreProtocol {
             }
         }
 
-        if hasObserver && !shouldNotifyObserver {
+        if hasObserver && isDestroyed {
             observer(for: key).onError(StoreError.storeDestroyed)
-        } else if shouldNotifyObserver {
+        } else if !isDestroyed {
             observer(for: key).onNext(value)
         }
     }

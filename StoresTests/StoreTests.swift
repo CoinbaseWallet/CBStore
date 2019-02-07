@@ -7,7 +7,7 @@ import XCTest
 
 let unitTestsTimeout: TimeInterval = 1
 
-class StoresTests: XCTestCase {
+class StoreTests: XCTestCase {
     private let stores = Store()
 
     override func setUp() {
@@ -193,67 +193,70 @@ class StoresTests: XCTestCase {
     }
 
     func testDestroy() throws {
+        let kvStore = Store()
         let expected: Float = 4321
 
-        XCTAssertFalse(stores.has(.memFloatBasedKey))
-        XCTAssertFalse(stores.has(.keychainFloatBasedKey))
-        XCTAssertFalse(stores.has(.floatBasedKey))
-        XCTAssertFalse(stores.has(.cloudFloatBasedKey))
+        XCTAssertFalse(kvStore.has(.memFloatBasedKey))
+        XCTAssertFalse(kvStore.has(.keychainFloatBasedKey))
+        XCTAssertFalse(kvStore.has(.floatBasedKey))
+        XCTAssertFalse(kvStore.has(.cloudFloatBasedKey))
 
-        stores.set(.memFloatBasedKey, value: expected)
-        stores.set(.keychainFloatBasedKey, value: expected)
-        stores.set(.floatBasedKey, value: expected)
-        stores.set(.cloudFloatBasedKey, value: expected)
+        kvStore.set(.memFloatBasedKey, value: expected)
+        kvStore.set(.keychainFloatBasedKey, value: expected)
+        kvStore.set(.floatBasedKey, value: expected)
+        kvStore.set(.cloudFloatBasedKey, value: expected)
 
-        XCTAssertTrue(stores.has(.memFloatBasedKey))
-        XCTAssertTrue(stores.has(.keychainFloatBasedKey))
-        XCTAssertTrue(stores.has(.floatBasedKey))
-        XCTAssertTrue(stores.has(.cloudFloatBasedKey))
+        XCTAssertTrue(kvStore.has(.memFloatBasedKey))
+        XCTAssertTrue(kvStore.has(.keychainFloatBasedKey))
+        XCTAssertTrue(kvStore.has(.floatBasedKey))
+        XCTAssertTrue(kvStore.has(.cloudFloatBasedKey))
 
-        let memFloatValue = try stores.observe(.memFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
-        let kChainFloatValue = try stores.observe(.keychainFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
-        let floatValue = try stores.observe(.floatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
-        let cloudFloatValue = try stores.observe(.cloudFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+        let memFloatValue = try kvStore.observe(.memFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+        let kChainFloatValue = try kvStore.observe(.keychainFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+        let floatValue = try kvStore.observe(.floatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+        let cloudFloatValue = try kvStore.observe(.cloudFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
 
         XCTAssertEqual(expected, memFloatValue)
         XCTAssertEqual(expected, kChainFloatValue)
         XCTAssertEqual(expected, floatValue)
         XCTAssertEqual(expected, cloudFloatValue)
 
-        stores.destroy()
+        kvStore.destroy()
 
-        XCTAssertFalse(stores.has(.memFloatBasedKey))
-        XCTAssertFalse(stores.has(.keychainFloatBasedKey))
-        XCTAssertFalse(stores.has(.floatBasedKey))
-        XCTAssertFalse(stores.has(.cloudFloatBasedKey))
+        XCTAssertFalse(kvStore.has(.memFloatBasedKey))
+        XCTAssertFalse(kvStore.has(.keychainFloatBasedKey))
+        XCTAssertFalse(kvStore.has(.floatBasedKey))
+        XCTAssertFalse(kvStore.has(.cloudFloatBasedKey))
 
         do {
-            _ = try stores.observe(.memFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+            _ = try kvStore.observe(.memFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
             XCTFail("Should've thrown an exception")
         } catch {
             XCTAssertTrue((error as? StoreError) == StoreError.storeDestroyed)
         }
 
         do {
-            _ = try stores.observe(.keychainFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+            _ = try kvStore.observe(.keychainFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
             XCTFail("Should've thrown an exception")
         } catch {
             XCTAssertTrue((error as? StoreError) == StoreError.storeDestroyed)
         }
 
         do {
-            _ = try stores.observe(.floatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+            _ = try kvStore.observe(.floatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
             XCTFail("Should've thrown an exception")
         } catch {
             XCTAssertTrue((error as? StoreError) == StoreError.storeDestroyed)
         }
 
         do {
-            _ = try stores.observe(.cloudFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+            _ = try kvStore.observe(.cloudFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
             XCTFail("Should've thrown an exception")
         } catch {
             XCTAssertTrue((error as? StoreError) == StoreError.storeDestroyed)
         }
+
+        XCTAssertTrue(kvStore.isDestroyed)
     }
 
     // MARK: - Test observers
