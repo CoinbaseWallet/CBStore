@@ -4,22 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Nimble.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-CBStore.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-CBStoreTests.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Quick.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
