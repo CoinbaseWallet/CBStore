@@ -4,14 +4,23 @@ import Foundation
 
 /// Storage for user defaults
 final class MemoryStorage: Storage {
+    private let accessQueue = DispatchQueue(label: "memoryStorageQueue", qos: .userInitiated, attributes: .concurrent)
     private var cache = [String: Any]()
 
     func set(_ key: String, value: Any?) {
-        cache[key] = value
+        accessQueue.async(flags: .barrier) {
+            self.cache[key] = value
+        }
     }
 
     func get(_ key: String) -> Any? {
-        return cache[key]
+        var result: Any?
+
+        accessQueue.sync {
+            result = self.cache[key]
+        }
+
+        return result
     }
 
     func destroy() {
