@@ -17,6 +17,12 @@ public final class Store: StoreProtocol {
         attributes: .concurrent
     )
 
+    private let changeObserverAccessQueue = DispatchQueue(
+        label: "CBStore.Store.changeObserverAccessQueue",
+        qos: .userInitiated,
+        attributes: .concurrent
+    )
+
     /// Determine whether the store is destroyed
     public private(set) var isDestroyed: Bool = false
 
@@ -30,7 +36,7 @@ public final class Store: StoreProtocol {
         var hasObserver = false
 
         accessQueue.sync {
-            hasObserver = self.changeObservers[key.name] != nil
+            hasObserver = self.hasObserver(for: key.name)
 
             if self.isDestroyed {
                 return
@@ -191,14 +197,41 @@ public final class Store: StoreProtocol {
     }
 
     private func observer<T: Storable>(for key: StoreKey<T>) -> BehaviorSubject<T?> {
-        if let observer = self.changeObservers[key.name] as? BehaviorSubject<T?> {
+        // Check if we have an observer registered in concurrent mode
+        var currentObserver: BehaviorSubject<T?>?
+        changeObserverAccessQueue.sync {
+            currentObserver = self.changeObservers[key.name] as? BehaviorSubject<T?>
+        }
+
+        if let observer = currentObserver {
             return observer
-        } else {
+        }
+
+        // If we can't find an observer, enter serial mode and check or create new observer
+        var newObserver: BehaviorSubject<T?>!
+        changeObserverAccessQueue.sync(flags: .barrier) {
+            if let observer = self.changeObservers[key.name] as? BehaviorSubject<T?> {
+                newObserver = observer
+                return
+            }
+
             let value = get(key)
             let observer = BehaviorSubject<T?>(value: value)
             changeObservers[key.name] = observer
-            return observer
+            newObserver = observer
         }
+
+        return newObserver
+    }
+
+    private func hasObserver(for keyName: String) -> Bool {
+        var hasObserver = false
+
+        changeObserverAccessQueue.sync {
+            hasObserver = self.changeObservers[keyName] != nil
+        }
+
+        return hasObserver
     }
 
     private func storage<T: Storable>(for key: StoreKey<T>) -> Storage {

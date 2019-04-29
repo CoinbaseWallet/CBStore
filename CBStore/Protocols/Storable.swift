@@ -21,7 +21,7 @@ public extension DefaultStorable {
         return self
     }
 
-    public static func fromStoreValue(_ value: Any?) -> Self? {
+    static func fromStoreValue(_ value: Any?) -> Self? {
         return value as? Self
     }
 }
@@ -41,14 +41,14 @@ extension Array: DefaultStorable {}
 
 /// Default Storable implementation for Codable structs/classes
 public extension Storable where Self: Codable {
-    public func toStoreValue() -> Any? {
+    func toStoreValue() -> Any? {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .millisecondsSince1970
         encoder.dataEncodingStrategy = .base64
         return try? encoder.encode(self).base64EncodedString()
     }
 
-    public static func fromStoreValue(_ value: Any?) -> Self? {
+    static func fromStoreValue(_ value: Any?) -> Self? {
         let decoder = JSONDecoder()
         decoder.dataDecodingStrategy = .base64
         decoder.dateDecodingStrategy = .millisecondsSince1970
