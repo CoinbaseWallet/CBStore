@@ -9,7 +9,7 @@ public class UserDefaultsStoreKey<T>: StoreKey<T> {
     /// - parameter uuid:         Optional unique identifier
     ///
     /// - returns: A new `StoreKey` instance
-    public init(_ prefixOrName: String, uuid: String? = nil) {
-        super.init(prefixOrName, uuid: uuid, kind: .userDefaults)
+    public init(_ prefixOrName: String, uuid: String? = nil, syncNow: Bool = false) {
+        super.init(prefixOrName, uuid: uuid, kind: .userDefaults, syncNow: syncNow)
     }
 }

@@ -26,4 +26,6 @@ final class MemoryStorage: Storage {
     func destroy() {
         cache.removeAll()
     }
+
+    func sync() {}
 }

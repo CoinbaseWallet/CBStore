@@ -15,17 +15,22 @@ public class StoreKey<T>: StoreKeys {
     /// Stored value type
     let valueType: T.Type
 
+    /// Determine whether to immediately sync UserDefaults to disk. Default is false
+    let syncNow: Bool
+
     /// Constructor to create a custom store key
     ///
     /// - parameter prefixOrName: Key name or key prefix if udid is specified
     /// - parameter uuid:         Optional unique identifier
     /// - parameter kind:         Type of value to store.
+    /// - parameter syncNow:      Determine whether to persist to disk immediately.
     ///
     /// - returns: A new `StoreKey` instance
     init(
         _ prefixOrName: String,
         uuid: String? = nil,
-        kind: StoreKind = .userDefaults
+        kind: StoreKind = .userDefaults,
+        syncNow: Bool = false
     ) {
         let valueType = T.self
         let pieces = [kind.rawValue, prefixOrName, uuid, "\(type(of: valueType))"]
@@ -34,6 +39,7 @@ public class StoreKey<T>: StoreKeys {
         self.valueType = valueType
         self.uuid = uuid
         self.kind = kind
+        self.syncNow = syncNow
     }
 }
 

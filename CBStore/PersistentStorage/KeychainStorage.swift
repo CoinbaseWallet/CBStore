@@ -53,6 +53,8 @@ struct KeychainStorage: Storage {
         SecItemDelete([kSecClass as String: kSecClassGenericPassword] as CFDictionary)
     }
 
+    func sync() {}
+
     // MARK: - Private helpers
 
     private func queryDictionary(key: String) -> [String: AnyObject] {

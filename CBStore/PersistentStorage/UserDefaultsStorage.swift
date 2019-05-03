@@ -21,4 +21,8 @@ struct UserDefaultsStorage: Storage {
             UserDefaults.standard.removePersistentDomain(forName: domain)
         }
     }
+
+    func sync() {
+        CFPreferencesAppSynchronize(kCFPreferencesCurrentApplication)
+    }
 }
