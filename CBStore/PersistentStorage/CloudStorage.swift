@@ -16,6 +16,10 @@ struct CloudStorage: Storage {
         return NSUbiquitousKeyValueStore.default.object(forKey: key)
     }
 
+    func sync() {
+        _ = NSUbiquitousKeyValueStore.default.synchronize()
+    }
+
     func destroy() {
         let keys = NSUbiquitousKeyValueStore.default.dictionaryRepresentation.keys
 

@@ -19,4 +19,7 @@ protocol Storage {
 
     /// Delete all keys in storage
     func destroy()
+
+    /// If supported, persist changes to disk immediat. Otherwise, it's a noop
+    func sync()
 }

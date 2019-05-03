@@ -60,6 +60,10 @@ public final class Store: StoreProtocol {
             case .cloud:
                 cloudStorage.set(key.name, value: value?.toStoreValue())
             }
+
+            if key.syncNow {
+                storage.sync()
+            }
         }
 
         if hasObserver && isDestroyed {
