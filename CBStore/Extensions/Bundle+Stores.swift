@@ -5,11 +5,13 @@ import Foundation
 extension Bundle {
     /// Returns the keychain group ID
     public var keychainGroupID: String {
-        guard let info = self.infoDictionary, let appIdentifier = info["AppIdentifierPrefix"] as? String,
-            let bundleId = info["CFBundleIdentifier"] as? String else {
+        guard
+            let info = self.infoDictionary, let appIdentifier = info["AppIdentifierPrefix"] as? String,
+            let groupIdentifier = info["KeychainGroupIdentifier"] ?? bundleIdentifier
+        else {
             return bundleIdentifier ?? ""
         }
 
-        return "\(appIdentifier)\(bundleId)"
+        return "\(appIdentifier)\(groupIdentifier)"
     }
 }
