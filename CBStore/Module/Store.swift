@@ -213,13 +213,14 @@ public final class Store: StoreProtocol {
 
         // If we can't find an observer, enter serial mode and check or create new observer
         var newObserver: BehaviorSubject<T?>!
+        let value = get(key)
+
         changeObserverAccessQueue.sync(flags: .barrier) {
             if let observer = self.changeObservers[key.name] as? BehaviorSubject<T?> {
                 newObserver = observer
                 return
             }
 
-            let value = get(key)
             let observer = BehaviorSubject<T?>(value: value)
             changeObservers[key.name] = observer
             newObserver = observer
