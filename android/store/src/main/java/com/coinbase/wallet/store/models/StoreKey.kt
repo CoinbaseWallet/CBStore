@@ -17,12 +17,11 @@ open class StoreKey<T>(
     val kind: StoreKind,
     val clazz: Class<T>
 ) {
-    val name: String = listOf(
+    val name: String = listOfNotNull(
             kind.name,
             id,
             uuid,
             clazz.simpleName
         )
-        .filterNotNull()
         .joinToString("_")
 }
