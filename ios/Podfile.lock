@@ -1,0 +1,33 @@
+PODS:
+  - RxAtomic (4.4.2)
+  - RxBlocking (4.3.1):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.4.2):
+    - RxAtomic (>= 4.4.2, ~> 4.4)
+  - SwiftFormat/CLI (0.37.2)
+  - SwiftLint (0.32.0)
+
+DEPENDENCIES:
+  - RxBlocking (~> 4.3.1)
+  - RxSwift (~> 4.4.0)
+  - SwiftFormat/CLI (= 0.37.2)
+  - SwiftLint
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - RxAtomic
+    - RxBlocking
+    - RxSwift
+    - SwiftFormat
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
+  RxBlocking: 64c051285261ca2339481e91b5f70eb06b03660a
+  RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
+  SwiftFormat: abbfb26dde4c6d683923cde153c88e10da9d7881
+  SwiftLint: 009a898ef2a1c851f45e1b59349bf6ff2ddc990d
+
+PODFILE CHECKSUM: e2d06842cd025a7a68bcaed44ca75ccafb69f482
+
+COCOAPODS: 1.6.2
