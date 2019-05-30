@@ -37,3 +37,4 @@ Carthage/Build/.*.version
 # AppCode
 /.idea
 *.xcbkptlist
+/android/.idea/**
