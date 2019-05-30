@@ -2,7 +2,9 @@ package com.coinbase.wallet.crypto.extensions
 
 import android.util.Base64
 
-// Convert ByteArray to hex encoded string
+/**
+ * Convert ByteArray to hex encoded string
+ */
 fun ByteArray.toHexString(): String {
     val result = StringBuffer()
     for (byt in this) {
@@ -13,7 +15,9 @@ fun ByteArray.toHexString(): String {
     return result.toString()
 }
 
-// Convert ByteArray to base64 String
+/**
+ * Convert ByteArray to base64 String
+ */
 fun ByteArray.base64EncodedString(): String {
     return Base64.encodeToString(this, Base64.NO_WRAP)
 }

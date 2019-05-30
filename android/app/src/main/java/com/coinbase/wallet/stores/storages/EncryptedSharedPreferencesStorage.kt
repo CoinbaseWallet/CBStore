@@ -30,7 +30,7 @@ class EncryptedSharedPreferencesStorage(context: Context) : Storage {
 
     override fun <T> set(key: StoreKey<T>, value: T?) {
         val editor: SharedPreferences.Editor = if (value == null) {
-            preferences.edit().putString(key.name, null)
+            preferences.edit().remove(key.name)
         } else {
             val adapter = moshi.adapter<T>(key.clazz)
             val jsonString = adapter.toJson(value)

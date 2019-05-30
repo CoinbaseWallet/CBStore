@@ -4,7 +4,9 @@ import com.coinbase.wallet.stores.models.Optional
 import com.coinbase.wallet.stores.models.StoreKey
 import io.reactivex.Observable
 
-// Store operation interface. Generally used to stub out Stores in unit tests
+/**
+ * Store operation interface. Generally used to stub out Stores in unit tests
+ */
 interface StoreInterface {
     /**
      * Set value for key

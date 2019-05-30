@@ -5,7 +5,9 @@ import javax.crypto.SecretKey
 import javax.crypto.spec.GCMParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
-// Utility used to encrypt/decrypt using AES-256 GCM
+/**
+ * Utility used to encrypt/decrypt using AES-256 GCM
+ */
 class AES256GCM {
     companion object {
         private const val AUTH_TAG_SIZE = 128
@@ -24,8 +26,6 @@ class AES256GCM {
             val cipher = Cipher.getInstance(TRANSFORMATION)
             val paramSpec = GCMParameterSpec(AUTH_TAG_SIZE, iv)
             val keySpec = SecretKeySpec(key, "AES")
-
-            // FIXME: hish - do I need to catch runtime exceptions?
 
             cipher.init(Cipher.ENCRYPT_MODE, keySpec, paramSpec)
             val cipherBytes = cipher.doFinal(data)
@@ -47,8 +47,6 @@ class AES256GCM {
          */
         fun encrypt(data: ByteArray, secretKey: SecretKey): Triple<ByteArray, ByteArray, ByteArray> {
             val cipher = Cipher.getInstance(TRANSFORMATION)
-
-            // FIXME: hish - do I need to catch runtime exceptions?
 
             cipher.init(Cipher.ENCRYPT_MODE, secretKey)
             val cipherBytes = cipher.doFinal(data)

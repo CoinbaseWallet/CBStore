@@ -2,7 +2,7 @@
 Stores framework provides a unified API for storing, retrieving and observing Key-Value pairs on iOS and Android.
 
 ## Rationale
-Deciding where to store data, how to transform it, how to observe it, or where to save the key requires additional decision making and manual work. This framework elevates all that by providing a simple consistent API across both platforms.
+Deciding where to store data, how to transform it, how to observe it, or where to save the key requires additional decision making and manual work. This framework alleviates all that by providing a simple consistent API across both platforms.
 
 ## Usage
 First we need to define a `StoreKey`. A `StoreKey` defines how, what and where to store the value.
@@ -12,7 +12,7 @@ On iOS:
 // Add an extension on StoreKeys
 extension StoreKeys {
    // This will store a String in UserDefaults
-   static let userID = UserDefaultsStoreKey<String>("userID")
+   static let userId = UserDefaultsStoreKey<String>("userId")
    
    // This will cache a Boolean in memory.
    static let isPillHidden = MemoryStoreKey<Bool>("isPillHidden")
@@ -29,7 +29,7 @@ On Android
 
 object UserKeys {
    // This will store a String in Android SharedPreferences
-   val userId = SharedPrefsStoreKey(id = "userID", clazz = String::class.java)
+   val userId = SharedPrefsStoreKey(id = "userId", clazz = String::class.java)
    
    // This will encrypt & store a User object in SharedPreferences
    val user = EncryptedSharedPrefsStoreKey(id = "user", clazz = User::class.java)
@@ -41,17 +41,17 @@ object WalletKeys {
 }
 ```
 
-Once the key is defined, the store can be accessed, modifie, or observed as follows:
+Once the key is defined, the store can be accessed, modified, or observed as follows:
 
 On iOS
 ```swift
 // Get operation
-let userID = store.get(.userID)
+let userId = store.get(.userId)
 let user = store.get(.user)
 
 
 // Set operation
-store.set(.userID, "420")
+store.set(.userId, "420")
 store.set(.user, User(id: 123, name: "Adam"))
 
 // Observe operation
@@ -64,7 +64,7 @@ store.observe(.isPillHidden)
 On Android:
 ```kotlin
 // Get operation
-val userID = store.get(UserKeys.userId)
+val userId = store.get(UserKeys.userId)
 val user = store.get(UserKeys.user)
 
 // Set operation
