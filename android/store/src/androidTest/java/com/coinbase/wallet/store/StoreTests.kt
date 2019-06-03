@@ -12,6 +12,9 @@ import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.math.BigDecimal
+import java.math.BigInteger
+import java.net.URL
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
@@ -144,6 +147,36 @@ class StoreTests {
 
         assertArrayEquals(expected, actual)
     }
+
+    @Test
+    fun bigIntegerBigDecimalUrlAdapterValidation() {
+        val expected = MockObjectForDefaultAdapters(
+            id = BigInteger.TEN,
+            gas = null,
+            amount = BigDecimal(23809302302930),
+            fee = null,
+            imageURL = null,
+            avatarImage = URL("https://www.example.com")
+        )
+
+        val store = Store(InstrumentationRegistry.getTargetContext())
+
+        store.set(TestKeys.adaptersKey, expected)
+
+        val actual = store.get(TestKeys.adaptersKey)
+
+        if (actual == null) {
+            Assert.fail("Cannot be null")
+            return
+        }
+
+        assertEquals(expected.id, actual.id)
+        assertEquals(expected.gas, actual.gas)
+        assertEquals(expected.amount, actual.amount)
+        assertEquals(expected.fee, actual.fee)
+        assertEquals(expected.imageURL, actual.imageURL)
+        assertEquals(expected.avatarImage, actual.avatarImage)
+    }
 }
 
 object TestKeys {
@@ -171,6 +204,8 @@ object TestKeys {
             id = "encrypted_complex_object_array",
             clazz = Array<MockComplexObject>::class.java
         )
+
+        var adaptersKey = SharedPrefsStoreKey(id ="adaptersKey", clazz = MockObjectForDefaultAdapters::class.java)
 }
 
 data class MockComplexObject(val name: String, val age: Int, val wallets: List<String>) {
@@ -180,3 +215,12 @@ data class MockComplexObject(val name: String, val age: Int, val wallets: List<S
         return obj2.age == age && obj2.name == name && obj2.wallets == wallets
     }
 }
+
+data class MockObjectForDefaultAdapters(
+    val id: BigInteger,
+    val gas: BigInteger?,
+    val amount: BigDecimal,
+    val fee: BigDecimal?,
+    val imageURL: URL?,
+    val avatarImage: URL
+    )

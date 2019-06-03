@@ -1,5 +1,5 @@
 package com.coinbase.wallet.store.exceptions
 
-internal class StoreException {
-    class UnableToCreateObserver : RuntimeException("Unable to create a store value observer")
+internal open class StoreException(message: String? = null): RuntimeException(message ?: "") {
+    class UnableToCreateObserver : StoreException("Unable to create a store value observer")
 }
