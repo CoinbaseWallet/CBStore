@@ -9,7 +9,7 @@ import com.coinbase.wallet.crypto.extensions.base64EncodedString
 import com.coinbase.wallet.crypto.extensions.parseAES256GMPayload
 import com.coinbase.wallet.store.interfaces.Storage
 import com.coinbase.wallet.store.models.StoreKey
-import com.squareup.moshi.Moshi
+import com.coinbase.wallet.store.utils.JSON
 import java.io.IOException
 import java.security.KeyStore
 import java.security.KeyStoreException
@@ -21,7 +21,6 @@ import javax.crypto.SecretKey
 
 internal class EncryptedSharedPreferencesStorage(context: Context) : Storage {
     private val preferences = context.getSharedPreferences("CBStore.encrypted", Context.MODE_PRIVATE)
-    private val moshi = Moshi.Builder().build()
 
     companion object {
         private const val KEYSTORE = "AndroidKeyStore"
@@ -32,7 +31,7 @@ internal class EncryptedSharedPreferencesStorage(context: Context) : Storage {
         val editor: SharedPreferences.Editor = if (value == null) {
             preferences.edit().remove(key.name)
         } else {
-            val adapter = moshi.adapter<T>(key.clazz)
+            val adapter = JSON.moshi.adapter<T>(key.clazz)
             val jsonString = adapter.toJson(value)
             val encrypted = encrypt(jsonString)
             preferences.edit().putString(key.name, encrypted)
@@ -48,7 +47,7 @@ internal class EncryptedSharedPreferencesStorage(context: Context) : Storage {
     override fun <T> get(key: StoreKey<T>): T? {
         val jsonString = preferences.getString(key.name, null) ?: return null
         val decrypted = decrypt(jsonString) ?: return null
-        val adapter = moshi.adapter<T>(key.clazz)
+        val adapter = JSON.moshi.adapter<T>(key.clazz)
 
         return adapter.fromJson(decrypted)
     }

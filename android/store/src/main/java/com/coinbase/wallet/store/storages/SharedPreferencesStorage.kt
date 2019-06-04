@@ -4,11 +4,10 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.coinbase.wallet.store.interfaces.Storage
 import com.coinbase.wallet.store.models.StoreKey
-import com.squareup.moshi.Moshi
+import com.coinbase.wallet.store.utils.JSON
 
 internal class SharedPreferencesStorage(context: Context) : Storage {
     private val preferences = context.getSharedPreferences("CBStore.plaintext", Context.MODE_PRIVATE)
-    private val moshi = Moshi.Builder().build()
 
     override fun <T> set(key: StoreKey<T>, value: T?) {
         val editor: SharedPreferences.Editor = if (value == null) {
@@ -21,7 +20,7 @@ internal class SharedPreferencesStorage(context: Context) : Storage {
                 Float::class.java -> preferences.edit().putFloat(key.name, value as Float)
                 Long::class.java -> preferences.edit().putLong(key.name, value as Long)
                 else -> {
-                    val adapter = moshi.adapter<T>(key.clazz)
+                    val adapter = JSON.moshi.adapter<T>(key.clazz)
                     val jsonString = adapter.toJson(value)
                     preferences.edit().putString(key.name, jsonString)
                 }
@@ -49,7 +48,7 @@ internal class SharedPreferencesStorage(context: Context) : Storage {
             Long::class.java -> preferences.getLong(key.name, 0L) as? T
             else -> {
                 val jsonString = preferences.getString(key.name, null) ?: return null
-                val adapter = moshi.adapter<T>(key.clazz)
+                val adapter = JSON.moshi.adapter<T>(key.clazz)
                 return adapter.fromJson(jsonString)
             }
         }
