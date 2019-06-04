@@ -205,7 +205,7 @@ object TestKeys {
             clazz = Array<MockComplexObject>::class.java
         )
 
-        var adaptersKey = SharedPrefsStoreKey(id ="adaptersKey", clazz = MockObjectForDefaultAdapters::class.java)
+        var adaptersKey = SharedPrefsStoreKey(id = "adaptersKey", clazz = MockObjectForDefaultAdapters::class.java)
 }
 
 data class MockComplexObject(val name: String, val age: Int, val wallets: List<String>) {
@@ -223,4 +223,4 @@ data class MockObjectForDefaultAdapters(
     val fee: BigDecimal?,
     val imageURL: URL?,
     val avatarImage: URL
-    )
+)

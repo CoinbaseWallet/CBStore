@@ -8,7 +8,7 @@ import com.squareup.moshi.ToJson
 import java.io.IOException
 import java.math.BigDecimal
 
-class BigDecimalAdapterAdapter : JsonAdapter<BigDecimal>() {
+class BigDecimalAdapter : JsonAdapter<BigDecimal>() {
     @FromJson
     @Throws(IOException::class)
     override fun fromJson(reader: JsonReader): BigDecimal? {

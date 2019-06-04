@@ -1,10 +1,11 @@
 package com.coinbase.wallet.store.utils
 
-import com.coinbase.wallet.store.jsonadapters.BigDecimalAdapterAdapter
-import com.coinbase.wallet.store.jsonadapters.BigIntegerAdapterAdapter
-import com.coinbase.wallet.store.jsonadapters.URLAdapterAdapter
+import com.coinbase.wallet.store.jsonadapters.BigDecimalAdapter
+import com.coinbase.wallet.store.jsonadapters.BigIntegerAdapter
+import com.coinbase.wallet.store.jsonadapters.UrlAdapter
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.net.URL
@@ -60,9 +61,10 @@ object JSON {
 
     private fun buildMoshi(): Moshi {
         val builder = Moshi.Builder()
-            .add(URL::class.java, URLAdapterAdapter())
-            .add(BigDecimal::class.java, BigDecimalAdapterAdapter())
-            .add(BigInteger::class.java, BigIntegerAdapterAdapter())
+            .add(KotlinJsonAdapterFactory())
+            .add(URL::class.java, UrlAdapter())
+            .add(BigDecimal::class.java, BigDecimalAdapter())
+            .add(BigInteger::class.java, BigIntegerAdapter())
 
         entries.forEach { builder.add(it.key, it.value) }
 

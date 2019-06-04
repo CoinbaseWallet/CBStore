@@ -10,7 +10,6 @@ import com.coinbase.wallet.crypto.extensions.parseAES256GMPayload
 import com.coinbase.wallet.store.interfaces.Storage
 import com.coinbase.wallet.store.models.StoreKey
 import com.coinbase.wallet.store.utils.JSON
-import com.squareup.moshi.Moshi
 import java.io.IOException
 import java.security.KeyStore
 import java.security.KeyStoreException

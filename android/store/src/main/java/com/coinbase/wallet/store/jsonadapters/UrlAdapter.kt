@@ -8,8 +8,7 @@ import com.squareup.moshi.ToJson
 import java.io.IOException
 import java.net.URL
 
-
-class URLAdapterAdapter : JsonAdapter<URL>() {
+class UrlAdapter : JsonAdapter<URL>() {
     @FromJson
     @Throws(IOException::class)
     override fun fromJson(reader: JsonReader): URL? {

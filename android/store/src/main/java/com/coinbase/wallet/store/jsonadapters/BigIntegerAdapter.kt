@@ -8,7 +8,7 @@ import com.squareup.moshi.ToJson
 import java.io.IOException
 import java.math.BigInteger
 
-class BigIntegerAdapterAdapter : JsonAdapter<BigInteger>() {
+class BigIntegerAdapter : JsonAdapter<BigInteger>() {
     @FromJson
     @Throws(IOException::class)
     override fun fromJson(reader: JsonReader): BigInteger? {
@@ -22,4 +22,3 @@ class BigIntegerAdapterAdapter : JsonAdapter<BigInteger>() {
         else writer.value(value.toString())
     }
 }
-
