@@ -24,21 +24,16 @@ extension StoreKeys {
 
 On Android
 ```kotlin
-// We cannot add a static property to an existing extension in Kotlin. Instead,
-// create logical groupings for keys
+// Add an extension on StoreKeys object
 
-object UserKeys {
-   // This will store a String in Android SharedPreferences
-   val userId = SharedPrefsStoreKey(id = "userId", clazz = String::class.java)
+// This will store a String in Android SharedPreferences
+val StoreKeys.userId get() = SharedPrefsStoreKey(id = "userId", clazz = String::class.java)
+
+// This will cache a Boolean in memory.
+val StoreKeys.isPillHidden get() = MemoryStoreKey(id = "isPillHidden", clazz = Boolean::class.java)
    
-   // This will encrypt & store a User object in SharedPreferences
-   val user = EncryptedSharedPrefsStoreKey(id = "user", clazz = User::class.java)
-}
-
-object WalletKeys {
-   // This will cache a Boolean in memory.
-   val isPillHidden = MemoryStoreKey(id = "isPillHidden", clazz = Boolean::class.java)
-}
+// This will encrypt & store a User object in SharedPreferences
+val StoreKeys.user get() = EncryptedSharedPrefsStoreKey(id = "user", clazz = User::class.java)
 ```
 
 Once the key is defined, the store can be accessed, modified, or observed as follows:
@@ -64,15 +59,15 @@ store.observe(.isPillHidden)
 On Android:
 ```kotlin
 // Get operation
-val userId = store.get(UserKeys.userId)
-val user = store.get(UserKeys.user)
+val userId = store.get(StoreKeys.userId)
+val user = store.get(StoreKeys.user)
 
 // Set operation
-store.set(UserKeys.userId, "420")
-store.set(UserKeys.user, User(id = 123, name = "Adam"))
+store.set(StoreKeys.userId, "420")
+store.set(StoreKeys.user, User(id = 123, name = "Adam"))
 
 // Observe operation
-store.observe(WalletKeys.isPillHidden)
+store.observe(StoreKeys.isPillHidden)
     .subscribe { value -> 
         // value is of type Boolean
     }
