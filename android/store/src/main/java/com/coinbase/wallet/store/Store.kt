@@ -28,8 +28,19 @@ class Store(context: Context) : StoreInterface {
     private set
 
     override fun <T> set(key: StoreKey<T>, value: T?) {
+        var hasObserver = false
         deleteLock.read {
+            hasObserver = hasObserver(key.name)
+
+            if (isDestroyed) return
+
             storageForKey(key).set(key, value)
+        }
+
+        if (hasObserver && isDestroyed) {
+            observer(key).onError(StoreException.StoreDestroyed())
+        } else if (!isDestroyed) {
+            observer(key).onNext(Optional(value))
         }
     }
 
@@ -116,5 +127,15 @@ class Store(context: Context) : StoreInterface {
         }
 
         return newObserver ?: throw StoreException.UnableToCreateObserver()
+    }
+
+    private fun hasObserver(keyName: String): Boolean {
+        var hasObserver = false
+
+        changeObserversLock.read{
+            hasObserver = changeObservers[keyName] != null
+        }
+
+        return hasObserver
     }
 }
