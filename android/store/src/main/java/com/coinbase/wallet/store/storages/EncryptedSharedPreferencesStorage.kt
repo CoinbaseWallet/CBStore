@@ -55,11 +55,7 @@ internal class EncryptedSharedPreferencesStorage(context: Context) : Storage {
     override fun destroy() {
         // For destroy, make sure we persist to disk.  Otherwise, app might die before the write
         preferences.edit().clear().commit()
-        try {
-            loadKeyStore().deleteEntry(ALIAS)
-        } catch (e: Exception) {
-            //TODO: Add Timber so we can get these logs
-        }
+        loadKeyStore().deleteEntry(ALIAS)
     }
 
     private fun encrypt(value: String): String {
