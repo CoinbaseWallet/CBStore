@@ -53,4 +53,9 @@ internal class SharedPreferencesStorage(context: Context) : Storage {
             }
         }
     }
+
+    override fun destroy() {
+        // For destroy, make sure we persist to disk.  Otherwise, app might die before the write
+        preferences.edit().clear().commit()
+    }
 }

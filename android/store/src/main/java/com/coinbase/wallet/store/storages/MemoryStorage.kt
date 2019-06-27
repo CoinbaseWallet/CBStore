@@ -24,4 +24,8 @@ internal class MemoryStorage : Storage {
 
         return null
     }
+
+    override fun destroy() {
+        storage.clear()
+    }
 }

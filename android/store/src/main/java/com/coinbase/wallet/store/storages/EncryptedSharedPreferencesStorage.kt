@@ -52,6 +52,16 @@ internal class EncryptedSharedPreferencesStorage(context: Context) : Storage {
         return adapter.fromJson(decrypted)
     }
 
+    override fun destroy() {
+        // For destroy, make sure we persist to disk.  Otherwise, app might die before the write
+        preferences.edit().clear().commit()
+        try {
+            loadKeyStore().deleteEntry(ALIAS)
+        } catch (e: Exception) {
+            //TODO: Add Timber so we can get these logs
+        }
+    }
+
     private fun encrypt(value: String): String {
         val tuple = AES256GCM.encrypt(data = value.toByteArray(), secretKey = getSecretKey())
         val encrypteData = tuple.first + tuple.second + tuple.third
@@ -67,6 +77,17 @@ internal class EncryptedSharedPreferencesStorage(context: Context) : Storage {
     }
 
     @Throws(
+            KeyStoreException::class,
+            IOException::class,
+            NoSuchAlgorithmException::class,
+            CertificateException::class
+    )
+    private fun loadKeyStore(): KeyStore {
+        return KeyStore.getInstance(KEYSTORE)
+                .apply { load(null) }
+    }
+
+    @Throws(
         KeyStoreException::class,
         IOException::class,
         NoSuchAlgorithmException::class,
@@ -75,9 +96,7 @@ internal class EncryptedSharedPreferencesStorage(context: Context) : Storage {
     )
     private fun getSecretKey(): SecretKey {
         // Attempt to fetch existing stored secret key from Android KeyStore
-        val keyStore = KeyStore.getInstance(KEYSTORE)
-
-        keyStore.load(null)
+        val keyStore = loadKeyStore()
 
         val entry = keyStore.getEntry(ALIAS, null) as? KeyStore.SecretKeyEntry
         val secretKey = entry?.secretKey

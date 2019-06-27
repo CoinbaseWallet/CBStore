@@ -20,4 +20,9 @@ internal interface Storage {
      * @return The stored value if available. Otherwise, nil
      */
     fun <T> get(key: StoreKey<T>): T?
+
+    /**
+     * Delete all keys in storage
+     */
+    fun destroy()
 }

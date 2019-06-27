@@ -21,25 +21,64 @@ class Store(context: Context) : StoreInterface {
     private val encryptedPrefsStorage = EncryptedSharedPreferencesStorage(context)
     private val memoryStorage = MemoryStorage()
     private val changeObservers = mutableMapOf<String, Any>()
+    private val deleteLock = ReentrantReadWriteLock()
     private val changeObserversLock = ReentrantReadWriteLock()
 
+    var isDestroyed: Boolean = false
+    private set
+
     override fun <T> set(key: StoreKey<T>, value: T?) {
-        storageForKey(key).set(key, value)
+        deleteLock.read {
+            storageForKey(key).set(key, value)
+        }
     }
 
     override fun <T> get(key: StoreKey<T>): T? {
-        return storageForKey(key).get(key)
+        deleteLock.read {
+            return storageForKey(key).get(key)
+        }
     }
 
     override fun <T> has(key: StoreKey<T>): Boolean {
-        return get(key) != null
+        deleteLock.read {
+            return get(key) != null
+        }
     }
 
     override fun <T> observe(key: StoreKey<T>): Observable<Optional<T>> {
-        return observer(key).hide()
+        deleteLock.read {
+            return observer(key).hide()
+        }
+    }
+
+    override fun destroy() {
+        deleteLock.write {
+            if (isDestroyed) return
+
+            isDestroyed = true
+            deleteAllEntries(kinds = StoreKind.values())
+        }
+    }
+
+    override fun removeAll(kinds: Array<StoreKind>) {
+        deleteLock.write {
+            if (isDestroyed) return
+
+            deleteAllEntries(kinds = StoreKind.values())
+        }
     }
 
     // Private helpers
+
+    private fun deleteAllEntries(kinds: Array<StoreKind>) {
+        kinds.forEach { kind ->
+            when (kind) {
+                StoreKind.SHARED_PREFERENCES -> prefsStorage.destroy()
+                StoreKind.ENCRYPTED_SHARED_PREFERENCES -> encryptedPrefsStorage.destroy()
+                StoreKind.MEMORY -> memoryStorage.destroy()
+            }
+        }
+    }
 
     private fun <T> storageForKey(key: StoreKey<T>): Storage {
         return when (key.kind) {
