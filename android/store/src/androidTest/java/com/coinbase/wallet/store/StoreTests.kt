@@ -90,6 +90,34 @@ class StoreTests {
     }
 
     @Test
+    fun testObserverEmitsMultipleTimes() {
+        val expected = "Testing observer"
+        val appContext = InstrumentationRegistry.getTargetContext()
+        val store = Store(appContext)
+        val firstLatchDown = CountDownLatch(1)
+        val secondLatchDown = CountDownLatch(1)
+        val actual = mutableListOf<String?>()
+
+        GlobalScope.launch {
+            val observer = store.observe(TestKeys.memoryString)
+            observer
+                .timeout(6, TimeUnit.SECONDS)
+                .subscribe({
+                    firstLatchDown.countDown()
+                    actual.add(it.element)
+                    secondLatchDown.countDown()
+                }, { secondLatchDown.countDown() })
+        }
+
+        firstLatchDown.await()
+        store.set(TestKeys.memoryString, expected)
+        secondLatchDown.await()
+
+        Assert.assertNull(actual[0])
+        assertEquals(expected, actual[1])
+    }
+
+    @Test
     fun encryptStringStoreKeyValue() {
         val expectedText = "Bitcoin + Ethereum"
         val store = Store(InstrumentationRegistry.getTargetContext())
