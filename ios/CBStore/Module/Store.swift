@@ -45,16 +45,14 @@ public final class Store: StoreProtocol {
             let storage = self.storage(for: key)
 
             switch key.kind {
+            case .keychain where T.self == Data.self:
+                storage.set(key.name, value: value?.toStoreValue())
+            case .keychain where value != nil:
+                let dict = [kValueKey: value?.toStoreValue() as AnyObject]
+                let data = try? JSONSerialization.data(withJSONObject: dict, options: [])
+                storage.set(key.name, value: data)
             case .keychain:
-                if T.self == Data.self {
-                    storage.set(key.name, value: value?.toStoreValue())
-                } else if let value = value {
-                    let dict = [kValueKey: value.toStoreValue() as AnyObject]
-                    let data = try? JSONSerialization.data(withJSONObject: dict, options: [])
-                    storage.set(key.name, value: data)
-                } else {
-                    storage.set(key.name, value: nil)
-                }
+                storage.set(key.name, value: nil)
             case .userDefaults, .memory:
                 storage.set(key.name, value: value?.toStoreValue())
             case .cloud:
