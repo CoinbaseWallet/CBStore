@@ -44,39 +44,29 @@ class Store(context: Context) : StoreInterface {
         }
     }
 
-    override fun <T> get(key: StoreKey<T>): T? {
-        accessLock.read {
-            return storageForKey(key).get(key)
-        }
+    override fun <T> get(key: StoreKey<T>): T? = accessLock.read {
+        return storageForKey(key).get(key)
     }
 
-    override fun <T> has(key: StoreKey<T>): Boolean {
-        accessLock.read {
-            return get(key) != null
-        }
+    override fun <T> has(key: StoreKey<T>): Boolean = accessLock.read {
+        return get(key) != null
     }
 
-    override fun <T> observe(key: StoreKey<T>): Observable<Optional<T>> {
-        accessLock.read {
-            return observer(key).hide()
-        }
+    override fun <T> observe(key: StoreKey<T>): Observable<Optional<T>> = accessLock.read {
+        return observer(key).hide()
     }
 
-    override fun destroy() {
-        accessLock.write {
-            if (isDestroyed) return
+    override fun destroy() = accessLock.write {
+        if (isDestroyed) return
 
-            isDestroyed = true
-            deleteAllEntries(kinds = StoreKind.values())
-        }
+        isDestroyed = true
+        deleteAllEntries(kinds = StoreKind.values())
     }
 
-    override fun removeAll(kinds: Array<StoreKind>) {
-        accessLock.write {
-            if (isDestroyed) return
+    override fun removeAll(kinds: Array<StoreKind>) = accessLock.write {
+        if (isDestroyed) return
 
-            deleteAllEntries(kinds = StoreKind.values())
-        }
+        deleteAllEntries(kinds = StoreKind.values())
     }
 
     // Private helpers
@@ -129,13 +119,7 @@ class Store(context: Context) : StoreInterface {
         return newObserver ?: throw StoreException.UnableToCreateObserver()
     }
 
-    private fun hasObserver(keyName: String): Boolean {
-        var hasObserver = false
-
-        changeObserversLock.read{
-            hasObserver = changeObservers[keyName] != null
-        }
-
-        return hasObserver
+    private fun hasObserver(keyName: String): Boolean = changeObserversLock.read {
+        changeObservers[keyName] != null
     }
 }
