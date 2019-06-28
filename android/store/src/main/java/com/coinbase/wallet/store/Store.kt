@@ -53,7 +53,7 @@ class Store(context: Context) : StoreInterface {
     }
 
     override fun <T> observe(key: StoreKey<T>): Observable<Optional<T>> = accessLock.read {
-        return observer(key).hide()
+        return if (isDestroyed) Observable.error(StoreException.StoreDestroyed()) else observer(key).hide()
     }
 
     override fun destroy() = accessLock.write {
