@@ -69,6 +69,11 @@ class Store(context: Context) : StoreInterface {
         if (isDestroyed) return
 
         deleteAllEntries(kinds = StoreKind.values())
+
+        changeObservers.values.forEach{
+            val observer = it as? BehaviorSubject<Optional<*>>
+            observer?.onNext(Optional(null))
+        }
     }
 
     // Private helpers

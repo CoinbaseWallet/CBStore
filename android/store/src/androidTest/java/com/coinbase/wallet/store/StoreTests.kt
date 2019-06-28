@@ -3,10 +3,7 @@ package com.coinbase.wallet.store
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.coinbase.wallet.store.exceptions.StoreException
-import com.coinbase.wallet.store.models.EncryptedSharedPrefsStoreKey
-import com.coinbase.wallet.store.models.MemoryStoreKey
-import com.coinbase.wallet.store.models.Optional
-import com.coinbase.wallet.store.models.SharedPrefsStoreKey
+import com.coinbase.wallet.store.models.*
 import io.reactivex.Observable
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -144,6 +141,34 @@ class StoreTests {
         store.set(stringKey, expected).run {
             Assert.assertNull(store.get(stringKey))
         }
+    }
+
+    @Test
+    fun testRemoveAll() {
+        val expected = "Testing remove all"
+        val appContext = InstrumentationRegistry.getTargetContext()
+        val stringKey = SharedPrefsStoreKey(id = "string_key", uuid = "id", clazz = String::class.java)
+        val store = Store(appContext)
+        store.set(stringKey, expected)
+
+        store.removeAll(StoreKind.values())
+
+        Assert.assertNull(store.get(stringKey))
+        Assert.assertFalse(store.has(stringKey))
+
+        store
+            .observe(stringKey)
+            .test()
+            .assertValue(Optional<String>(null))
+
+        // Assert that store drops any set operations on the floor after a destroy
+        store.set(stringKey, expected)
+
+        Assert.assertEquals(expected, store.get(stringKey))
+        Assert.assertTrue(store.has(stringKey))
+        store.observe(stringKey)
+            .test()
+            .assertValue(Optional(expected))
     }
 
     @Test
