@@ -25,7 +25,7 @@ class Store(context: Context) : StoreInterface {
     private val changeObserversLock = ReentrantReadWriteLock()
 
     var isDestroyed: Boolean = false
-    private set
+        private set
 
     override fun <T> set(key: StoreKey<T>, value: T?) {
         var hasObserver = false
