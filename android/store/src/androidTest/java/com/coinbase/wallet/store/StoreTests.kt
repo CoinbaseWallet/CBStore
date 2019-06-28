@@ -106,7 +106,10 @@ class StoreTests {
                     firstLatchDown.countDown()
                     actual.add(it.element)
                     secondLatchDown.countDown()
-                }, { secondLatchDown.countDown() })
+                }, { 
+                    firstLatchDown.countDown()
+                    secondLatchDown.countDown()
+                })
         }
 
         firstLatchDown.await()
