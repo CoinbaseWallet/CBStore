@@ -479,7 +479,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-CBStoreTests/Pods-CBStoreTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CBStoreTests/Pods-CBStoreTests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-CBStoreTests/Pods-CBStoreTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
@@ -495,7 +495,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CBStoreTests/Pods-CBStoreTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CBStoreTests/Pods-CBStoreTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

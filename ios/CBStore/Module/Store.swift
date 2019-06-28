@@ -4,10 +4,11 @@ import Foundation
 import RxSwift
 
 private let kValueKey = "StoresKeychainStorageKey"
+private typealias ChangeObserver = (subject: Any, clearClosure: () -> Void)
 
 /// Utility used to simplify interface to keychain or user defaults
 public final class Store: StoreProtocol {
-    private var changeObservers = [String: Any]()
+    private var changeObservers = [String: ChangeObserver]()
     private let userDefaultStorage = UserDefaultsStorage()
     private let memoryStorage = MemoryStorage()
     private let cloudStorage = CloudStorage()
@@ -178,8 +179,10 @@ public final class Store: StoreProtocol {
 
             self.deleteAllEntries(kinds: kinds)
         }
+        
+        changeObservers.values.forEach { $0.clearClosure() }
     }
-
+    
     // MARK: -
 
     private func deleteAllEntries(kinds: [StoreKind]) {
@@ -204,7 +207,7 @@ public final class Store: StoreProtocol {
         // Check if we have an observer registered in concurrent mode
         var currentObserver: BehaviorSubject<T?>?
         changeObserverAccessQueue.sync {
-            currentObserver = self.changeObservers[key.name] as? BehaviorSubject<T?>
+            currentObserver = self.changeObservers[key.name]?.subject as? BehaviorSubject<T?>
         }
 
         if let observer = currentObserver {
@@ -216,13 +219,13 @@ public final class Store: StoreProtocol {
         let value = get(key)
 
         changeObserverAccessQueue.sync(flags: .barrier) {
-            if let observer = self.changeObservers[key.name] as? BehaviorSubject<T?> {
+            if let observer = self.changeObservers[key.name]?.subject as? BehaviorSubject<T?> {
                 newObserver = observer
                 return
             }
 
             let observer = BehaviorSubject<T?>(value: value)
-            changeObservers[key.name] = observer
+            changeObservers[key.name] = (subject: observer, clearClosure: { observer.onNext(nil) })
             newObserver = observer
         }
 

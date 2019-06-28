@@ -258,6 +258,54 @@ class StoreTests: XCTestCase {
 
         XCTAssertTrue(kvStore.isDestroyed)
     }
+    
+    
+    func testRemoveAll() throws {
+        let kvStore = Store()
+        let expected: Float = 4321
+        
+        XCTAssertFalse(kvStore.has(.memFloatBasedKey))
+        XCTAssertFalse(kvStore.has(.keychainFloatBasedKey))
+        XCTAssertFalse(kvStore.has(.floatBasedKey))
+        XCTAssertFalse(kvStore.has(.cloudFloatBasedKey))
+        
+        kvStore.set(.memFloatBasedKey, value: expected)
+        kvStore.set(.keychainFloatBasedKey, value: expected)
+        kvStore.set(.floatBasedKey, value: expected)
+        kvStore.set(.cloudFloatBasedKey, value: expected)
+        
+        XCTAssertTrue(kvStore.has(.memFloatBasedKey))
+        XCTAssertTrue(kvStore.has(.keychainFloatBasedKey))
+        XCTAssertTrue(kvStore.has(.floatBasedKey))
+        XCTAssertTrue(kvStore.has(.cloudFloatBasedKey))
+        
+        let memFloatValue = try kvStore.observe(.memFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+        let kChainFloatValue = try kvStore.observe(.keychainFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+        let floatValue = try kvStore.observe(.floatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+        let cloudFloatValue = try kvStore.observe(.cloudFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first()
+        
+        XCTAssertEqual(expected, memFloatValue)
+        XCTAssertEqual(expected, kChainFloatValue)
+        XCTAssertEqual(expected, floatValue)
+        XCTAssertEqual(expected, cloudFloatValue)
+        
+        kvStore.removeAll(kinds: [.cloud, .keychain, .memory, .userDefaults])
+        
+        XCTAssertFalse(kvStore.has(.memFloatBasedKey))
+        XCTAssertFalse(kvStore.has(.keychainFloatBasedKey))
+        XCTAssertFalse(kvStore.has(.floatBasedKey))
+        XCTAssertFalse(kvStore.has(.cloudFloatBasedKey))
+
+        let memFloatValue2 = try kvStore.observe(.memFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first() ?? nil
+        let kChainFloatValue2 = try kvStore.observe(.keychainFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first() ?? nil
+        let floatValue2 = try kvStore.observe(.floatBasedKey).toBlocking(timeout: unitTestsTimeout).first() ?? nil
+        let cloudFloatValue2 = try kvStore.observe(.cloudFloatBasedKey).toBlocking(timeout: unitTestsTimeout).first() ?? nil
+        
+        XCTAssertNil(memFloatValue2)
+        XCTAssertNil(kChainFloatValue2)
+        XCTAssertNil(floatValue2)
+        XCTAssertNil(cloudFloatValue2)
+    }
 
     // MARK: - Test observers
 
