@@ -55,7 +55,6 @@ internal class EncryptedSharedPreferencesStorage(context: Context) : Storage {
     override fun destroy() {
         // For destroy, make sure we persist to disk.  Otherwise, app might die before the write
         preferences.edit().clear().commit()
-        loadKeyStore().deleteEntry(ALIAS)
     }
 
     private fun encrypt(value: String): String {
@@ -73,17 +72,6 @@ internal class EncryptedSharedPreferencesStorage(context: Context) : Storage {
     }
 
     @Throws(
-            KeyStoreException::class,
-            IOException::class,
-            NoSuchAlgorithmException::class,
-            CertificateException::class
-    )
-    private fun loadKeyStore(): KeyStore {
-        return KeyStore.getInstance(KEYSTORE)
-                .apply { load(null) }
-    }
-
-    @Throws(
         KeyStoreException::class,
         IOException::class,
         NoSuchAlgorithmException::class,
@@ -92,7 +80,9 @@ internal class EncryptedSharedPreferencesStorage(context: Context) : Storage {
     )
     private fun getSecretKey(): SecretKey {
         // Attempt to fetch existing stored secret key from Android KeyStore
-        val keyStore = loadKeyStore()
+        val keyStore = KeyStore.getInstance(KEYSTORE)
+
+        keyStore.load(null)
 
         val entry = keyStore.getEntry(ALIAS, null) as? KeyStore.SecretKeyEntry
         val secretKey = entry?.secretKey
