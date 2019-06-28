@@ -21,7 +21,7 @@ class Store(context: Context) : StoreInterface {
     private val encryptedPrefsStorage = EncryptedSharedPreferencesStorage(context)
     private val memoryStorage = MemoryStorage()
     private val changeObservers = mutableMapOf<String, Any>()
-    private val deleteLock = ReentrantReadWriteLock()
+    private val accessLock = ReentrantReadWriteLock()
     private val changeObserversLock = ReentrantReadWriteLock()
 
     var isDestroyed: Boolean = false
@@ -29,7 +29,7 @@ class Store(context: Context) : StoreInterface {
 
     override fun <T> set(key: StoreKey<T>, value: T?) {
         var hasObserver = false
-        deleteLock.read {
+        accessLock.read {
             hasObserver = hasObserver(key.name)
 
             if (isDestroyed) return
@@ -45,25 +45,25 @@ class Store(context: Context) : StoreInterface {
     }
 
     override fun <T> get(key: StoreKey<T>): T? {
-        deleteLock.read {
+        accessLock.read {
             return storageForKey(key).get(key)
         }
     }
 
     override fun <T> has(key: StoreKey<T>): Boolean {
-        deleteLock.read {
+        accessLock.read {
             return get(key) != null
         }
     }
 
     override fun <T> observe(key: StoreKey<T>): Observable<Optional<T>> {
-        deleteLock.read {
+        accessLock.read {
             return observer(key).hide()
         }
     }
 
     override fun destroy() {
-        deleteLock.write {
+        accessLock.write {
             if (isDestroyed) return
 
             isDestroyed = true
@@ -72,7 +72,7 @@ class Store(context: Context) : StoreInterface {
     }
 
     override fun removeAll(kinds: Array<StoreKind>) {
-        deleteLock.write {
+        accessLock.write {
             if (isDestroyed) return
 
             deleteAllEntries(kinds = StoreKind.values())
