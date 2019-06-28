@@ -45,10 +45,12 @@ class Store(context: Context) : StoreInterface {
     }
 
     override fun <T> get(key: StoreKey<T>): T? = accessLock.read {
+        if (isDestroyed) return null
         return storageForKey(key).get(key)
     }
 
     override fun <T> has(key: StoreKey<T>): Boolean = accessLock.read {
+        if (isDestroyed) return false
         return get(key) != null
     }
 

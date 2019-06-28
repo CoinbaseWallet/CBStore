@@ -2,14 +2,16 @@ package com.coinbase.wallet.store
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
+import com.coinbase.wallet.store.exceptions.StoreException
 import com.coinbase.wallet.store.models.EncryptedSharedPrefsStoreKey
 import com.coinbase.wallet.store.models.MemoryStoreKey
+import com.coinbase.wallet.store.models.Optional
 import com.coinbase.wallet.store.models.SharedPrefsStoreKey
+import io.reactivex.Observable
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.junit.Assert
-import org.junit.Assert.assertArrayEquals
-import org.junit.Assert.assertEquals
+import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.math.BigDecimal
@@ -118,6 +120,30 @@ class StoreTests {
 
         Assert.assertNull(actual[0])
         assertEquals(expected, actual[1])
+    }
+
+    @Test
+    fun testDestroy() {
+        val expected = "Testing destroy"
+        val appContext = InstrumentationRegistry.getTargetContext()
+        val stringKey = SharedPrefsStoreKey(id = "string_key", uuid = "id", clazz = String::class.java)
+        val store = Store(appContext)
+        store.set(stringKey, expected)
+
+        store.destroy()
+
+        Assert.assertNull(store.get(stringKey))
+        Assert.assertFalse(store.has(stringKey))
+
+        store
+            .observe(stringKey)
+            .test()
+            .assertError{ it is StoreException.StoreDestroyed}
+
+        // Assert that store drops any set operations on the floor after a destroy
+        store.set(stringKey, expected).run {
+            Assert.assertNull(store.get(stringKey))
+        }
     }
 
     @Test
