@@ -52,6 +52,7 @@ interface StoreInterface {
 
     /**
      * Delete all entries for given store kinds.
+     *
      * @param kinds: Array of [com.coinbase.wallet.store.models.StoreKind] to clear out
      */
     fun removeAll(kinds: Array<StoreKind>)
