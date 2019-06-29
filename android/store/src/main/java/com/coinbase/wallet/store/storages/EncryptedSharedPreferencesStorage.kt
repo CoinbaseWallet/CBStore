@@ -52,6 +52,11 @@ internal class EncryptedSharedPreferencesStorage(context: Context) : Storage {
         return adapter.fromJson(decrypted)
     }
 
+    override fun destroy() {
+        // For destroy, make sure we persist to disk.  Otherwise, app might die before the write
+        preferences.edit().clear().commit()
+    }
+
     private fun encrypt(value: String): String {
         val tuple = AES256GCM.encrypt(data = value.toByteArray(), secretKey = getSecretKey())
         val encrypteData = tuple.first + tuple.second + tuple.third

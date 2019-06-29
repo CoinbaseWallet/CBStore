@@ -21,25 +21,72 @@ class Store(context: Context) : StoreInterface {
     private val encryptedPrefsStorage = EncryptedSharedPreferencesStorage(context)
     private val memoryStorage = MemoryStorage()
     private val changeObservers = mutableMapOf<String, Any>()
+    private val accessLock = ReentrantReadWriteLock()
     private val changeObserversLock = ReentrantReadWriteLock()
 
+    var isDestroyed: Boolean = false
+        private set
+
     override fun <T> set(key: StoreKey<T>, value: T?) {
-        storageForKey(key).set(key, value)
+        var hasObserver = false
+        accessLock.read {
+            hasObserver = hasObserver(key.name)
+
+            if (isDestroyed) return
+
+            storageForKey(key).set(key, value)
+        }
+
+        if (hasObserver && isDestroyed) {
+            observer(key).onError(StoreException.StoreDestroyed())
+        } else if (!isDestroyed) {
+            observer(key).onNext(Optional(value))
+        }
     }
 
-    override fun <T> get(key: StoreKey<T>): T? {
+    override fun <T> get(key: StoreKey<T>): T? = accessLock.read {
+        if (isDestroyed) return null
         return storageForKey(key).get(key)
     }
 
-    override fun <T> has(key: StoreKey<T>): Boolean {
+    override fun <T> has(key: StoreKey<T>): Boolean = accessLock.read {
+        if (isDestroyed) return false
         return get(key) != null
     }
 
-    override fun <T> observe(key: StoreKey<T>): Observable<Optional<T>> {
-        return observer(key).hide()
+    override fun <T> observe(key: StoreKey<T>): Observable<Optional<T>> = accessLock.read {
+        return if (isDestroyed) Observable.error(StoreException.StoreDestroyed()) else observer(key).hide()
+    }
+
+    override fun destroy() = accessLock.write {
+        if (isDestroyed) return
+
+        isDestroyed = true
+        deleteAllEntries(kinds = StoreKind.values())
+    }
+
+    override fun removeAll(kinds: Array<StoreKind>) = accessLock.write {
+        if (isDestroyed) return
+
+        deleteAllEntries(kinds = StoreKind.values())
+
+        changeObservers.values.forEach{
+            val observer = it as? BehaviorSubject<Optional<*>>
+            observer?.onNext(Optional(null))
+        }
     }
 
     // Private helpers
+
+    private fun deleteAllEntries(kinds: Array<StoreKind>) {
+        kinds.forEach { kind ->
+            when (kind) {
+                StoreKind.SHARED_PREFERENCES -> prefsStorage.destroy()
+                StoreKind.ENCRYPTED_SHARED_PREFERENCES -> encryptedPrefsStorage.destroy()
+                StoreKind.MEMORY -> memoryStorage.destroy()
+            }
+        }
+    }
 
     private fun <T> storageForKey(key: StoreKey<T>): Storage {
         return when (key.kind) {
@@ -77,5 +124,9 @@ class Store(context: Context) : StoreInterface {
         }
 
         return newObserver ?: throw StoreException.UnableToCreateObserver()
+    }
+
+    private fun hasObserver(keyName: String): Boolean = changeObserversLock.read {
+        changeObservers[keyName] != null
     }
 }

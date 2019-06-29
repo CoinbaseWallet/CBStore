@@ -2,14 +2,13 @@ package com.coinbase.wallet.store
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
-import com.coinbase.wallet.store.models.EncryptedSharedPrefsStoreKey
-import com.coinbase.wallet.store.models.MemoryStoreKey
-import com.coinbase.wallet.store.models.SharedPrefsStoreKey
+import com.coinbase.wallet.store.exceptions.StoreException
+import com.coinbase.wallet.store.models.*
+import io.reactivex.Observable
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.junit.Assert
-import org.junit.Assert.assertArrayEquals
-import org.junit.Assert.assertEquals
+import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.math.BigDecimal
@@ -87,6 +86,89 @@ class StoreTests {
         latchDown.await()
 
         assertEquals(expected, actual)
+    }
+
+    @Test
+    fun testObserverEmitsMultipleTimes() {
+        val expected = "Testing observer"
+        val appContext = InstrumentationRegistry.getTargetContext()
+        val store = Store(appContext)
+        val firstLatchDown = CountDownLatch(1)
+        val secondLatchDown = CountDownLatch(1)
+        val actual = mutableListOf<String?>()
+
+        GlobalScope.launch {
+            val observer = store.observe(TestKeys.memoryString)
+            observer
+                .timeout(6, TimeUnit.SECONDS)
+                .subscribe({
+                    firstLatchDown.countDown()
+                    actual.add(it.element)
+                    secondLatchDown.countDown()
+                }, { 
+                    firstLatchDown.countDown()
+                    secondLatchDown.countDown()
+                })
+        }
+
+        firstLatchDown.await()
+        store.set(TestKeys.memoryString, expected)
+        secondLatchDown.await()
+
+        Assert.assertNull(actual[0])
+        assertEquals(expected, actual[1])
+    }
+
+    @Test
+    fun testDestroy() {
+        val expected = "Testing destroy"
+        val appContext = InstrumentationRegistry.getTargetContext()
+        val stringKey = SharedPrefsStoreKey(id = "string_key", uuid = "id", clazz = String::class.java)
+        val store = Store(appContext)
+        store.set(stringKey, expected)
+
+        store.destroy()
+
+        Assert.assertNull(store.get(stringKey))
+        Assert.assertFalse(store.has(stringKey))
+
+        store
+            .observe(stringKey)
+            .test()
+            .assertError{ it is StoreException.StoreDestroyed}
+
+        // Assert that store drops any set operations on the floor after a destroy
+        store.set(stringKey, expected).run {
+            Assert.assertNull(store.get(stringKey))
+        }
+    }
+
+    @Test
+    fun testRemoveAll() {
+        val expected = "Testing remove all"
+        val appContext = InstrumentationRegistry.getTargetContext()
+        val stringKey = SharedPrefsStoreKey(id = "string_key", uuid = "id", clazz = String::class.java)
+        val store = Store(appContext)
+        store.set(stringKey, expected)
+
+        store.removeAll(StoreKind.values())
+
+        Assert.assertNull(store.get(stringKey))
+        Assert.assertFalse(store.has(stringKey))
+
+        store
+            .observe(stringKey)
+            .test()
+            .assertValue(Optional<String>(null))
+
+        // Assert that store drops any set operations on the floor after a destroy
+        store.set(stringKey, expected)
+
+        Assert.assertEquals(expected, store.get(stringKey))
+        Assert.assertTrue(store.has(stringKey))
+        store.observe(stringKey)
+            .test()
+            .assertValue(Optional(expected))
     }
 
     @Test

@@ -2,6 +2,7 @@ package com.coinbase.wallet.store.interfaces
 
 import com.coinbase.wallet.store.models.Optional
 import com.coinbase.wallet.store.models.StoreKey
+import com.coinbase.wallet.store.models.StoreKind
 import io.reactivex.Observable
 
 /**
@@ -42,4 +43,17 @@ interface StoreInterface {
      * @return Observer
      */
     fun <T> observe(key: StoreKey<T>): Observable<Optional<T>>
+
+    /**
+     * Destroy the store. This will make the current store unusable,
+     * any in-flight reads/writes will block and then fail
+     */
+    fun destroy()
+
+    /**
+     * Delete all entries for given store kinds.
+     *
+     * @param kinds: Array of [com.coinbase.wallet.store.models.StoreKind] to clear out
+     */
+    fun removeAll(kinds: Array<StoreKind>)
 }
