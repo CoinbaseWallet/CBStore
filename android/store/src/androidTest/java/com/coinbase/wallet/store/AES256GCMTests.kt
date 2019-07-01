@@ -1,7 +1,7 @@
 package com.coinbase.wallet.store
 
-import android.support.test.runner.AndroidJUnit4
 import android.util.Base64
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.coinbase.wallet.crypto.algorithms.AES256GCM
 import com.coinbase.wallet.crypto.extensions.base64EncodedString
 import org.junit.Assert

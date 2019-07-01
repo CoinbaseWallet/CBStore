@@ -70,7 +70,7 @@ class Store(context: Context) : StoreInterface {
 
         deleteAllEntries(kinds = StoreKind.values())
 
-        changeObservers.values.forEach{
+        changeObservers.values.forEach {
             val observer = it as? BehaviorSubject<Optional<*>>
             observer?.onNext(Optional(null))
         }

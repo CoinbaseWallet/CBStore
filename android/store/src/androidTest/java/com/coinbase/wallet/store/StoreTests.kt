@@ -1,14 +1,19 @@
 package com.coinbase.wallet.store
 
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.AndroidJUnit4
+import android.content.Context
+import androidx.test.core.app.ApplicationProvider
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.coinbase.wallet.store.exceptions.StoreException
-import com.coinbase.wallet.store.models.*
-import io.reactivex.Observable
+import com.coinbase.wallet.store.models.EncryptedSharedPrefsStoreKey
+import com.coinbase.wallet.store.models.MemoryStoreKey
+import com.coinbase.wallet.store.models.Optional
+import com.coinbase.wallet.store.models.SharedPrefsStoreKey
+import com.coinbase.wallet.store.models.StoreKind
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.junit.Assert
-import org.junit.Assert.*
+import org.junit.Assert.assertArrayEquals
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.math.BigDecimal
@@ -21,7 +26,7 @@ import java.util.concurrent.TimeUnit
 class StoreTests {
     @Test
     fun testStore() {
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = ApplicationProvider.getApplicationContext<Context>()
         val store = Store(appContext)
         val stringKey = SharedPrefsStoreKey(id = "string_key", uuid = "id", clazz = String::class.java)
         val boolKey = SharedPrefsStoreKey(id = "bool_key", uuid = "id", clazz = Boolean::class.java)
@@ -56,7 +61,7 @@ class StoreTests {
     @Test
     fun testMemory() {
         val expected = "Memory string goes here"
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = ApplicationProvider.getApplicationContext<Context>()
         val store = Store(appContext)
 
         store.set(TestKeys.memoryString, expected)
@@ -67,7 +72,7 @@ class StoreTests {
     @Test
     fun testObserver() {
         val expected = "Testing observer"
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = ApplicationProvider.getApplicationContext<Context>()
         val store = Store(appContext)
         val latchDown = CountDownLatch(1)
         var actual = ""
@@ -91,10 +96,10 @@ class StoreTests {
     @Test
     fun testObserverEmitsMultipleTimes() {
         val expected = "Testing observer"
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = ApplicationProvider.getApplicationContext<Context>()
         val store = Store(appContext)
         val firstLatchDown = CountDownLatch(1)
-        val secondLatchDown = CountDownLatch(1)
+        val secondLatchDown = CountDownLatch(2)
         val actual = mutableListOf<String?>()
 
         GlobalScope.launch {
@@ -105,9 +110,11 @@ class StoreTests {
                     firstLatchDown.countDown()
                     actual.add(it.element)
                     secondLatchDown.countDown()
-                }, { 
+                }, {
                     firstLatchDown.countDown()
-                    secondLatchDown.countDown()
+                    repeat(secondLatchDown.count.toInt()) {
+                        secondLatchDown.countDown()
+                    }
                 })
         }
 
@@ -122,7 +129,7 @@ class StoreTests {
     @Test
     fun testDestroy() {
         val expected = "Testing destroy"
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = ApplicationProvider.getApplicationContext<Context>()
         val stringKey = SharedPrefsStoreKey(id = "string_key", uuid = "id", clazz = String::class.java)
         val store = Store(appContext)
         store.set(stringKey, expected)
@@ -135,7 +142,7 @@ class StoreTests {
         store
             .observe(stringKey)
             .test()
-            .assertError{ it is StoreException.StoreDestroyed}
+            .assertError { it is StoreException.StoreDestroyed }
 
         // Assert that store drops any set operations on the floor after a destroy
         store.set(stringKey, expected).run {
@@ -146,7 +153,7 @@ class StoreTests {
     @Test
     fun testRemoveAll() {
         val expected = "Testing remove all"
-        val appContext = InstrumentationRegistry.getTargetContext()
+        val appContext = ApplicationProvider.getApplicationContext<Context>()
         val stringKey = SharedPrefsStoreKey(id = "string_key", uuid = "id", clazz = String::class.java)
         val store = Store(appContext)
         store.set(stringKey, expected)
@@ -174,7 +181,7 @@ class StoreTests {
     @Test
     fun encryptStringStoreKeyValue() {
         val expectedText = "Bitcoin + Ethereum"
-        val store = Store(InstrumentationRegistry.getTargetContext())
+        val store = Store(ApplicationProvider.getApplicationContext<Context>())
 
         store.set(TestKeys.encryptedString, expectedText)
 
@@ -186,7 +193,7 @@ class StoreTests {
     @Test
     fun encryptComplexObjectStoreKeyValue() {
         val expected = MockComplexObject(name = "hish", age = 37, wallets = listOf("1234", "2345"))
-        val store = Store(InstrumentationRegistry.getTargetContext())
+        val store = Store(ApplicationProvider.getApplicationContext<Context>())
 
         store.set(TestKeys.encryptedComplexObject, expected)
 
@@ -205,7 +212,7 @@ class StoreTests {
     @Test
     fun encryptArrayStoreKeyValue() {
         val expected = arrayOf("Bitcoin", "Ethereum")
-        val store = Store(InstrumentationRegistry.getTargetContext())
+        val store = Store(ApplicationProvider.getApplicationContext<Context>())
 
         store.set(TestKeys.encryptedArray, expected)
 
@@ -221,7 +228,7 @@ class StoreTests {
             MockComplexObject(name = "aya", age = 3, wallets = listOf("333"))
         )
 
-        val store = Store(InstrumentationRegistry.getTargetContext())
+        val store = Store(ApplicationProvider.getApplicationContext<Context>())
 
         store.set(TestKeys.encryptedComplexObjectArray, expected)
 
@@ -241,7 +248,7 @@ class StoreTests {
             avatarImage = URL("https://www.example.com")
         )
 
-        val store = Store(InstrumentationRegistry.getTargetContext())
+        val store = Store(ApplicationProvider.getApplicationContext<Context>())
 
         store.set(TestKeys.adaptersKey, expected)
 
