@@ -99,7 +99,7 @@ class StoreTests {
         val appContext = ApplicationProvider.getApplicationContext<Context>()
         val store = Store(appContext)
         val firstLatchDown = CountDownLatch(1)
-        val secondLatchDown = CountDownLatch(1)
+        val secondLatchDown = CountDownLatch(2)
         val actual = mutableListOf<String?>()
 
         GlobalScope.launch {
@@ -112,7 +112,9 @@ class StoreTests {
                     secondLatchDown.countDown()
                 }, {
                     firstLatchDown.countDown()
-                    secondLatchDown.countDown()
+                    repeat(secondLatchDown.count.toInt()) {
+                        secondLatchDown.countDown()
+                    }
                 })
         }
 
