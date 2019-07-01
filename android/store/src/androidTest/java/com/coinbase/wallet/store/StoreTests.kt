@@ -1,14 +1,18 @@
 package com.coinbase.wallet.store
 
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.AndroidJUnit4
+import androidx.test.InstrumentationRegistry
+import androidx.test.runner.AndroidJUnit4
 import com.coinbase.wallet.store.exceptions.StoreException
-import com.coinbase.wallet.store.models.*
-import io.reactivex.Observable
+import com.coinbase.wallet.store.models.EncryptedSharedPrefsStoreKey
+import com.coinbase.wallet.store.models.MemoryStoreKey
+import com.coinbase.wallet.store.models.Optional
+import com.coinbase.wallet.store.models.SharedPrefsStoreKey
+import com.coinbase.wallet.store.models.StoreKind
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.junit.Assert
-import org.junit.Assert.*
+import org.junit.Assert.assertArrayEquals
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.math.BigDecimal
@@ -105,7 +109,7 @@ class StoreTests {
                     firstLatchDown.countDown()
                     actual.add(it.element)
                     secondLatchDown.countDown()
-                }, { 
+                }, {
                     firstLatchDown.countDown()
                     secondLatchDown.countDown()
                 })
@@ -135,7 +139,7 @@ class StoreTests {
         store
             .observe(stringKey)
             .test()
-            .assertError{ it is StoreException.StoreDestroyed}
+            .assertError { it is StoreException.StoreDestroyed }
 
         // Assert that store drops any set operations on the floor after a destroy
         store.set(stringKey, expected).run {
