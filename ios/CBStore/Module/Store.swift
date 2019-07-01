@@ -179,10 +179,10 @@ public final class Store: StoreProtocol {
 
             self.deleteAllEntries(kinds: kinds)
         }
-        
+
         changeObservers.values.forEach { $0.clearClosure() }
     }
-    
+
     // MARK: -
 
     private func deleteAllEntries(kinds: [StoreKind]) {
