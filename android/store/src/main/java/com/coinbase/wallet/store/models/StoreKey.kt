@@ -24,4 +24,15 @@ open class StoreKey<T>(
             clazz.simpleName
         )
         .joinToString("_")
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is StoreKey<*>) return false
+
+        return name == other.name
+    }
+
+    override fun hashCode(): Int {
+        return name.hashCode()
+    }
 }

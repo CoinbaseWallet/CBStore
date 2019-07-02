@@ -27,13 +27,13 @@ On Android
 // Add an extension on StoreKeys object
 
 // This will store a String in Android SharedPreferences
-val StoreKeys.userId get() = SharedPrefsStoreKey(id = "userId", clazz = String::class.java)
+val StoreKeys.userId by lazy { SharedPrefsStoreKey(id = "userId", clazz = String::class.java) }
 
 // This will cache a Boolean in memory.
-val StoreKeys.isPillHidden get() = MemoryStoreKey(id = "isPillHidden", clazz = Boolean::class.java)
+val StoreKeys.isPillHidden by lazy { MemoryStoreKey(id = "isPillHidden", clazz = Boolean::class.java) }
    
 // This will encrypt & store a User object in SharedPreferences
-val StoreKeys.user get() = EncryptedSharedPrefsStoreKey(id = "user", clazz = User::class.java)
+val StoreKeys.user by lazy { EncryptedSharedPrefsStoreKey(id = "user", clazz = User::class.java) }
 ```
 
 Once the key is defined, the store can be accessed, modified, or observed as follows:
