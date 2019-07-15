@@ -6,9 +6,10 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.coinbase.wallet.store.exceptions.StoreException
 import com.coinbase.wallet.store.models.EncryptedSharedPrefsStoreKey
 import com.coinbase.wallet.store.models.MemoryStoreKey
-import com.coinbase.wallet.store.models.Optional
 import com.coinbase.wallet.store.models.SharedPrefsStoreKey
 import com.coinbase.wallet.store.models.StoreKind
+import com.gojuno.koptional.None
+import com.gojuno.koptional.toOptional
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.junit.Assert
@@ -80,10 +81,10 @@ class StoreTests {
 
         GlobalScope.launch {
             store.observe(TestKeys.memoryString)
-                .filter { it.element != null }
+                .filter { it != None }
                 .timeout(6, TimeUnit.SECONDS)
-                .subscribe({
-                    actual = it.element ?: throw AssertionError("No element found")
+                .subscribe({(element) ->
+                    actual = element ?: throw AssertionError("No element found")
                     latchDown.countDown()
                 }, { latchDown.countDown() })
         }
@@ -109,7 +110,7 @@ class StoreTests {
                 .timeout(6, TimeUnit.SECONDS)
                 .subscribe({
                     firstLatchDown.countDown()
-                    actual.add(it.element)
+                    actual.add(it.toNullable())
                     secondLatchDown.countDown()
                 }, {
                     firstLatchDown.countDown()
@@ -167,7 +168,7 @@ class StoreTests {
         store
             .observe(stringKey)
             .test()
-            .assertValue(Optional<String>(null))
+            .assertValue(null.toOptional())
 
         // Assert that store drops any set operations on the floor after a destroy
         store.set(stringKey, expected)
@@ -176,7 +177,7 @@ class StoreTests {
         Assert.assertTrue(store.has(stringKey))
         store.observe(stringKey)
             .test()
-            .assertValue(Optional(expected))
+            .assertValue(expected.toOptional())
     }
 
     @Test

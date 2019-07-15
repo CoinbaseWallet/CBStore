@@ -4,12 +4,13 @@ import android.content.Context
 import com.coinbase.wallet.store.exceptions.StoreException
 import com.coinbase.wallet.store.interfaces.Storage
 import com.coinbase.wallet.store.interfaces.StoreInterface
-import com.coinbase.wallet.store.models.Optional
 import com.coinbase.wallet.store.models.StoreKey
 import com.coinbase.wallet.store.models.StoreKind
 import com.coinbase.wallet.store.storages.EncryptedSharedPreferencesStorage
 import com.coinbase.wallet.store.storages.MemoryStorage
 import com.coinbase.wallet.store.storages.SharedPreferencesStorage
+import com.gojuno.koptional.Optional
+import com.gojuno.koptional.toOptional
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 import java.util.concurrent.locks.ReentrantReadWriteLock
@@ -27,7 +28,7 @@ class Store(context: Context) : StoreInterface {
     var isDestroyed: Boolean = false
         private set
 
-    override fun <T> set(key: StoreKey<T>, value: T?) {
+    override fun <T : Any> set(key: StoreKey<T>, value: T?) {
         var hasObserver = false
         accessLock.read {
             hasObserver = hasObserver(key.name)
@@ -40,21 +41,21 @@ class Store(context: Context) : StoreInterface {
         if (hasObserver && isDestroyed) {
             observer(key).onError(StoreException.StoreDestroyed())
         } else if (!isDestroyed) {
-            observer(key).onNext(Optional(value))
+            observer(key).onNext(value.toOptional())
         }
     }
 
-    override fun <T> get(key: StoreKey<T>): T? = accessLock.read {
+    override fun <T: Any> get(key: StoreKey<T>): T? = accessLock.read {
         if (isDestroyed) return null
         return storageForKey(key).get(key)
     }
 
-    override fun <T> has(key: StoreKey<T>): Boolean = accessLock.read {
+    override fun <T: Any> has(key: StoreKey<T>): Boolean = accessLock.read {
         if (isDestroyed) return false
         return get(key) != null
     }
 
-    override fun <T> observe(key: StoreKey<T>): Observable<Optional<T>> = accessLock.read {
+    override fun <T: Any> observe(key: StoreKey<T>): Observable<Optional<T>> = accessLock.read {
         return if (isDestroyed) Observable.error(StoreException.StoreDestroyed()) else observer(key).hide()
     }
 
@@ -71,8 +72,8 @@ class Store(context: Context) : StoreInterface {
         deleteAllEntries(kinds = StoreKind.values())
 
         changeObservers.values.forEach {
-            val observer = it as? BehaviorSubject<Optional<*>>
-            observer?.onNext(Optional(null))
+            val observer = it as? BehaviorSubject<Optional<Any>>
+            observer?.onNext(null.toOptional())
         }
     }
 
@@ -97,7 +98,7 @@ class Store(context: Context) : StoreInterface {
     }
 
     @Suppress("UNCHECKED_CAST")
-    private fun <T> observer(key: StoreKey<T>): BehaviorSubject<Optional<T>> {
+    private fun <T : Any> observer(key: StoreKey<T>): BehaviorSubject<Optional<T>> {
         // Check if we have an observer registered in concurrent mode
         var currentObserver: BehaviorSubject<Optional<T>>? = null
         changeObserversLock.read {
@@ -120,7 +121,7 @@ class Store(context: Context) : StoreInterface {
             changeObservers[key.name] = observer
             newObserver = observer
 
-            observer.onNext(Optional(value))
+            observer.onNext(value.toOptional())
         }
 
         return newObserver ?: throw StoreException.UnableToCreateObserver()

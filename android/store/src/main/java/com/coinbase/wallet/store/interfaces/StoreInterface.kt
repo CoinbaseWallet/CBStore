@@ -1,8 +1,8 @@
 package com.coinbase.wallet.store.interfaces
 
-import com.coinbase.wallet.store.models.Optional
 import com.coinbase.wallet.store.models.StoreKey
 import com.coinbase.wallet.store.models.StoreKind
+import com.gojuno.koptional.Optional
 import io.reactivex.Observable
 
 /**
@@ -15,7 +15,7 @@ interface StoreInterface {
      * @param key Key for store value
      * @param value: Value to be stored
      */
-    fun <T> set(key: StoreKey<T>, value: T?)
+    fun <T : Any> set(key: StoreKey<T>, value: T?)
 
     /**
      * Get value for key
@@ -24,7 +24,7 @@ interface StoreInterface {
      *
      * @return Value if exists or nil
      */
-    fun <T> get(key: StoreKey<T>): T?
+    fun <T: Any> get(key: StoreKey<T>): T?
 
     /**
      * Determine whether a value exists
@@ -33,7 +33,7 @@ interface StoreInterface {
      *
      * @returns: True if value exists
      */
-    fun <T> has(key: StoreKey<T>): Boolean
+    fun <T: Any> has(key: StoreKey<T>): Boolean
 
     /**
      * Add observer for store changes
@@ -42,7 +42,7 @@ interface StoreInterface {
      *
      * @return Observer
      */
-    fun <T> observe(key: StoreKey<T>): Observable<Optional<T>>
+    fun <T: Any> observe(key: StoreKey<T>): Observable<Optional<T>>
 
     /**
      * Destroy the store. This will make the current store unusable,
