@@ -42,6 +42,7 @@ dependencies {
     ext.kotlinCoroutineVersion = "1.2.1"
     ext.ktlintVersion = "0.32.0"
     ext.androidXTestCore = "1.1.0"
+    ext.koptional = "1.6.0"
 
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
     ktlint "com.pinterest:ktlint:${ktlintVersion}"
@@ -54,6 +55,7 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
     implementation "com.squareup.okhttp3:okhttp:$okhttp3Version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutineVersion"
+    implementation "com.gojuno.koptional:koptional:$koptional"
 
     // Test dependencies
     testImplementation 'junit:junit:4.12'
