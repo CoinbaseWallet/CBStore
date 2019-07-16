@@ -83,7 +83,7 @@ class StoreTests {
             store.observe(TestKeys.memoryString)
                 .filter { it != None }
                 .timeout(6, TimeUnit.SECONDS)
-                .subscribe({(element) ->
+                .subscribe({ (element) ->
                     actual = element ?: throw AssertionError("No element found")
                     latchDown.countDown()
                 }, { latchDown.countDown() })
