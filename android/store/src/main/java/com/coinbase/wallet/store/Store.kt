@@ -45,17 +45,17 @@ class Store(context: Context) : StoreInterface {
         }
     }
 
-    override fun <T: Any> get(key: StoreKey<T>): T? = accessLock.read {
+    override fun <T : Any> get(key: StoreKey<T>): T? = accessLock.read {
         if (isDestroyed) return null
         return storageForKey(key).get(key)
     }
 
-    override fun <T: Any> has(key: StoreKey<T>): Boolean = accessLock.read {
+    override fun <T : Any> has(key: StoreKey<T>): Boolean = accessLock.read {
         if (isDestroyed) return false
         return get(key) != null
     }
 
-    override fun <T: Any> observe(key: StoreKey<T>): Observable<Optional<T>> = accessLock.read {
+    override fun <T : Any> observe(key: StoreKey<T>): Observable<Optional<T>> = accessLock.read {
         return if (isDestroyed) Observable.error(StoreException.StoreDestroyed()) else observer(key).hide()
     }
 

@@ -21,7 +21,7 @@ configurations {
 }
 
 dependencies {
-    ktlint "com.pinterest:ktlint:${versions.ktlint}"
+    ktlint "com.pinterest:ktlint:${otherVersions.ktlint}"
 
     implementation(
         "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}",

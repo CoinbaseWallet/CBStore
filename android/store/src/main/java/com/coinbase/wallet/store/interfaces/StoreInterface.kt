@@ -24,7 +24,7 @@ interface StoreInterface {
      *
      * @return Value if exists or nil
      */
-    fun <T: Any> get(key: StoreKey<T>): T?
+    fun <T : Any> get(key: StoreKey<T>): T?
 
     /**
      * Determine whether a value exists
@@ -33,7 +33,7 @@ interface StoreInterface {
      *
      * @returns: True if value exists
      */
-    fun <T: Any> has(key: StoreKey<T>): Boolean
+    fun <T : Any> has(key: StoreKey<T>): Boolean
 
     /**
      * Add observer for store changes
@@ -42,7 +42,7 @@ interface StoreInterface {
      *
      * @return Observer
      */
-    fun <T: Any> observe(key: StoreKey<T>): Observable<Optional<T>>
+    fun <T : Any> observe(key: StoreKey<T>): Observable<Optional<T>>
 
     /**
      * Destroy the store. This will make the current store unusable,
