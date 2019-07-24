@@ -2,7 +2,7 @@ package com.coinbase.wallet.store.interfaces
 
 import com.coinbase.wallet.store.models.StoreKey
 import com.coinbase.wallet.store.models.StoreKind
-import com.gojuno.koptional.Optional
+import com.coinbase.wallet.core.util.Optional
 import io.reactivex.Observable
 
 /**

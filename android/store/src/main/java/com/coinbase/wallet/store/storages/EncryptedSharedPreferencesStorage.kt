@@ -9,7 +9,7 @@ import com.coinbase.wallet.crypto.extensions.base64EncodedString
 import com.coinbase.wallet.crypto.extensions.parseAES256GMPayload
 import com.coinbase.wallet.store.interfaces.Storage
 import com.coinbase.wallet.store.models.StoreKey
-import com.coinbase.wallet.store.utils.JSON
+import com.coinbase.wallet.core.util.JSON
 import java.io.IOException
 import java.security.KeyStore
 import java.security.KeyStoreException
