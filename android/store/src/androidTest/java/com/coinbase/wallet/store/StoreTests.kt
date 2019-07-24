@@ -3,13 +3,12 @@ package com.coinbase.wallet.store
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.coinbase.wallet.core.util.toOptional
 import com.coinbase.wallet.store.exceptions.StoreException
 import com.coinbase.wallet.store.models.EncryptedSharedPrefsStoreKey
 import com.coinbase.wallet.store.models.MemoryStoreKey
 import com.coinbase.wallet.store.models.SharedPrefsStoreKey
 import com.coinbase.wallet.store.models.StoreKind
-import com.gojuno.koptional.None
-import com.gojuno.koptional.toOptional
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.junit.Assert
@@ -81,7 +80,7 @@ class StoreTests {
 
         GlobalScope.launch {
             store.observe(TestKeys.memoryString)
-                .filter { it != None }
+                .filter { it.value != null }
                 .timeout(6, TimeUnit.SECONDS)
                 .subscribe({ (element) ->
                     actual = element ?: throw AssertionError("No element found")
@@ -173,7 +172,7 @@ class StoreTests {
         // Assert that store drops any set operations on the floor after a destroy
         store.set(stringKey, expected)
 
-        Assert.assertEquals(expected, store.get(stringKey))
+        assertEquals(expected, store.get(stringKey))
         Assert.assertTrue(store.has(stringKey))
         store.observe(stringKey)
             .test()

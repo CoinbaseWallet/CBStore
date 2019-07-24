@@ -9,8 +9,8 @@ import com.coinbase.wallet.store.models.StoreKind
 import com.coinbase.wallet.store.storages.EncryptedSharedPreferencesStorage
 import com.coinbase.wallet.store.storages.MemoryStorage
 import com.coinbase.wallet.store.storages.SharedPreferencesStorage
-import com.gojuno.koptional.Optional
-import com.gojuno.koptional.toOptional
+import com.coinbase.wallet.core.util.Optional
+import com.coinbase.wallet.core.util.toOptional
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 import java.util.concurrent.locks.ReentrantReadWriteLock

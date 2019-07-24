@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.coinbase.wallet.store.interfaces.Storage
 import com.coinbase.wallet.store.models.StoreKey
-import com.coinbase.wallet.store.utils.JSON
+import com.coinbase.wallet.core.util.JSON
 
 internal class SharedPreferencesStorage(context: Context) : Storage {
     private val preferences = context.getSharedPreferences("CBStore.plaintext", Context.MODE_PRIVATE)
