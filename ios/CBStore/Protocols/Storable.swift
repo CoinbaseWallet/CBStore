@@ -29,7 +29,10 @@ public extension DefaultStorable {
 extension String: DefaultStorable {}
 extension Int: DefaultStorable {}
 extension Int32: DefaultStorable {}
+extension Int64: DefaultStorable {}
+extension UInt: Storable {}
 extension UInt32: DefaultStorable {}
+extension UInt64: DefaultStorable {}
 extension Double: DefaultStorable {}
 extension Float: DefaultStorable {}
 extension CGFloat: DefaultStorable {}
