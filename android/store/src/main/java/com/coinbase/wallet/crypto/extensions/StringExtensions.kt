@@ -1,20 +1,6 @@
 package com.coinbase.wallet.crypto.extensions
 
 import android.util.Base64
-import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
-
-/**
- * Hash the string using sha256
- *
- * @throws `NoSuchAlgorithmException` when unable to sha256
- */
-@Throws(NoSuchAlgorithmException::class)
-fun String.sha256(): String {
-    val md = MessageDigest.getInstance("SHA-256")
-    md.update(this.toByteArray())
-    return md.digest().toHexString()
-}
 
 /**
  * Parse AES256 GCM payload i.e. IV (12 bytes) + Auth Tag (16 bytes) + CiperText (rest of bytes)
