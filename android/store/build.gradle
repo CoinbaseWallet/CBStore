@@ -32,7 +32,8 @@ dependencies {
         "io.reactivex.rxjava2:rxandroid:${versions.rxAndroid}",
         "io.reactivex.rxjava2:rxkotlin:${versions.rxKotlin}",
 
-        project(":libraries:core")
+        project(":libraries:core"),
+        project(":libraries:crypto")
     )
 
     testImplementation(

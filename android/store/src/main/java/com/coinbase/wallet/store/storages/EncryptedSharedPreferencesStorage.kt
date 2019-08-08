@@ -4,12 +4,12 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
-import com.coinbase.wallet.crypto.algorithms.AES256GCM
-import com.coinbase.wallet.crypto.extensions.base64EncodedString
-import com.coinbase.wallet.crypto.extensions.parseAES256GMPayload
+import com.coinbase.wallet.core.extensions.base64EncodedString
 import com.coinbase.wallet.store.interfaces.Storage
 import com.coinbase.wallet.store.models.StoreKey
 import com.coinbase.wallet.core.util.JSON
+import com.coinbase.wallet.crypto.ciphers.AES256GCM
+import com.coinbase.wallet.store.extensions.parseAES256GMPayload
 import java.io.IOException
 import java.security.KeyStore
 import java.security.KeyStoreException

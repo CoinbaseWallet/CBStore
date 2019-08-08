@@ -1,4 +1,4 @@
-package com.coinbase.wallet.crypto.extensions
+package com.coinbase.wallet.store.extensions
 
 import android.util.Base64
 
@@ -7,7 +7,7 @@ import android.util.Base64
  *
  * @returns Triple containing UV + Auth Tag + Cipher text
  */
-fun String.parseAES256GMPayload(): Triple<ByteArray, ByteArray, ByteArray>? {
+internal fun String.parseAES256GMPayload(): Triple<ByteArray, ByteArray, ByteArray>? {
     val encryptedData = this.base64DecodedByteArray()
     val ivEndIndex = 12
     val authTagEndIndex = ivEndIndex + 16

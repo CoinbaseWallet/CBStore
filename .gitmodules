@@ -1,4 +1,10 @@
 [submodule "android/libraries/cb-core"]
-	path = android/libraries/cb-core
+	path = android/libraries/core
 	url = git@github.com:CoinbaseWallet/CBCore.git
 	branch = master
+[submodule "android/libraries/core"]
+	path = android/libraries/core
+	url = git@github.com:CoinbaseWallet/CBCore.git
+[submodule "android/libraries/crypto"]
+	path = android/libraries/crypto
+	url = git@github.com:CoinbaseWallet/CBCrypto.git
