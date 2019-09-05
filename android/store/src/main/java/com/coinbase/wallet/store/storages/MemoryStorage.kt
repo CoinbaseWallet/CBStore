@@ -15,14 +15,9 @@ internal class MemoryStorage : Storage {
         storage[key.name] = value
     }
 
+    @Suppress("UNCHECKED_CAST")
     override fun <T> get(key: StoreKey<T>): T? {
-        val value = storage[key.name]
-
-        if (key.clazz.isInstance(value)) {
-            return key.clazz.cast(value)
-        }
-
-        return null
+        return storage[key.name] as? T
     }
 
     override fun destroy() {
