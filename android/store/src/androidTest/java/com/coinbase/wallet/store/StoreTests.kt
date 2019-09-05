@@ -61,13 +61,20 @@ class StoreTests {
 
     @Test
     fun testMemory() {
-        val expected = "Memory string goes here"
+        val expectedString = "Memory string goes here"
+        val expectedBoolean = true
+        val expectedInt = 8
         val appContext = ApplicationProvider.getApplicationContext<Context>()
         val store = Store(appContext)
 
-        store.set(TestKeys.memoryString, expected)
+        store.set(TestKeys.memoryString, expectedString)
+        assertEquals(expectedString, store.get(TestKeys.memoryString))
 
-        assertEquals(expected, store.get(TestKeys.memoryString))
+        store.set(TestKeys.memoryBoolean, expectedBoolean)
+        assertEquals(expectedBoolean, store.get(TestKeys.memoryBoolean))
+
+        store.set(TestKeys.memoryInt, expectedInt)
+        assertEquals(expectedInt, store.get(TestKeys.memoryInt))
     }
 
     @Test
@@ -284,6 +291,10 @@ object TestKeys {
         fun computedKey(uuid: String): SharedPrefsStoreKey<String> {
             return SharedPrefsStoreKey(id = "computedKey", uuid = uuid, clazz = String::class.java)
         }
+
+        val memoryBoolean = MemoryStoreKey(id = "memory_boolean", clazz = Boolean::class.java)
+
+        val memoryInt = MemoryStoreKey(id = "memory_int", clazz = Int::class.java)
 
         val memoryString = MemoryStoreKey(id = "memory_string", clazz = String::class.java)
 
