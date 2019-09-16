@@ -1,8 +1,8 @@
- package com.coinbase.wallet.store.interfaces
+package com.coinbase.wallet.store.interfaces
 
 import com.coinbase.wallet.store.models.StoreKey
 
-internal interface Storage {
+internal interface Storage  {
     /**
      * Store value for key
      *
