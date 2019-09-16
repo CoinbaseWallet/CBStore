@@ -1,4 +1,4 @@
-package com.coinbase.wallet.store.interfaces
+ package com.coinbase.wallet.store.interfaces
 
 import com.coinbase.wallet.store.models.StoreKey
 
