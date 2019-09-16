@@ -14,6 +14,6 @@ init:
 	if [ -d ".git/hooks" ]; then \
 		dir=".git"; \
 	else \
-		dir=`cat .git | awk '/gitdir:/ {print $$2}'` && cp pre-push "$$dir/hooks/" && chmod 766 "$$dir/hooks/pre-push"; \
+		dir=`cat .git | awk '/gitdir:/ {print $$2}'`; \
 	fi; \
 	cp pre-push "$$dir/hooks/" && chmod 766 "$$dir/hooks/pre-push";
