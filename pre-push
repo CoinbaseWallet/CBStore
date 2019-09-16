@@ -2,15 +2,13 @@
 
 echo "Running git pre-push hook"
 
-moduleName="store"
-
-./gradlew ":$moduleName:ktlint" 
+make checkFormat
 
 RESULT=$?
 
 # return 1 exit code if running checks fails
 if [ $RESULT -ne 0 ]; then
-  ./gradlew ":$moduleName:ktlintFormat"
+  make format
   exit 1
 else
   exit 0
