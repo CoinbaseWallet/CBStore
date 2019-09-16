@@ -3,7 +3,7 @@
 import Foundation
 
 /// This protocol declares all operations required from the storage impl
-protocol Storage {
+protocol Storage  {
     /// Store value for key
     ///
     /// - parameter key: Key used to store value
