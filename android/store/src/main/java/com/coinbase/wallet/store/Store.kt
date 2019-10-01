@@ -12,6 +12,7 @@ import com.coinbase.wallet.store.storages.SharedPreferencesStorage
 import com.coinbase.wallet.core.util.Optional
 import com.coinbase.wallet.core.util.toOptional
 import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import java.util.concurrent.locks.ReentrantReadWriteLock
 import kotlin.concurrent.read
@@ -24,6 +25,7 @@ class Store(context: Context) : StoreInterface {
     private val changeObservers = mutableMapOf<String, Any>()
     private val accessLock = ReentrantReadWriteLock()
     private val changeObserversLock = ReentrantReadWriteLock()
+    private val observerScheduler = Schedulers.io()
 
     var isDestroyed: Boolean = false
         private set
@@ -56,7 +58,9 @@ class Store(context: Context) : StoreInterface {
     }
 
     override fun <T : Any> observe(key: StoreKey<T>): Observable<Optional<T>> = accessLock.read {
-        return if (isDestroyed) Observable.error(StoreException.StoreDestroyed()) else observer(key).hide()
+        val observable = if (isDestroyed) Observable.error(StoreException.StoreDestroyed()) else observer(key).hide()
+
+        return observable.observeOn(observerScheduler)
     }
 
     override fun destroy() = accessLock.write {
