@@ -8,7 +8,7 @@ private typealias ChangeObserver = (subject: Any, clearClosure: () -> Void)
 
 /// Utility used to simplify interface to keychain or user defaults
 public final class Store: StoreProtocol {
-    private var changeObservers = [String: ChangeObserver]()
+    private let concurrentScheduler = ConcurrentDispatchQueueScheduler(qos: .userInitiated)
     private let userDefaultStorage = UserDefaultsStorage()
     private let memoryStorage = MemoryStorage()
     private let cloudStorage = CloudStorage()
@@ -23,6 +23,8 @@ public final class Store: StoreProtocol {
         qos: .userInitiated,
         attributes: .concurrent
     )
+
+    private var changeObservers = [String: ChangeObserver]()
 
     /// Determine whether the store is destroyed
     public private(set) var isDestroyed: Bool = false
@@ -153,7 +155,7 @@ public final class Store: StoreProtocol {
             }
         }
 
-        return observable
+        return observable.observeOn(concurrentScheduler)
     }
 
     /// Destroy the store. This will make the current store unusable
@@ -183,7 +185,7 @@ public final class Store: StoreProtocol {
         changeObservers.values.forEach { $0.clearClosure() }
     }
 
-    // MARK: -
+    // MARK: - Private
 
     private func deleteAllEntries(kinds: [StoreKind]) {
         kinds.forEach { kind in
