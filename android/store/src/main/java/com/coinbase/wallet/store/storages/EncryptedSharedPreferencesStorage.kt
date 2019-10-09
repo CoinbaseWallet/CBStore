@@ -9,6 +9,7 @@ import com.coinbase.wallet.store.interfaces.Storage
 import com.coinbase.wallet.store.models.StoreKey
 import com.coinbase.wallet.core.util.JSON
 import com.coinbase.wallet.crypto.ciphers.AES256GCM
+import com.coinbase.wallet.crypto.ciphers.CryptoLock
 import com.coinbase.wallet.store.extensions.parseAES256GMPayload
 import java.io.IOException
 import java.security.KeyStore
@@ -79,34 +80,39 @@ internal class EncryptedSharedPreferencesStorage(context: Context) : Storage {
         UnrecoverableEntryException::class
     )
     private fun getSecretKey(): SecretKey {
-        // Attempt to fetch existing stored secret key from Android KeyStore
-        val keyStore = KeyStore.getInstance(KEYSTORE)
+        CryptoLock.lock()
+        try {
+            // Attempt to fetch existing stored secret key from Android KeyStore
+            val keyStore = KeyStore.getInstance(KEYSTORE)
 
-        keyStore.load(null)
+            keyStore.load(null)
 
-        val entry = keyStore.getEntry(ALIAS, null) as? KeyStore.SecretKeyEntry
-        val secretKey = entry?.secretKey
+            val entry = keyStore.getEntry(ALIAS, null) as? KeyStore.SecretKeyEntry
+            val secretKey = entry?.secretKey
 
-        if (secretKey != null) {
-            return secretKey
-        }
+            if (secretKey != null) {
+                return secretKey
+            }
 
-        // At this point, no secret key is stored so generate a new one.
-        val keyGenerator = KeyGenerator.getInstance(
-            KeyProperties.KEY_ALGORITHM_AES,
-            KEYSTORE
-        )
+            // At this point, no secret key is stored so generate a new one.
+            val keyGenerator = KeyGenerator.getInstance(
+                KeyProperties.KEY_ALGORITHM_AES,
+                KEYSTORE
+            )
 
-        val spec = KeyGenParameterSpec.Builder(
+            val spec = KeyGenParameterSpec.Builder(
                 ALIAS,
                 KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
             )
-            .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-            .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-            .build()
+                .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+                .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+                .build()
 
-        keyGenerator.init(spec)
+            keyGenerator.init(spec)
 
-        return keyGenerator.generateKey()
+            return keyGenerator.generateKey()
+        } finally {
+            CryptoLock.unlock()
+        }
     }
 }
