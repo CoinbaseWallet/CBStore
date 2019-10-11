@@ -2,6 +2,8 @@ package com.coinbase.wallet.store.storages
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.security.keystore.KeyGenParameterSpec
+import android.security.keystore.KeyProperties
 import com.coinbase.wallet.core.extensions.base64EncodedString
 import com.coinbase.wallet.core.util.JSON
 import com.coinbase.wallet.crypto.ciphers.AES256GCM
@@ -9,6 +11,7 @@ import com.coinbase.wallet.crypto.ciphers.KeyStores
 import com.coinbase.wallet.store.extensions.parseAES256GMPayload
 import com.coinbase.wallet.store.interfaces.Storage
 import com.coinbase.wallet.store.models.StoreKey
+import javax.crypto.SecretKey
 
 internal class EncryptedSharedPreferencesStorage(context: Context) : Storage {
     private val preferences = context.getSharedPreferences("CBStore.encrypted", Context.MODE_PRIVATE)
@@ -62,5 +65,12 @@ internal class EncryptedSharedPreferencesStorage(context: Context) : Storage {
         return decrypted.toString(Charsets.UTF_8)
     }
 
-    private fun getSecretKey() = KeyStores.getSecretKey(KEYSTORE, ALIAS)
+    private fun getSecretKey(): SecretKey {
+        val spec = KeyGenParameterSpec
+            .Builder(ALIAS, KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT)
+            .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+            .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+            .build()
+        return KeyStores.getSecretKey(KEYSTORE, ALIAS, spec)
+    }
 }
