@@ -2,8 +2,6 @@ package com.coinbase.wallet.store.storages
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.security.keystore.KeyGenParameterSpec
-import android.security.keystore.KeyProperties
 import com.coinbase.wallet.core.extensions.base64EncodedString
 import com.coinbase.wallet.core.util.JSON
 import com.coinbase.wallet.crypto.ciphers.AES256GCM
