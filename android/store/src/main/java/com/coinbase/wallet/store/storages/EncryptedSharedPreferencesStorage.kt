@@ -65,12 +65,5 @@ internal class EncryptedSharedPreferencesStorage(context: Context) : Storage {
         return decrypted.toString(Charsets.UTF_8)
     }
 
-    private fun getSecretKey(): SecretKey {
-        val spec = KeyGenParameterSpec
-            .Builder(ALIAS, KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT)
-            .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-            .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-            .build()
-        return KeyStores.getSecretKey(spec)
-    }
+    private fun getSecretKey(): SecretKey = KeyStores.getAESWithGCMSecretKey(KEYSTORE, ALIAS)
 }
