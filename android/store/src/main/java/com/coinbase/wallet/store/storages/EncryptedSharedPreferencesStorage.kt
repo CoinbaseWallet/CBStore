@@ -71,6 +71,6 @@ internal class EncryptedSharedPreferencesStorage(context: Context) : Storage {
             .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
             .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
             .build()
-        return KeyStores.getSecretKey(KEYSTORE, ALIAS, spec)
+        return KeyStores.getSecretKey(spec)
     }
 }
