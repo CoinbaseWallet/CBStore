@@ -12,9 +12,7 @@ import com.coinbase.wallet.store.models.StoreKind
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.junit.Assert
-import org.junit.Assert.assertArrayEquals
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotEquals
+import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.math.BigDecimal
@@ -282,6 +280,18 @@ class StoreTests {
 
         val newAdaptersMemoryKey = MemoryStoreKey(id = "adaptersKey", clazz = MockObjectForDefaultAdapters::class.java)
         assertNotEquals(newAdaptersMemoryKey, TestKeys.adaptersKey)
+    }
+
+    @Test
+    fun testMemoryStoreKeyRemove() {
+        val store = Store(ApplicationProvider.getApplicationContext<Context>())
+        val memoryKey = MemoryStoreKey(id = "memoryStringKey", clazz = String::class.java)
+
+        store.set(memoryKey, "test")
+        store.set(memoryKey, null)
+
+        val result = store.get(memoryKey)
+        assertNull(result)
     }
 }
 
