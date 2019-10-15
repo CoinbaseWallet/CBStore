@@ -63,5 +63,5 @@ internal class EncryptedSharedPreferencesStorage(context: Context) : Storage {
         return decrypted.toString(Charsets.UTF_8)
     }
 
-    private fun getSecretKey(): SecretKey = KeyStores.getAESWithGCMSecretKey(KEYSTORE, ALIAS)
+    private fun getSecretKey(): SecretKey = KeyStores.getOrCreateAES256GCMSecretKey(KEYSTORE, ALIAS)
 }
