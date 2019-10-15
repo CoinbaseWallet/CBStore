@@ -10,6 +10,7 @@ internal class MemoryStorage : Storage {
     override fun <T> set(key: StoreKey<T>, value: T?) {
         if (value == null) {
             storage.remove(key.name)
+            return
         }
 
         storage[key.name] = value
