@@ -80,9 +80,6 @@ class Store(context: Context) : StoreInterface {
 
         changeObservers.values.forEach {
             val observer = it as? BehaviorSubject<Optional<Any>>
-
-            if (isDestroyed) return
-
             observer?.onNext(null.toOptional())
         }
     }
