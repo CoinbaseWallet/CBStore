@@ -70,13 +70,19 @@ class Store(context: Context) : StoreInterface {
         deleteAllEntries(kinds = StoreKind.values())
     }
 
-    override fun removeAll(kinds: Array<StoreKind>) = accessLock.write {
-        if (isDestroyed) return
+    @Suppress("UNCHECKED_CAST")
+    override fun removeAll(kinds: Array<StoreKind>) {
+        accessLock.write {
+            if (isDestroyed) return
 
-        deleteAllEntries(kinds = StoreKind.values())
+            deleteAllEntries(kinds)
+        }
 
         changeObservers.values.forEach {
             val observer = it as? BehaviorSubject<Optional<Any>>
+
+            if (isDestroyed) return
+
             observer?.onNext(null.toOptional())
         }
     }
@@ -124,9 +130,9 @@ class Store(context: Context) : StoreInterface {
             val observer = BehaviorSubject.create<Optional<T>>()
             changeObservers[key.name] = observer
             newObserver = observer
-
-            observer.onNext(value.toOptional())
         }
+
+        newObserver?.onNext(value.toOptional())
 
         return newObserver ?: throw StoreException.UnableToCreateObserver()
     }
