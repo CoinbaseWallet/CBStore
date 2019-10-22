@@ -11,11 +11,13 @@ import com.coinbase.wallet.store.models.SharedPrefsStoreKey
 import com.coinbase.wallet.store.models.StoreKind
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.junit.Assert
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNull
+import org.junit.Assert.fail
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.math.BigDecimal
@@ -131,7 +133,7 @@ class StoreTests {
         store.set(TestKeys.memoryString, expected)
         secondLatchDown.await()
 
-        Assert.assertNull(actual[0])
+        assertNull(actual[0])
         assertEquals(expected, actual[1])
     }
 
@@ -145,18 +147,19 @@ class StoreTests {
 
         store.destroy()
 
-        Assert.assertNull(store.get(stringKey))
-        Assert.assertFalse(store.has(stringKey))
+        assertNull(store.get(stringKey))
+        assertFalse(store.has(stringKey))
 
-        store
-            .observe(stringKey)
-            .test()
-            .assertError { it is StoreException.StoreDestroyed }
+        try {
+            store.observe(stringKey).blockingFirst()
+            fail("should've thrown an exception")
+        } catch (e: Throwable) {
+            assertTrue(e is StoreException.StoreDestroyed)
+        }
 
         // Assert that store drops any set operations on the floor after a destroy
-        store.set(stringKey, expected).run {
-            Assert.assertNull(store.get(stringKey))
-        }
+        store.set(stringKey, expected)
+        assertNull(store.get(stringKey))
     }
 
     @Test
@@ -169,22 +172,18 @@ class StoreTests {
 
         store.removeAll(StoreKind.values())
 
-        Assert.assertNull(store.get(stringKey))
-        Assert.assertFalse(store.has(stringKey))
-
-        store
-            .observe(stringKey)
-            .test()
-            .assertValue(null.toOptional())
+        assertNull(store.get(stringKey))
+        assertFalse(store.has(stringKey))
+        assertEquals(null.toOptional(), store.observe(stringKey).blockingFirst())
 
         // Assert that store drops any set operations on the floor after a destroy
         store.set(stringKey, expected)
 
         assertEquals(expected, store.get(stringKey))
-        Assert.assertTrue(store.has(stringKey))
-        store.observe(stringKey)
-            .test()
-            .assertValue(expected.toOptional())
+        assertTrue(store.has(stringKey))
+
+        val result = store.observe(stringKey).blockingFirst()
+        assertEquals(result, expected.toOptional())
     }
 
     @Test
@@ -209,7 +208,7 @@ class StoreTests {
         val actual = store.get(TestKeys.encryptedComplexObject)
 
         if (actual == null) {
-            Assert.fail("Unable to get encrypted complex object")
+            fail("Unable to get encrypted complex object")
             return
         }
 
@@ -264,7 +263,7 @@ class StoreTests {
         val actual = store.get(TestKeys.adaptersKey)
 
         if (actual == null) {
-            Assert.fail("Cannot be null")
+            fail("Cannot be null")
             return
         }
 
@@ -278,7 +277,10 @@ class StoreTests {
 
     @Test
     fun testStoreKeysEqual() {
-        val newAdaptersKey = SharedPrefsStoreKey(id = "adaptersKey", clazz = MockObjectForDefaultAdapters::class.java)
+        val newAdaptersKey = SharedPrefsStoreKey(
+            id = "adaptersKey",
+            clazz = MockObjectForDefaultAdapters::class.java
+        )
         assertEquals(TestKeys.adaptersKey, newAdaptersKey)
 
         val newAdaptersMemoryKey = MemoryStoreKey(id = "adaptersKey", clazz = MockObjectForDefaultAdapters::class.java)
@@ -299,36 +301,36 @@ class StoreTests {
 }
 
 object TestKeys {
-        val activeUser = SharedPrefsStoreKey(id = "computedKeyX", clazz = String::class.java)
+    val activeUser = SharedPrefsStoreKey(id = "computedKeyX", clazz = String::class.java)
 
-        fun computedKey(uuid: String): SharedPrefsStoreKey<String> {
-            return SharedPrefsStoreKey(id = "computedKey", uuid = uuid, clazz = String::class.java)
-        }
+    fun computedKey(uuid: String): SharedPrefsStoreKey<String> {
+        return SharedPrefsStoreKey(id = "computedKey", uuid = uuid, clazz = String::class.java)
+    }
 
-        val memoryBoolean = MemoryStoreKey(id = "memory_boolean", clazz = Boolean::class.java)
+    val memoryBoolean = MemoryStoreKey(id = "memory_boolean", clazz = Boolean::class.java)
 
-        val memoryInt = MemoryStoreKey(id = "memory_int", clazz = Int::class.java)
+    val memoryInt = MemoryStoreKey(id = "memory_int", clazz = Int::class.java)
 
-        val memoryString = MemoryStoreKey(id = "memory_string", clazz = String::class.java)
+    val memoryString = MemoryStoreKey(id = "memory_string", clazz = String::class.java)
 
-        val encryptedString = EncryptedSharedPrefsStoreKey(
-            id = "encryptedString",
-            clazz = String::class.java
-        )
+    val encryptedString = EncryptedSharedPrefsStoreKey(
+        id = "encryptedString",
+        clazz = String::class.java
+    )
 
-        val encryptedComplexObject = EncryptedSharedPrefsStoreKey(
-            id = "encrypted_complex_object",
-            clazz = MockComplexObject::class.java
-        )
+    val encryptedComplexObject = EncryptedSharedPrefsStoreKey(
+        id = "encrypted_complex_object",
+        clazz = MockComplexObject::class.java
+    )
 
-        val encryptedArray = EncryptedSharedPrefsStoreKey(id = "encrypted_array", clazz = Array<String>::class.java)
+    val encryptedArray = EncryptedSharedPrefsStoreKey(id = "encrypted_array", clazz = Array<String>::class.java)
 
-        val encryptedComplexObjectArray = EncryptedSharedPrefsStoreKey(
-            id = "encrypted_complex_object_array",
-            clazz = Array<MockComplexObject>::class.java
-        )
+    val encryptedComplexObjectArray = EncryptedSharedPrefsStoreKey(
+        id = "encrypted_complex_object_array",
+        clazz = Array<MockComplexObject>::class.java
+    )
 
-        var adaptersKey = SharedPrefsStoreKey(id = "adaptersKey", clazz = MockObjectForDefaultAdapters::class.java)
+    var adaptersKey = SharedPrefsStoreKey(id = "adaptersKey", clazz = MockObjectForDefaultAdapters::class.java)
 }
 
 data class MockComplexObject(val name: String, val age: Int, val wallets: List<String>) {
