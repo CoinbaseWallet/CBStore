@@ -59,6 +59,16 @@ class StoreTests: XCTestCase {
 
         XCTAssertEqual(obj, stores.get(.codableKey))
     }
+    
+    func testUserDefaultArrayBasedKey() {
+        let expected = [
+            ExampleStruct(name: "User 1", age: 11),
+            ExampleStruct(name: "User 2", age: 22)
+        ]
+        stores.set(.structArrayKey, value: expected)
+        
+        XCTAssertEqual(expected, stores.get(.arrayBasedKey))
+    }
 
     // MARK: - Cloud tests
 
@@ -386,6 +396,7 @@ extension StoreKeys {
     static let floatBasedKey = UserDefaultsStoreKey<Float>("float_key")
     static let dataKey = UserDefaultsStoreKey<Data>("data_key")
     static let codableKey = UserDefaultsStoreKey<ExampleStruct>("codable_key")
+    static let structArrayKey = UserDefaultsStoreKey<[ExampleStruct]>("array_key")
 
     // cloud based
     static let cloudStringBasedKey = CloudStoreKey<String>("cloud_string_key")
