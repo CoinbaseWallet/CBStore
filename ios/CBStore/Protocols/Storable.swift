@@ -63,3 +63,5 @@ public extension Storable where Self: Codable {
         return try? decoder.decode(self, from: data)
     }
 }
+
+extension Array: Storable where Element: Codable { }
