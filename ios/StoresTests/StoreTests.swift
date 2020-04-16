@@ -59,17 +59,6 @@ class StoreTests: XCTestCase {
 
         XCTAssertEqual(obj, stores.get(.codableKey))
     }
-    
-    func testUserDefaultArrayBasedKey() {
-        let expected = [
-            ExampleStruct(name: "User 1", age: 11),
-            ExampleStruct(name: "User 2", age: 22)
-        ]
-
-        stores.set(.structArrayKey, value: expected)
-        
-        XCTAssertEqual(expected, stores.get(.arrayBasedKey))
-    }
 
     // MARK: - Cloud tests
 
